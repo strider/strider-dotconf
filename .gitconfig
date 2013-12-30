@@ -1,0 +1,42 @@
+[user]
+    name = Gaël Chamoulaud
+    email = gael@redhat.com
+[github]
+    user = strider
+[push]
+    default = upstream
+[core]
+    editor = ~/opt/vim/bin/vim
+    pager = less -FSRX
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[merge]
+    tool = vimdiff
+[alias]
+    br = branch --all
+    ci = commit
+    co = checkout
+    dh = diff HEAD
+    lg = log --graph --pretty=format:'%Cred%h..%Creset - %s %Cgreen(%cr)%Creset - %an' --abbrev-commit --date=relative
+    lgn = log --pretty=oneline --abbrev-commit --show-notes=*
+    rh = reset --soft HEAD^
+    st = status
+[sendemail]
+    smtpencryption = tls
+    smtpserver = smtp.corp.redhat.com
+    smtpuser = gchamoul@redhat.com
+    smtpserverport = 993
+    confirm = auto
+[diff "oodiff"]
+    command = git-oodiff
+[giggle]
+    main-window-maximized = true
+    main-window-geometry = 0x0+0+0
+    history-view-vpane-position = 186
+    main-window-view = HistoryView
+    file-view-vpane-position = 310
+    file-view-hpane-position = 250
+[credential]
+    helper = cache --timeout=3600
