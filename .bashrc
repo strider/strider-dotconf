@@ -2,23 +2,28 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-        . /etc/bashrc
-fi
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
 
+export PAGER="/usr/bin/less -X"
+source ~/bin/.git-completion.bash
+source ~/bin/.git-prompt.sh
+source ~/bin/todo.txt-cli/todo_completion
+complete -F _todo t
+
+export HISTIGNORE="&:ls:cd:ll:la:ping:exit"
+export HISTFILESIZE="30000"
+export HISTTIMEFORMAT="%D %H:%M "
+export HISTCONTROL=ignoreboth
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER \ "$(history 1)" >> ~/.bash_permanent_history'
+export CDPATH=".:~:~Documents:~Documents/DEV"
+export EDITOR="vimx"
+
 set -o vi
 set -o notify
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -26,7 +31,6 @@ shopt -s globstar
 
 shopt -s cdspell
 shopt -s dirspell
-shopt -s checkwinsize
 shopt -s cmdhist
 shopt -s dotglob
 shopt -s expand_aliases
@@ -49,6 +53,10 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
+if [ -f ~/.bash_prompt ]; then
+    . ~/.bash_prompt
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -58,28 +66,6 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
-fi
-
-export PAGER="/usr/bin/less -X"
-source ~/bin/todo.txt-cli/todo_completion
-complete -F _todo t
-
-export HISTIGNORE="&:ls:cd:ll:la:ping:exit"
-export HISTFILESIZE="30000"
-export HISTTIMEFORMAT="%D %H:%M "
-export HISTCONTROL=ignoreboth
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER \ "$(history 1)" >> ~/.bash_permanent_history'
-export CDPATH=".:~:~Documents:~Documents/DEV"
-export EDITOR="vimx"
-
-
-if [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
-fi
-
-# define prompt
-if [ -f ~/.bash_prompt ]; then
-    . ~/.bash_prompt
 fi
 
 export LANG="en_US.UTF-8"
