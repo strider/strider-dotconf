@@ -8,6 +8,7 @@ case $- in
       *) return;;
 esac
 
+export TERM=screen-256color
 export PAGER="/usr/bin/less -X"
 source ~/bin/.git-completion.bash
 source ~/bin/.git-prompt.sh
@@ -89,5 +90,3 @@ fi;
 test -e $HOME/agent.sh && source $HOME/agent.sh
 
 alias kagent="kill -9 $SSH_AGENT_PID"
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-source /home/gchamoul/.rvm/scripts/rvm
