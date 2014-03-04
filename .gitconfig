@@ -1,5 +1,5 @@
 [user]
-    name = Gaël Chamoulaud
+    name = Gael Chamoulaud
     email = gael@redhat.com
 [github]
     user = strider
@@ -22,7 +22,9 @@
     lg = log --graph --pretty=format:'%Cred%h..%Creset - %s %Cgreen(%cr)%Creset - %an' --abbrev-commit --date=relative
     lgn = log --pretty=oneline --abbrev-commit --show-notes=*
     rh = reset --soft HEAD^
-    st = status
+    st = status -sb
+    fup = log --since '1 day ago' --oneline --author='Gael Chamoulaud <gael@redhat.com>'
+    springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
 [sendemail]
     smtpencryption = tls
     smtpserver = smtp.corp.redhat.com

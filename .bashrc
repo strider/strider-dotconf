@@ -9,7 +9,8 @@ case $- in
 esac
 
 export TERM=screen-256color
-export PAGER="/usr/bin/less -X"
+export ANSIBLE_HOSTS=~/ansible_hosts
+#export PAGER="/usr/bin/less -X"
 source ~/bin/.git-completion.bash
 source ~/bin/.git-prompt.sh
 source ~/bin/todo.txt-cli/todo_completion

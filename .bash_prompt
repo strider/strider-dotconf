@@ -17,4 +17,4 @@ LIGHT_PURPLE="\[\033[0;35m\]"
   COLOR_NONE="\[\e[0m\]"
 
 export GIT_PS1_SHOWDIRTYSTATE=true
-PS1="${GREEN}\u@\h${COLOR_NONE} ${BLUE}\W${COLOR_NONE} ${LIGHT_YELLOW} $(__git_ps1 "[%s]") ${COLOR_NONE} \`if [ \$? = 0 ]; then echo -e '${GREEN}:)'; else echo -e '${RED}:('; fi\` ${BLUE}\$${COLOR_NONE} "
+PS1="${GREEN}\u@\h${COLOR_NONE} ${BLUE}\W${COLOR_NONE} ${LIGHT_YELLOW}$(__git_ps1 "[%s]")${COLOR_NONE} \`if [ \$? = 0 ]; then echo -e '${GREEN}:)'; else echo -e '${RED}:('; fi\` ${BLUE}\$${COLOR_NONE} "

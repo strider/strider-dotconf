@@ -1,5 +1,6 @@
 #!/bin/bash
 
+alias xsos="/home/gchamoul/bin/xsos"
 alias tmux="TERM=xterm-256color tmux -2"
 alias gpa="~/bin/gpa"
 alias yed="java -jar ~/bin/yed-3.11.1/yed.jar"
@@ -9,6 +10,7 @@ alias vla="sudo virsh list --all"
 alias t='todo.sh -d /home/gchamoul/todo.cfg'
 alias vv="virt-viewer -c qemu:///system"
 alias hd='od -Ax -tx1z -v'
+alias v='/usr/bin/vimx'
 alias realpath='readlink -f'
 alias xterm="xterm +sb -bg black -fg white -fa Consolas -fs 13"
 alias makePassword='< /dev/urandom tr -dc A-Za-z0-9_ | head -c15 '
@@ -59,3 +61,7 @@ alias calc='python -ic "from math import *; from random import *"' # Une calcula
 
 bind '"\C-l"':"\"clear\r\"" # Ctrl+l vide le terminal
 alias my_ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+if type -P htop >/dev/null; then
+  alias top='htop' # toujours utiliser htop si installé
+fi
