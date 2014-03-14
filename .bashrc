@@ -8,6 +8,7 @@ case $- in
       *) return;;
 esac
 
+export PATH=$PATH:~/bin
 export TERM=screen-256color
 export ANSIBLE_HOSTS=~/ansible_hosts
 #export PAGER="/usr/bin/less -X"
@@ -55,9 +56,11 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-if [ -f ~/.bash_prompt ]; then
-    . ~/.bash_prompt
-fi
+#if [ -f ~/.bash_prompt ]; then
+#    . ~/.bash_prompt
+#fi
+
+source ~/.bash-git-prompt/gitprompt.sh
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

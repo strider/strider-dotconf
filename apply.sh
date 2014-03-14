@@ -8,6 +8,7 @@ cp -vf .bash* ~/
 
 echo -e "Applying GIT configuration\n"
 cp -vf .gitconfig ~/
+cp -rvf .bash-git-prompt ~/
 
 echo -e "Applying X configuration\n"
 cp -vf .Xresources ~/

@@ -6,7 +6,7 @@
 [push]
     default = upstream
 [core]
-    editor = ~/opt/vim/bin/vim
+    editor = vimx
     pager = less -FSRX
 [color]
     diff = auto
