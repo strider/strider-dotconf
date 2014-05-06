@@ -25,6 +25,13 @@
     st = status -sb
     fup = log --since '1 day ago' --oneline --author='Gael Chamoulaud <gael@redhat.com>'
     springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
+    l = log
+    lh = log --graph
+    la = !git lh --date-order --all 2> /dev/null
+    lb = log --graph --simplify-by-decoration
+    lba = !git lb --all
+    h = !git --no-pager log --graph -n 15
+    a = !git --no-pager la -n 15
 [sendemail]
     smtpencryption = tls
     smtpserver = smtp.corp.redhat.com

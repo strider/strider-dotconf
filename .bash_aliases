@@ -44,6 +44,7 @@ alias lss="ls -ralS"
 alias vim='/usr/bin/vimx'
 alias wiki='/usr/bin/vimx -c VimwikiIndex'
 alias vb='/usr/bin/vimx ~/.bashrc; source ~/.bashrc'
+alias srb='source ~/.bashrc'
 alias sls='screen -ls'
 alias grep='GREP_COLOR="1;33;40" LANG=C grep --color=auto'
 alias pdoc='screen -t \"Python Documentation\" w3m /usr/share/doc/python-docs-2.7.1/html/index.html'

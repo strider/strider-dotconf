@@ -79,18 +79,22 @@ export LANG="en_US.UTF-8"
 # `$ ssh-add -L`: check if keys are already upload or load them using the same command.
 # `$ ssh-add -D`: destroy your keys
 # thanks to http://drupal.star.bnl.gov/STAR/blog-entry/jeromel/2009/feb/06/how-safely-start-ssh-agent-bashrc
-test=`/bin/ps -ef | /bin/grep ssh-agent | /bin/grep -v grep  | /usr/bin/awk '{print $2}' | xargs`
+GREP=/usr/bin/grep
+test=`ps -ef | $GREP ssh-agent | $GREP -v grep | awk '{print $2}' | xargs`
 
 if [ "$test" = "" ]; then
    # there is no agent running
    if [ -e "$HOME/agent.sh" ]; then
       # remove the old file
-      /bin/rm -f $HOME/agent.sh
+      rm -f $HOME/agent.sh
    fi;
    # start a new agent
-   /usr/bin/ssh-agent | /bin/grep -v echo >&$HOME/agent.sh 
+   ssh-agent | $GREP -v echo >&$HOME/agent.sh
 fi;
 
 test -e $HOME/agent.sh && source $HOME/agent.sh
 
 alias kagent="kill -9 $SSH_AGENT_PID"
+
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
