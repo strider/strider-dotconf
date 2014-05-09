@@ -27,11 +27,18 @@
     springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
     l = log
     lh = log --graph
-    la = !git lh --date-order --all 2> /dev/null
+    la = "!git lh --date-order --all 2> /dev/null"
     lb = log --graph --simplify-by-decoration
-    lba = !git lb --all
+    lba = "!git lb --all"
     h = !git --no-pager log --graph -n 15
     a = !git --no-pager la -n 15
+    sm = submodule
+    smu = submodule foreach git pull origin master
+    up = "!git fetch upstream && git rebase upstream/master"
+    pr = "!f() { git fetch origin refs/pull/$1/head:pr/$1 && git co pr/$1; } ; f"
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    dl = "!git ll -1"
+    al = "!git config -l | grep alias | cut -c 7-"
 [sendemail]
     smtpencryption = tls
     smtpserver = smtp.corp.redhat.com
