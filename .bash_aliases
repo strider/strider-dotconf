@@ -33,6 +33,7 @@ alias ls='ls --group-directories-first --time-style=+"%d-%m-%Y %H:%M" --color=au
 alias cd..="cd .."
 alias h='history'
 alias j='jobs -l'
+alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -62,6 +63,24 @@ alias calc='python -ic "from math import *; from random import *"' # Une calcula
 
 bind '"\C-l"':"\"clear\r\"" # Ctrl+l vide le terminal
 alias my_ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+# View HTTP traffic
+alias sniff="sudo ngrep -d 'wlp3s0' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i wlp3s0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+# translate via google-translation-cli
+alias trs2fr="/usr/bin/trs {en=fr} "
+alias trs2en="/usr/bin/trs {fr=en} "
+
+## shortcut  for iptables and pass it via sudo#
+alias ipt='sudo /sbin/iptables'
+
+# display all rules #
+alias iptlist='sudo /sbin/iptables -L -n -v --line-numbers'
+alias iptlistin='sudo /sbin/iptables -L INPUT -n -v --line-numbers'
+alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
+alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
+alias firewall=iptlist
 
 if type -P htop >/dev/null; then
   alias top='htop' # toujours utiliser htop si installé

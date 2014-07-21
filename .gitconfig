@@ -1,6 +1,6 @@
 [user]
     name = Gael Chamoulaud
-    email = gael@redhat.com
+    email = gchamoul@redhat.com
 [github]
     user = strider
 [push]
@@ -45,14 +45,7 @@
     smtpuser = gchamoul@redhat.com
     smtpserverport = 993
     confirm = auto
-[diff "oodiff"]
-    command = git-oodiff
-[giggle]
-    main-window-maximized = true
-    main-window-geometry = 0x0+0+0
-    history-view-vpane-position = 186
-    main-window-view = HistoryView
-    file-view-vpane-position = 310
-    file-view-hpane-position = 250
 [credential]
     helper = cache --timeout=3600
+[gitreview]
+    username = gchamoul

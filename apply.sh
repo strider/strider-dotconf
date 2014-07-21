@@ -1,16 +1,26 @@
 #!/bin/bash
 
-echo -e "Applying TMUX configuration\n"
+output() {
+    echo -e ""
+    echo -e "\e[30;48;5;82m-- $@\e[0m"
+}
+
+output "Applying TMUX configuration"
 cp -vf .tmux.conf ~/.tmux.conf
 
-echo -e "Applying BASH configuration\n"
+output "Applying BASH configuration"
 cp -vf .bash* ~/
 
-echo -e "Applying GIT configuration\n"
+output "Applying GIT configuration"
 cp -vf .gitconfig ~/
 rm -Rf ~/.bash-git-prompt/
-cp -rvf .bash-git-prompt ~/
+cp -rvf .bash-git-prompt/ ~/
+rm -Rf ~/.git-prompt-colors.sh
+cp -vf .git-prompt-colors.sh ~/
 
-echo -e "Applying X configuration\n"
+output "Applying GERRYMANDER configuration"
+cp -vf .gerrymander ~/
+
+output "Applying X configuration"
 cp -vf .Xresources ~/
 

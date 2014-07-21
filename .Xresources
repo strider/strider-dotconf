@@ -5,21 +5,21 @@ Xft.hintstyle:hintslight
 Xft.rgba:rgba
 Xft.lcdfilter:lcddefault
 
-Xterm*termName: xterm-256color
 XTerm*locale: true
 Xterm*borderWidth: 0
 
-XTerm*utf8: 1
-XTerm*font: -*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*
-XTerm*font1: -*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*
-XTerm*font2: -*-terminus-medium-*-*-*-14-*-*-*-*-*-iso10646-*
-XTerm*font3: -*-terminus-medium-*-*-*-16-*-*-*-*-*-iso10646-*
-XTerm*font4: -*-terminus-medium-*-*-*-22-*-*-*-*-*-iso10646-*
-XTerm*font5: -*-terminus-medium-*-*-*-24-*-*-*-*-*-iso10646-*
-XTerm*font6: -*-terminus-medium-*-*-*-32-*-*-*-*-*-iso10646-*
+*customization: -color
 
+xterm*termName:  xterm-256color
+xterm*faceName: xft:Ubuntu\ Mono\ for\ Powerline
+xterm*faceSize: 11
+xterm*font: xft:Ubuntu\ Mono\ for\ Powerline:pixelsize=11:antialias=true:hinting=true
+xterm*imFont: xft:Ubuntu\ Mono\ for\ Powerline:pixelsize=11:antialias=true:hinting=true
+xterm*boldFont: xft:Ubuntu\ Mono\ for\ Powerline:bold:pixelsize=11:antialias=true:hinting=true
+xterm*italicFont: xft:Ubuntu\ Mono\ for\ Powerline:italic:pixelsize=11:antialias=true:hinting=true
+!!xterm*bolditalicFont: xft:Ubuntu\ Mono\ for\ Powerline:bold italic:pixelsize=11:antialias=true:hinting=true
 
-*background: rgb:00/00/00
+*background: rgb:12/12/12
 *foreground: rgb:ff/ff/ff
 *color0:     rgb:00/00/00
 *color1:     rgb:d3/62/65
@@ -52,4 +52,3 @@ XTerm*fullscreen: never
 XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
 
 *VT100*translations: #override Meta <Btn1Up>: exec-formatted("google-chrome-unstable '%t'", PRIMARY)
-
