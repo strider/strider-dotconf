@@ -11,6 +11,9 @@ cp -vf .tmux.conf ~/.tmux.conf
 output "Applying BASH configuration"
 cp -vf .bash* ~/
 
+output "Applying ACK configuration"
+cp -vf .ackrc ~/
+
 output "Applying GIT configuration"
 cp -vf .gitconfig ~/
 rm -Rf ~/.bash-git-prompt/
