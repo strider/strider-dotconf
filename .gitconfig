@@ -19,8 +19,6 @@
     ci = commit
     co = checkout
     dh = diff HEAD
-    lg = log --graph --pretty=format:'%Cred%h..%Creset - %s %Cgreen(%cr)%Creset - %an' --abbrev-commit --date=relative
-    lgn = log --pretty=oneline --abbrev-commit --show-notes=*
     rh = reset --soft HEAD^
     st = status -sb
     fup = log --since '1 day ago' --oneline --author='Gael Chamoulaud <gael@redhat.com>'
@@ -30,13 +28,15 @@
     la = "!git lh --date-order --all 2> /dev/null"
     lb = log --graph --simplify-by-decoration
     lba = "!git lb --all"
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    lg = log --graph --pretty=format:'%Cred%h..%Creset - %s %Cgreen(%cr)%Creset - %an' --abbrev-commit --date=relative
+    lgn = log --pretty=oneline --abbrev-commit --show-notes=*
     h = !git --no-pager log --graph -n 15
     a = !git --no-pager la -n 15
     sm = submodule
     smu = submodule foreach git pull origin master
     up = "!git fetch upstream && git rebase upstream/master"
     pr = "!f() { git fetch origin refs/pull/$1/head:pr/$1 && git co pr/$1; } ; f"
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     dl = "!git ll -1"
     al = "!git config -l | grep alias | cut -c 7-"
 [sendemail]
