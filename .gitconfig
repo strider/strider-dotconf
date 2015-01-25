@@ -1,21 +1,29 @@
 [user]
     name = Gael Chamoulaud
     email = gchamoul@redhat.com
+    signingkey = A7F4B301
 [github]
     user = strider
+#[commit]
+#    gpgsign = true
 [push]
     default = upstream
 [core]
     editor = vimx
     pager = less -FSRX
+	whitespace = trailing-space,space-before-tab,indent-with-non-tab
 [color]
     diff = auto
     status = auto
     branch = auto
 [merge]
-    tool = vimdiff
-    conflictstyle = diff3
-    prompt = false
+    tool = splice
+    #tool = vimdiff
+    #conflictstyle = diff3
+    #prompt = false
+[mergetool "splice"]
+    cmd = "vimx -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    trustExitCode = true
 [alias]
     br = branch --all
     ci = commit
@@ -32,7 +40,7 @@
     lba = "!git lb --all"
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     lg = log --graph --pretty=format:'%Cred%h..%Creset - %s %Cgreen(%cr)%Creset - %an' --abbrev-commit --date=relative
-    lgn = log --pretty=oneline --abbrev-commit --show-notes=*
+    lgn = log --pretty=format:'%Cred%h%Creset .::. %s .::. %Cblue(%cr)%Creset .::. %Cgreen%an%Creset' --abbrev-commit --show-notes=*
     h = !git --no-pager log --graph -n 15
     a = !git --no-pager la -n 15
     sm = submodule
@@ -51,3 +59,5 @@
     helper = cache --timeout=3600
 [gitreview]
     username = gchamoul
+[commit]
+	template = /home/gchamoul/.gitmessage.txt
