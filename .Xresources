@@ -5,50 +5,92 @@ Xft.hintstyle:hintslight
 Xft.rgba:rgba
 Xft.lcdfilter:lcddefault
 
-XTerm*locale: true
-Xterm*borderWidth: 0
-
 *customization: -color
+Xterm*termName: xterm-256color
+URxvt*termName: rxvt-256color
 
-xterm*termName:  xterm-256color
-xterm*faceName: xft:Ubuntu\ Mono\ for\ Powerline
-xterm*faceSize: 11
-xterm*font: xft:Ubuntu\ Mono\ for\ Powerline:pixelsize=11:antialias=true:hinting=true
-xterm*imFont: xft:Ubuntu\ Mono\ for\ Powerline:pixelsize=11:antialias=true:hinting=true
-xterm*boldFont: xft:Ubuntu\ Mono\ for\ Powerline:bold:pixelsize=11:antialias=true:hinting=true
-xterm*italicFont: xft:Ubuntu\ Mono\ for\ Powerline:italic:pixelsize=11:antialias=true:hinting=true
-!!xterm*bolditalicFont: xft:Ubuntu\ Mono\ for\ Powerline:bold italic:pixelsize=11:antialias=true:hinting=true
+!! fonts
+*.font: xft:Terminus for Powerline:style=Regular:size=08;hinting=True;antialias=True
+*.boldFont: xft:Terminus for Powerline:style=Bold:size=08;hinting=True;antialias=True
 
-*background: rgb:12/12/12
-*foreground: rgb:ff/ff/ff
-*color0:     rgb:00/00/00
-*color1:     rgb:d3/62/65
-*color2:     rgb:ae/ce/91
-*color3:     rgb:e7/e1/8c
-*color4:     rgb:7a/7a/b0
-*color5:     rgb:96/3c/59
-*color6:     rgb:41/81/79
-*color7:     rgb:be/be/be
-*color8:     rgb:66/66/66
-*color9:     rgb:ef/81/71
-*color10:    rgb:e5/f7/79
-*color11:    rgb:ff/f7/96
-*color12:    rgb:41/86/be
-*color13:    rgb:ef/9e/be
-*color14:    rgb:71/be/be
-*color15:    rgb:ff/ff/ff
+URxvt*transparent: true
+URxvt*.shading: 25
 
-XTerm*pointerColor: white
-XTerm*pointerColorBackground: black
-XTerm*cursorColor: yellow
-XTerm*cursorBlink: true
+!! URxvt config
+URxvt.depth: 32
+!URxvt.background: [85]#1b1d1e
+URxvt.perl-ext-common: default,matcher,tabbed,font-size
+URxvt.scrollBar: off
+URxvt.borderless: true
+URxvt.perl-lib: /usr/lib64/urxvt/perl
 
-XTerm*selectToClipboard: true
-XTerm*SaveLines: 9000
-XTerm*ScrollBar: false
-XTerm*visualbell: true
-XTerm*bellIsUrgent: true
-XTerm*fullscreen: never
-XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+! url config
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
+URxvt.keysym.C-Delete: perl:matcher:last
+URxvt.keysym.M-Delete: perl:matcher:list
 
-*VT100*translations: #override Meta <Btn1Up>: exec-formatted("google-chrome-unstable '%t'", PRIMARY)
+! Font-size !
+URxvt.keysym.C-Up:     perl:font-size:increase
+URxvt.keysym.C-Down:   perl:font-size:decrease
+URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+URxvt.keysym.C-S-Down: perl:font-size:decglobal
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+!! manpage colors
+URxvt.colorIT:   #87af5f
+URxvt.colorBD:   #d7d7d7
+URxvt.colorUL:   #87afd7
+
+!Theme Twenty
+*foreground: rgb:a/aa/aa
+*background: rgb:00/00/00
+*color0:     rgb:30/34/30
+*color1:     rgb:bf/79/79
+*color2:     rgb:97/b2/6b
+*color3:     rgb:cd/cd/c1
+*color4:     rgb:86/a2/be
+*color5:     rgb:d9/b7/98
+*color6:     rgb:a1/b5/cd
+*color7:     rgb:ff/ff/ff
+*color8:     rgb:cd/b5/cd
+*color9:     rgb:f4/a4/5f
+*color10:    rgb:c5/f7/79
+*color11:    rgb:ff/ff/ef
+*color12:    rgb:98/af/d9
+*color13:    rgb:d7/d9/98
+*color14:    rgb:a1/b5/cd
+*color15:    rgb:de/de/de
+
+
+!!! colorscheme config
+!! misc
+!*.cursorColor:   #ae81ff
+!*.pointerColor:  #ae81ff
+!*.background:    #0e0e0e
+!*.foreground:    #73d216
+!!black
+!*.color0:        #0b0f13
+!*.color8:        #8b8f93
+!!red
+!*.color1:        #ff2043
+!*.color9:        #f92672
+!!green
+!*.color2:        #0eca95
+!*.color10:       #0efa95
+!!yellow
+!*.color3:        #dfe37e
+!*.color11:       #ffe37e
+!!blue
+!*.color4:        #6666ff
+!*.color12:       #66b2ff
+!!magenta
+!*.color5:        #8c4481
+!*.color13:       #ae81ff
+!!cyan
+!*.color6:        #63a7af
+!*.color14:       #73f7ff
+!!white
+!*.color7:        #d1cccc
+!*.color15:       #e1dddd

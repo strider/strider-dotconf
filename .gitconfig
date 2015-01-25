@@ -14,6 +14,8 @@
     branch = auto
 [merge]
     tool = vimdiff
+    conflictstyle = diff3
+    prompt = false
 [alias]
     br = branch --all
     ci = commit
