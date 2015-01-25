@@ -1,0 +1,61 @@
+"3.8.3 (created: 2014/11/09 13:19:01)
+
+ let mapleader = ","
+
+highlight CmdLine color:  #93a1a1;  background: #002b36; font-size: 14pt;
+highlight CompDesc color: #d33682;
+highlight CompItem[selected] color: cyan;  background: #333;
+highlight CompTitle background: #1c1c1c;
+highlight CompTitle>* color: #cb4b16; border-bottom: 1px solid #3c3c3f; padding: 1px 0.5ex;
+highlight ErrorMsg color: #002b36;  background: red;  font-size: 12pt;
+highlight Function color:  #268bd2;
+highlight Hint font-family: monospace; font-size: 15px; font-weight: normal; color: #dc322f; background-color: #002b36; border-color: #839496; border-width: 0px; border-style: solid; padding: 0px 5px 0px 5px; text-transform: uppercase; background-color: rgba(253, 246, 227, 0.7); border: 1px solid #fdf6e3; -moz-border-radius: 4px; -moz-box-shadow: 0px 0px 1px black;
+highlight HintActive background-color: #dc322f; color: #073642; text-decoration: none; -moz-border-radius: 4px; -moz-box-shadow: 0 0 2px #002b36;
+highlight HintElem background-color: #073642; color: #b58900; text-decoration: none; -moz-border-radius: 4px; -moz-box-shadow: 0 0 2px #002b36;
+highlight Indicator color:  #b58900;
+highlight InfoMsg color:  #93a1a1;  background: #002b36; font-size: 12pt;
+highlight LineNr color:  #dc322f; background: #002b36; font-size: 12pt;
+highlight ModeMsg color:  #93a1a1;  background: #002b36; font-size: 12pt;
+highlight MoreMsg color:  #859900; background: #002b36;
+highlight NonText background: #000;
+highlight Normal color:  #93a1a1;  background: #002b36; font-size: 12pt; opacity: 0.9;
+highlight Null color: CornflowerBlue;
+highlight Number color:  #002b36;
+highlight Object color: #2aa198;
+highlight Question color: #b58900;  background: #002b36;  font-size: 12pt;
+highlight StatusLine color: #002b36; background: #002b36; font-weight: normal; font-size: 12pt;
+highlight String color:  #002b36;
+highlight TabNumber color: #002b36; font-weight: bold; font-size:10pt;
+highlight Tag color: CornflowerBlue;
+highlight Title color:  #002b36;
+highlight URL color:  #859900;
+highlight WarningMsg color: #dc322f;  background: #002b36;  font-size: 12pt;
+
+set runtimepath=/home/gchamoul/.vimperator
+set editor="/usr/bin/gvim -f"
+colorscheme solarized_dark
+set gui=addons,nobookmarks,nomenu,nonavigation,tabs
+
+map T :tabopen!
+map <A-y> :js<Space>util.copyToClipboard(content.document.title,<Space>true)<Return>
+map <silent> <A-u> :js<Space>next_image()<Return>
+map <silent> <A-d> :js<Space>previous_image()<Return>
+map <silent> <A-p> :js<Space>print_page()<Return>
+
+" gmail-commando.js
+let g:gmail_commando_map_translate = "<Leader>t"
+let g:gmail_commando_map_translate_thread = "<Leader>T"
+let g:gmail_commando_map_fold = "<Leader>f"
+let g:gmail_commando_map_unfold = "<Leader>F"
+let g:gmail_commando_map_important = "<Leader>i"
+let g:gmail_commando_map_unimportant = "<Leader>I"
+let g:gmail_commando_label_shortcut = 1
+
+style! -name=tab chrome://* <<EOF
+.tabbrowser-strip {
+    background                         : #002b36 !important;
+  }
+EOF
+source! .vimperatorrc.local
+
+" vim: set ft=vimperator:
