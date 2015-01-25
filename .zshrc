@@ -243,3 +243,8 @@ export VAGRANT_DEFAULT_PROVIDER=libvirt
 
 export PATH=$PATH:$HOME/.local/bin
 export PYTHONPATH=$HOME/.local/lib/python2.7/site-packages
+
+# startup message
+echo -n "$fg[yellow]"
+fortune -a -s
+echo -n "$reset_color"

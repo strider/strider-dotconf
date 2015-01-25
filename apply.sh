@@ -26,6 +26,9 @@ cp -vf .gerrymander ~/
 output "Applying VIMPERATOR configuration"
 cp -vf .vimperatorrc ~/
 
+output "Applying REDSHIFT configuration"
+cp -vf redshift.conf ~/.config/
+
 output "Applying X configuration"
 cp -vf .Xresources ~/
 cp -vf .dircolors ~/
