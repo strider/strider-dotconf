@@ -34,8 +34,10 @@ highlight WarningMsg color: #dc322f;  background: #002b36;  font-size: 12pt;
 set runtimepath=/home/gchamoul/.vimperator
 set editor="/usr/bin/gvim -f"
 colorscheme solarized_dark
-set gui=addons,nobookmarks,nomenu,nonavigation,tabs
+set gui=addons,nobookmarks,nomenu,navigation,tabs
 
+noremap <silent> <leader>l :set gui=addons,nobookmarks,nomenu,navigation,tabs<CR>
+noremap <silent> <leader>k :set gui=addons,nobookmarks,nomenu,nonavigation,tabs<CR>
 map T :tabopen!
 map <A-y> :js<Space>util.copyToClipboard(content.document.title,<Space>true)<Return>
 map <silent> <A-u> :js<Space>next_image()<Return>

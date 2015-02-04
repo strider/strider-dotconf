@@ -19,6 +19,7 @@ cp -vf .ackrc ~/
 
 output "Applying GIT configuration"
 cp -vf .gitconfig ~/
+cp -vf .tigrc ~/
 
 output "Applying GERRYMANDER configuration"
 cp -vf .gerrymander ~/
