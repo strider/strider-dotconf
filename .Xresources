@@ -12,20 +12,19 @@ Xterm*termName: xterm-256color
 URxvt*termName: rxvt-256color
 
 !! fonts
-*.font: xft:Terminus for Powerline:style=Regular:size=08;hinting=True;antialias=True
-*.boldFont: xft:Terminus for Powerline:style=Bold:size=08;hinting=True;antialias=True
+URxvt*font: xft:Terminus for Powerline:style=Regular:size=08;hinting=True;antialias=True
 
-URxvt.transparent: true
-URxvt.shading: 25
-URxvt.fading: 30
+URxvt*transparent: true
+URxvt*shading: 25
+URxvt*fading: 30
+URxvt*saveLines:65535
 
 !! URxvt config
 URxvt.depth: 32
-!URxvt.background: [85]#1b1d1e
-URxvt.perl-ext-common: default,matcher,tabbed,font-size
+URxvt.perl-lib: /home/gchamoul/.config/urxvt
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard,selection,tabbed
 URxvt.scrollBar: off
 URxvt.borderless: true
-URxvt.perl-lib: /usr/lib64/urxvt/perl
 
 ! url config
 URxvt.url-launcher: /usr/bin/firefox
@@ -33,40 +32,57 @@ URxvt.matcher.button: 1
 URxvt.keysym.C-Delete: perl:matcher:last
 URxvt.keysym.M-Delete: perl:matcher:list
 
-! Font-size !
-URxvt.keysym.C-Up:     perl:font-size:increase
-URxvt.keysym.C-Down:   perl:font-size:decrease
-URxvt.keysym.C-S-Up:   perl:font-size:incglobal
-URxvt.keysym.C-S-Down: perl:font-size:decglobal
-URxvt.iso14755: false
-URxvt.iso14755_52: false
+! Tabbedex colors
+URxvt.tabbar-fg: 244
+URxvt.tabbar-bg: 16
+URxvt.tab-fg: 255
+URxvt.tab-bg: 52
+URxvt.title-fg: 244
+URxvt.title-bg: 16
 
-! Google Material Design
-
-*background         : #263238
-*foreground         : #eceff1
-
-! black
-*color0             : #263238
-*color8             : #37474f
-! red
-*color1             : #ff9800
-*color9             : #ffa74d
-! green
-*color2             : #8bc34a
-*color10            : #9ccc65
-! yellow
-*color3             : #ffc107
-*color11            : #ffa000
-! blue
-*color4             : #03a9f4
-*color12            : #81d4fa
-! magenta
-*color5             : #e91e63
-*color13            : #ad1457
-! cyan
-*color6             : #009688
-*color14            : #26a69a
-! white
-*color7             : #cfd8dc
-*color15            : #eceff1
+!TomorrowNight
+#define t_background   #1d1f21
+#define t_current_line #282a2e
+!#define t_selection    #373b41
+!#define t_selection    #cc0000
+#define t_selection    #eee8d5
+#define t_foreground   #c5c8c6
+#define t_comment      #969896
+#define t_red          #cc6666
+#define t_orange       #de935f
+#define t_yellow       #f0c674
+#define t_green        #b5bd68
+#define t_aqua         #8abeb7
+#define t_blue         #81a2be
+#define t_purple       #b294bb
+#define t_grey         #a4a4a4
+! Black / Grey
+*.color0:       #000000
+*.color8:       #666666
+! Red / Bright Red
+*.color1:       t_red
+*.color9:       #FF3334
+! Green + Bright Green
+*.color2:       t_green
+*.color10:      #9ec400
+! Yellow (Orange) + Bright Yellow (Yellow)
+*.color3:       t_orange
+*.color11:      t_yellow
+! Blue + Bright Blue
+*.color4:       t_blue
+*.color12:      t_blue
+! Magenta (Purple) + Bright Magenta
+*.color5:       t_purple
+*.color13:      #b777e0
+! Cyan (Aqua) + Bright Cyan
+*.color6:       t_aqua
+*.color14:      #54ced6
+! Light Grey (Selection) + White (Current Line)
+*.color7:       t_selection
+!*.color15:      t_current_line
+*.color15:      white
+*.foreground:   t_foreground
+*.background:   t_background
+!*.cursorColor:  #aeafad
+*.cursorColor:  t_red
+URxvt*cursorBlink:false

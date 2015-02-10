@@ -35,3 +35,4 @@ cp -vf .Xresources ~/
 cp -vf .dircolors ~/
 cp -vf .motd ~/
 
+xrdb ~/.Xresources

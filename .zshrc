@@ -256,6 +256,11 @@ alias firewall=iptlist
 alias sc='xrandr --output LVDS1 --auto --rotate normal --pos 0x0 --output HDMI1 --auto --rotate normal --right-of LVDS1'
 alias usc='xrandr --output HDMI1 --off'
 
+alias oslab15='ssh oslab15'
+alias oslab133='ssh oslab133'
+alias oslab172='ssh oslab172'
+alias oslab194='ssh oslab194'
+alias oslab117='ssh oslab117'
 
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
