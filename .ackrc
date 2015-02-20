@@ -6,8 +6,10 @@
 --ignore-dir=.git
 --ignore-dir=.svn
 --ignore-dir=.idea
---ignore-dir=vendor/bundle
+--ignore-dir=vendor
+--ignore-dir=.bundle
 --ignore-dir=tmp
+--ignore-dir=.tox
 --ignore-dir=gems
 --ignore-dir=log
 --ignore-dir=coverage

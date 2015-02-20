@@ -21,6 +21,9 @@ output "Applying GIT configuration"
 cp -vf .gitconfig ~/
 cp -vf .tigrc ~/
 
+output "Applying misc scripts"
+cp -vf bin/* ~/bin/
+
 output "Applying GERRYMANDER configuration"
 cp -vf .gerrymander ~/
 

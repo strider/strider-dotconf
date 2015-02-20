@@ -61,3 +61,5 @@
     username = gchamoul
 #[commit]
 	#template = /home/gchamoul/.gitmessage.txt
+[apply]
+	whitespace = fix

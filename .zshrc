@@ -5,8 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="sorin"
-ZSH_THEME="strider"
+ZSH_THEME="strider2"
 
 # Base16 Shell
 #BASE16_SHELL="/home/gchamoul/.config/base16-shell/base16-solarized.light.sh"
@@ -264,13 +263,7 @@ alias oslab117='ssh oslab117'
 
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
-export PROJECT_HOME=$HOME/Documents/DEV/CLOUD/openstack/REDHAT/
 export VAGRANT_DEFAULT_PROVIDER=libvirt
 
 export PATH=$PATH:$HOME/.local/bin
 export PYTHONPATH=$HOME/.local/lib/python2.7/site-packages
-
-# startup message
-echo -n "$fg[yellow]"
-fortune -a -s
-echo -n "$reset_color"
