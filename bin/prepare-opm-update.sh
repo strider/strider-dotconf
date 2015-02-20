@@ -16,11 +16,6 @@ if [[ "$*" =~ "--help" ]]; then
     usage
 fi
 
-output() {
-    echo -e ""
-    echo -e "***** \e[30;48;5;82m $@\e[0m *****"
-}
-
 while [ $# != 0 ]; do
     case $1 in
         --help|-h)
@@ -47,34 +42,40 @@ while [ $# != 0 ]; do
     shift
 done
 
-if [[ ${DEBUG} == 'yes' ]]; then
-    set -eux
-fi
-
-if [[ ${BR} != 'master' ]]; then
-    output "${BR} branch is not supported yet !"
-    usage
-fi
+output() {
+    echo -e ""
+    echo -e "***** \e[30;48;5;82m $@\e[0m *****"
+}
 
 BRANCH=${BR:-master}
 STACKFORGE_ONLY=${STACKFORGE:-no}
+DEBUG_MODE=${DEBUG:-no}
 OPM_REPO_URL="git://github.com/redhat-openstack/openstack-puppet-modules.git"
 PM_TMP_DIR="/tmp/pm-tmp"
 OPM_ORIG_DIR="/tmp/opm-orig"
 OPM_UPDATE_DIR="/tmp/opm-update"
 PUPPETFILE="${OPM_ORIG_DIR}/Puppetfile"
 
+if [[ ${DEBUG_MODE} == 'yes' ]]; then
+    set -x
+fi
+
+if [[ ${BRANCH} != 'master' ]]; then
+    output "${BR} branch is not supported yet !"
+    usage
+fi
+
 # Cleaning up the tmp directories
 if [[ -d ${PM_TMP_DIR} ]]; then
-    rm -Rf ${PM_TMP_DIR}
+    rm -Rf "${PM_TMP_DIR}/"
 fi
 
 if [[ -d ${OPM_ORIG_DIR} ]]; then
-    rm -Rf ${OPM_ORIG_DIR}
+    rm -Rf "${OPM_ORIG_DIR}/"
 fi
 
 if [[ -d ${OPM_UPDATE_DIR} ]]; then
-    rm -Rf ${OPM_UPDATE_DIR}
+    rm -Rf "${OPM_UPDATE_DIR}/"
 fi
 
 output "Cloning OPM"
@@ -109,7 +110,12 @@ for MODULE in `grep '^mod.*' ${PUPPETFILE} | cut -d"'" -f2`; do
         output "${MODULE} is not coming from stackforge"
     else
         cd ${OPM_UPDATE_DIR}
-        rm -rf ${MODULE}
+
+        if [[ -d ${MODULE} ]]; then
+            mv ${MODULE} ${MODULE}_orig
+            rm -rf "${MODULE}_orig/"
+        fi
+
         output "Cloning ${MODULE}"
         git clone ${GIT_URL} ${MODULE}
         cd ${MODULE}
