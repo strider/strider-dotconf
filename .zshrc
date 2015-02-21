@@ -165,6 +165,8 @@ alias x!='echo $fg[red]Je ne suis pas dans VIM !$reset_color'
 alias yum='sudo yum'
 
 alias xsos="/home/gchamoul/bin/xsos"
+alias v='f -e vim'
+alias o='a -e xdg-open'
 alias tmux="tmux -2"
 alias gpa="~/bin/gpa"
 alias gfa="git fetch --all"
@@ -177,20 +179,10 @@ alias vla="sudo virsh list --all"
 alias t='~/bin/todo.txt-cli/todo.sh -d /home/gchamoul/todo.cfg'
 alias vv="virt-viewer -c qemu:///system"
 alias hd='od -Ax -tx1z -v'
-alias v='/usr/bin/vimx'
 alias realpath='readlink -f'
 alias makePassword='< /dev/urandom tr -dc A-Za-z0-9_ | head -c15 '
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias httprc='python -c "import httplib,pprint; pprint.pprint(httplib.responses.items())"'
-alias dl='cd $HOME/Downloads'
-alias dev='cd $HOME/Documents/DEV'
-alias pk='cd /home/gchamoul/DEV/work/git/installers/packstack-stuffs/fk-packstack/'
-alias opm='cd /home/gchamoul/DEV/work/git/puppet/fk-opm/'
-alias work='cd /home/gchamoul/DEV/work/git/'
-alias pkg='cd /home/gchamoul/DEV/work/git/packaging/'
-alias doti3='cd /home/gchamoul/DEV/work/git/laptop_config/strider-doti3/'
-alias dotvim='cd /home/gchamoul/DEV/work/git/laptop_config/strider-dotvim/'
-alias dotconf='cd /home/gchamoul/DEV/work/git/laptop_config/strider-dotconf/'
 alias cal='cal -3'
 alias rm='rm -i'
 alias cp='cp -i'
@@ -203,7 +195,6 @@ alias lsofnames="lsof | awk '!/^\$/ && /\// { print \$9 }' | sort -u" # noms des
 alias ls='ls --group-directories-first --time-style=+"%d-%m-%Y %H:%M" --color=auto -F'
 alias cd..="cd .."
 alias h='history'
-alias j='jobs -l'
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -255,6 +246,12 @@ alias firewall=iptlist
 alias sc='xrandr --output LVDS1 --auto --rotate normal --pos 0x0 --output HDMI1 --auto --rotate normal --right-of LVDS1'
 alias usc='xrandr --output HDMI1 --off'
 
+# Gerrit stuffs
+alias gerrit='ssh -p 29418 review.openstack.org gerrit'
+alias pk-core-list='gerrit ls-members packstack-core'
+alias pk-add-reviewers='gerrit set-reviewers $(git rev-parse --short HEAD) --add ichavero --add mmagr --add xbezdick --add jpena'
+alias pm-add-reviewers='gerrit set-reviewers $(git rev-parse --short HEAD) --add ichavero --add mmagr --add xbezdick --add jpena --add sbadia --add emilienm --add krinkle --add mfisch'
+
 alias oslab15='ssh oslab15'
 alias oslab133='ssh oslab133'
 alias oslab172='ssh oslab172'
@@ -268,4 +265,5 @@ export VAGRANT_DEFAULT_PROVIDER=libvirt
 export PATH=$PATH:$HOME/.local/bin
 export PYTHONPATH=$HOME/.local/lib/python2.7/site-packages
 
+eval "$(fasd --init auto)"
 source ~/.github-auth

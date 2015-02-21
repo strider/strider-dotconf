@@ -49,6 +49,7 @@
     pr = "!f() { git fetch origin refs/pull/$1/head:pr/$1 && git co pr/$1; } ; f"
     dl = "!git ll -1"
     al = "!git config -l | grep alias | cut -c 7-"
+    pr = "!f() { git fetch $1 pull/$2/head:pr-$2 && git checkout pr-$2; }; f"
 [sendemail]
     smtpencryption = tls
     smtpserver = smtp.corp.redhat.com

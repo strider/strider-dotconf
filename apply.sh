@@ -20,6 +20,7 @@ cp -vf .ackrc ~/
 output "Applying GIT configuration"
 cp -vf .gitconfig ~/
 cp -vf .tigrc ~/
+cp -vf git-config/bin/* ~/bin/
 
 output "Applying misc scripts"
 cp -vf bin/* ~/bin/
