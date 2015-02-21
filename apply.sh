@@ -17,10 +17,6 @@ cp -vf .tmux.conf ~/.tmux.conf
 output "Applying ACK configuration"
 cp -vf .ackrc ~/
 
-output "Applying autoenv"
-rm -Rf ~/.autoenv/
-cp -rvf .autoenv/ ~/
-
 output "Applying GIT configuration"
 cp -vf .gitconfig ~/
 cp -vf .tigrc ~/
