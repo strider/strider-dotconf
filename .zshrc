@@ -51,7 +51,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 if [[ -z "$plugins" ]]; then
-    plugins=(tmux ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
+    plugins=(tmux fasd docker ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
 fi
 
 source $ZSH/oh-my-zsh.sh
