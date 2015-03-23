@@ -11,7 +11,6 @@
 [core]
     editor = vimx
     pager = less -FSRX
-	whitespace = trailing-space,space-before-tab,indent-with-non-tab
 [color]
     diff = auto
     status = auto
@@ -62,5 +61,3 @@
     username = gchamoul
 #[commit]
 	#template = /home/gchamoul/.gitmessage.txt
-[apply]
-	whitespace = fix

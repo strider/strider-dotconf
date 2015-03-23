@@ -1,0 +1,10 @@
+text/html;                      w3m %s; nametemplate=%s.html
+text/html;                      w3m -I %{charset} -dump %s; nametemplate=%s.html; copiousoutput
+application/vnd.oasis.opendocument.text;                mutt_bgrun oowriter %s;
+application/vnd.oasis.opendocument.presentation;                mutt_bgrun ooimpress %s;
+application/msword;             mutt_bgrun oowriter %s;
+application/pdf;                mutt_bgrun zathura %s;
+application/pdf;                pdftotext %s -; copiousoutput
+image/gif;                      display %s
+image/jpeg;                     display %s
+image/png;                      display %s

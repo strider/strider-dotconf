@@ -4,3 +4,6 @@
 [submodule "git-config"]
 	path = git-config
 	url = git://github.com/aspiers/git-config.git
+[submodule "fasd"]
+	path = fasd
+	url = git://github.com/clvv/fasd.git

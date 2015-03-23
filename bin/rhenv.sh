@@ -8,7 +8,7 @@ online=`host $mailhost | grep "has address" | wc -l`
 
 # If not already connected to the VPN, then let's do it !
 if [[ ${online} != '1' ]]; then
-    /usr/bin/nmcli con up uuid 8a200abf-0324-483b-8c2f-a162b4588cd0 
+    /usr/bin/nmcli con up uuid 8a200abf-0324-483b-8c2f-a162b4588cd0
     if [[ $? -eq 0 ]]; then
         online='1'
     fi

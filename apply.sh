@@ -8,11 +8,21 @@ output() {
 output "Applying ZSH configuration"
 rm -Rf ~/.oh-my-zsh/
 cp -rvf .oh-my-zsh/ ~/
+rm -rvf ~/.oh-my-zsh/.git*
 cp -rvf themes/ ~/.oh-my-zsh/custom/
 cp -vf .zshrc ~/
+cp -vf .mailcap ~/
 
 output "Applying TMUX configuration"
 cp -vf .tmux.conf ~/.tmux.conf
+
+output "Installing fasd"
+cd fasd/
+PREFIX=$HOME make install
+cd ..
+
+output "Applying Puppet-lint configuration"
+cp -vf .puppet-lint.rc ~/.puppet-lint.rc
 
 output "Applying ACK configuration"
 cp -vf .ackrc ~/

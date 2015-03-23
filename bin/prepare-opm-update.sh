@@ -143,3 +143,6 @@ done
 cd ${OPM_ORIG_DIR}
 git remote add my-fork git@github.com:strider/openstack-puppet-modules.git
 git fetch --all
+cd ${OPM_ORIG_DIR}
+git checkout -b openstack-pm-update-master
+output "Ready to push the Pull-Request !"

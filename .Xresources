@@ -8,11 +8,11 @@ Xcursor.theme         : Oxygen_Yellow
 *customization        : -color
 Xterm*termName        : xterm-256color
 URxvt*termName        : rxvt-256color
-URxvt.transparent     : true
+!URxvt.transparent     : true
 URxvt*shading         : 25
 URxvt*fading          : 30
 URxvt*saveLines       : 65535
-URxvt.depth           : 32
+!URxvt.depth           : 32
 URxvt.perl-lib        : /home/gchamoul/.config/urxvt
 URxvt.perl-ext-common : default,matcher,selection-to-clipboard,selection,tabbed
 URxvt.scrollBar       : off

@@ -1,3 +1,4 @@
+# => Path and Plugins {{{
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -11,47 +12,17 @@ ZSH_THEME="strider2"
 #BASE16_SHELL="/home/gchamoul/.config/base16-shell/base16-solarized.light.sh"
 #[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 if [[ -z "$plugins" ]]; then
-    plugins=(tmux fasd docker ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
+    plugins=(tmux fasd docker catimg ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -85,7 +56,7 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -100,13 +71,14 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa:~/.ssh/id_rsa_redhat"
 
-
+# }}}
+# => Exports {{{
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
 unset GREP_OPTIONS
-
-######################################################################## History
+# }}}
+# => History {{{
 HISTFILE=~/.zsh/history
 # If a new command line being added to the history list duplicates an older one,
 # the older command is removed from the list (even if it is not the previous
@@ -116,8 +88,8 @@ setopt hist_ignore_all_dups
 # duplicates of a line previously found, even if the duplicates are not
 # contiguous.
 setopt hist_find_no_dups
-
-######################################################################## Options
+# }}}
+# => Options {{{
 # Enable correction
 setopt correct
 # Do not query the user before executing rm * or rm path/*.
@@ -129,8 +101,8 @@ setopt pushd_to_home
 unsetopt beep
 unsetopt hist_beep
 unsetopt list_beep
-
-##################################################################### Completion
+# }}}
+# => Completion {{{
 # If this option is set completions are shown only if the completions don't have
 # an unambiguous prefix or suffix that could be inserted in the command line.
 unsetopt list_ambiguous
@@ -154,8 +126,8 @@ zstyle ':completion:*:kill:*'   force-list always
 
 # ssh-agent
 zstyle ':omz:plugins:ssh-agent' identities id_rsa_redhat id_rsa
-
-######################################################################## Aliases
+# }}}
+# => Aliases {{{
 
 ## Bad reflex correction
 alias q!='echo $fg[red]Je ne suis pas dans VIM !$reset_color'
@@ -258,6 +230,9 @@ alias oslab172='ssh oslab172'
 alias oslab194='ssh oslab194'
 alias oslab117='ssh oslab117'
 
+alias zrc="source ~/.zshrc"
+# }}}
+# => Misc {{{
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 export VAGRANT_DEFAULT_PROVIDER=libvirt
@@ -267,3 +242,4 @@ export PYTHONPATH=$HOME/.local/lib/python2.7/site-packages
 
 eval "$(fasd --init auto)"
 source ~/.github-auth
+# }}}
