@@ -5,6 +5,7 @@ usage() {
     SYNTAX
 
     rspec_tests.sh  [--help] [--clean-all] [--debug|-d]
+                    [--run-rspec-tests|-r]
 
     )"
     exit 1
@@ -24,6 +25,10 @@ while [ $# != 0 ]; do
         --help|-h)
             usage
             ;;
+        --run-rspec-tests|-r)
+            RSPEC_TEST="yes"
+            shift
+            ;;
         --clean-all)
             CLEAN_ALL="yes"
             shift
@@ -41,7 +46,8 @@ while [ $# != 0 ]; do
     shift
 done
 
-CLEAN_ALL=${CLEAN_ALL:-yes}
+CLEAN_ALL=${CLEAN_ALL:-no}
+RSPEC_TEST=${RSPEC_TEST:-no}
 
 if [[ ${DEBUG_MODE} == 'yes' ]]; then
     set -eux
@@ -52,10 +58,16 @@ test -d .bundle && rm -Rf .bundle
 export GEM_HOME=~/tmp/vendor
 
 bundle install --path=~/tmp/vendor
-bundle exec rake spec 'SPEC_OPTS=--format documentation'
+
+if [[ "${RSPEC_TEST}" == "yes" ]]; then
+    output "Running rspec tests"
+    bundle exec rake spec 'SPEC_OPTS=--format documentation'
+fi
+
 export FUTURE_PARSER=yes
-bundle exec rake syntax
+output "Running puppet-lint tests"
 bundle exec rake lint
+output "Running syntax, validate and metadata-json-lint tests"
 bundle exec rake validate
 
 if [[ "${CLEAN_ALL}" == "yes" ]]; then
