@@ -13,6 +13,7 @@
 --ignore-dir=gems
 --ignore-dir=log
 --ignore-dir=coverage
+--ignore-dir=spec/fixtures
 
 # sort results by filename
 --sort-files

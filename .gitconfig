@@ -25,12 +25,13 @@
     trustExitCode = true
 [alias]
     br = branch --all
+    brd = branch -D
     ci = commit
     co = checkout
     dh = diff HEAD
     rh = reset --soft HEAD^
     st = status -sb
-    fup = log --since '1 day ago' --oneline --author='Gael Chamoulaud <gael@redhat.com>'
+    fup = log --since '1 day ago' --oneline --author='Gael Chamoulaud <gchamoul@redhat.com>'
     springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
     l = log
     lh = log --graph

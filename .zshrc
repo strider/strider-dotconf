@@ -22,7 +22,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 if [[ -z "$plugins" ]]; then
-    plugins=(tmux fasd docker catimg ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
+    plugins=(tmux rbenv vagrant fasd docker catimg ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -37,16 +37,16 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $(git_prompt_status) %{$reset_color%} $EPS1"
-    zle reset-prompt
-}
+#function zle-line-init zle-keymap-select {
+    #VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+    #RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $(git_prompt_status) %{$reset_color%} $EPS1"
+    #zle reset-prompt
+#}
 
-zle -N zle-line-init
-zle -N zle-keymap-select
+#zle -N zle-line-init
+#zle -N zle-keymap-select
 
-export KEYTIMEOUT=1
+#export KEYTIMEOUT=1
 
 # User configuration
 
@@ -155,6 +155,7 @@ alias realpath='readlink -f'
 alias makePassword='< /dev/urandom tr -dc A-Za-z0-9_ | head -c15 '
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias httprc='python -c "import httplib,pprint; pprint.pprint(httplib.responses.items())"'
+alias gertty=' workon gertty-env && gertty -d --fetch-missing-refs'
 alias cal='cal -3'
 alias rm='rm -i'
 alias cp='cp -i'
@@ -242,4 +243,7 @@ export PYTHONPATH=$HOME/.local/lib/python2.7/site-packages
 
 eval "$(fasd --init auto)"
 source ~/.github-auth
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 # }}}

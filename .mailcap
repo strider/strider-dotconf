@@ -8,3 +8,4 @@ application/pdf;                pdftotext %s -; copiousoutput
 image/gif;                      display %s
 image/jpeg;                     display %s
 image/png;                      display %s
+text/calendar; view-ical ; copiousoutput

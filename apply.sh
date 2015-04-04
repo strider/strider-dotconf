@@ -12,6 +12,8 @@ rm -rvf ~/.oh-my-zsh/.git*
 cp -rvf themes/ ~/.oh-my-zsh/custom/
 cp -vf .zshrc ~/
 cp -vf .mailcap ~/
+cp -vf .gemrc ~/
+cp -vf .fehbg ~/
 
 output "Applying TMUX configuration"
 cp -vf .tmux.conf ~/.tmux.conf
@@ -23,6 +25,7 @@ cd ..
 
 output "Applying Puppet-lint configuration"
 cp -vf .puppet-lint.rc ~/.puppet-lint.rc
+cp -vf default-gems ~/
 
 output "Applying ACK configuration"
 cp -vf .ackrc ~/

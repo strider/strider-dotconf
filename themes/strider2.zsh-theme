@@ -1,10 +1,16 @@
 #!/usr/bin/env zsh
 
 function virtualenv_info {
-    [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
+[ $VIRTUAL_ENV ] && echo "(%{$fg[green]%}"`basename $VIRTUAL_ENV`"%{$fg_bold[blue]%}) "
 }
 
-#local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+if [[ -s ~/.rvm/scripts/rvm ]] ; then
+  RPS1="%{$fg[yellow]%}rvm:%{$reset_color%}%{$fg[red]%}\$(~/.rvm/bin/rvm-prompt)%{$reset_color%} $EPS1"
+else
+  if which rbenv &> /dev/null; then
+    RPS1="%{$fg[yellow]%}rbenv:%{$reset_color%}%{$fg[red]%}\$(rbenv version | sed -e 's/ (set.*$//')%{$reset_color%} $EPS1"
+  fi
+fi
 
 setopt promptsubst
 
@@ -22,17 +28,15 @@ GIT_PROMPT_INFO=$FG[148]
 # Hash
 ROOT_ICON="# "
 if [[ $EUID -ne 0 ]] ; then
-	ROOT_ICON=""
+    ROOT_ICON=""
 fi
 
-PROMPT='%{$fg[green]%}$(virtualenv_info)%{$reset_color%}%{$ROOT_ICON_COLOR%}$ROOT_ICON%{$reset_color%}%{$MACHINE_NAME_COLOR%}%m➜ %{$reset_color%}%{$PROMPT_SUCCESS_COLOR%}%c%{$reset_color%} %{$GIT_PROMPT_INFO%}$(git_prompt_info)%{$GIT_DIRTY_COLOR%}$(git_prompt_status) %{$reset_color%}%{$PROMPT_PROMPT%}→ %{$reset_color%}'
+PROMPT='%{$fg_bold[blue]%}$(virtualenv_info)%{$reset_color%}%{$ROOT_ICON_COLOR%}$ROOT_ICON%{$reset_color%}%{$MACHINE_NAME_COLOR%}.::. %m .::. %{$reset_color%}%{$PROMPT_SUCCESS_COLOR%}%c%{$reset_color%} %{$GIT_PROMPT_INFO%}$(git_prompt_info)%{$GIT_DIRTY_COLOR%}$(git_prompt_status) %{$reset_color%}%{$PROMPT_PROMPT%}→ %{$reset_color%}'
 
-#RPS1="${return_code}"
-
-ZSH_THEME_GIT_PROMPT_PREFIX=": "
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$GIT_PROMPT_INFO%} :"
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{$GIT_DIRTY_COLOR%}✘ "
-ZSH_THEME_GIT_PROMPT_CLEAN=" %{$GIT_CLEAN_COLOR%}✔ "
+ZSH_THEME_GIT_PROMPT_PREFIX="<"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$GIT_PROMPT_INFO%}> "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$GIT_DIRTY_COLOR%}(✘)"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$GIT_CLEAN_COLOR%}(✔)"
 
 ZSH_THEME_GIT_PROMPT_ADDED="%{$FG[103]%}✚ %{$rset_color%}"
 ZSH_THEME_GIT_PROMPT_MODIFIED="%{$FG[103]%}✹ %{$reset_color%}"
