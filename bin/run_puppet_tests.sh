@@ -17,6 +17,10 @@ if [[ "$*" =~ "--help" ]]; then
     usage
 fi
 
+if [[ "$#" = 0 ]]; then
+    usage
+fi
+
 output() {
     echo -e ""
     echo -e "***** \e[30;48;5;82m $@\e[0m *****"
@@ -77,5 +81,10 @@ if [[ "${RUN_SYNTAX}" == "yes" ]]; then
     bundle exec rake lint
     output "Running Validate Task"
     bundle exec rake validate
+
+    output "CLEANING UP ALL!"
+    sleep 5
+    bundle exec rake spec_clean
+    rm -Rf .bundle/ Gemfile.lock
 fi
 } 2>&1 | tee $HOME/gcha_tests_${PUP_MOD_NAME}-results.log
