@@ -22,7 +22,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 if [[ -z "$plugins" ]]; then
-    plugins=(tmux rbenv vagrant fasd docker catimg ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
+    plugins=(tmux vagrant fasd docker catimg ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -36,17 +36,22 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
+# add missing vim hotkeys
+# fixes backspace deletion issues
+# http://zshwiki.org/home/zle/vi-mode
+bindkey -a u undo
+bindkey -a '^R' redo
 
-#function zle-line-init zle-keymap-select {
-    #VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-    #RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $(git_prompt_status) %{$reset_color%} $EPS1"
-    #zle reset-prompt
-#}
+export KEYTIMEOUT=1
 
-#zle -N zle-line-init
-#zle -N zle-keymap-select
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
 
-#export KEYTIMEOUT=1
+zle -N zle-line-init
+zle -N zle-keymap-select
 
 # User configuration
 
@@ -125,7 +130,7 @@ zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 
 # ssh-agent
-zstyle ':omz:plugins:ssh-agent' identities id_rsa_redhat id_rsa
+zstyle ':omz:plugins:ssh-agent' identities id_rsa id_rsa_redhat
 # }}}
 # => Aliases {{{
 
@@ -206,6 +211,9 @@ alias httpdump="sudo tcpdump -i wlp3s0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|
 alias trs2fr="/usr/bin/trs {en=fr} "
 alias trs2en="/usr/bin/trs {fr=en} "
 
+alias setclip='xclip -selection c'
+alias getclip='xclip -selection clipboard -o'
+
 ## shortcut  for iptables and pass it via sudo#
 alias ipt='sudo /sbin/iptables'
 
@@ -246,4 +254,4 @@ source ~/.github-auth
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-# }}}
+# }}

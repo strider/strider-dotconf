@@ -16,10 +16,8 @@
     status = auto
     branch = auto
 [merge]
-    tool = splice
-    #tool = vimdiff
-    #conflictstyle = diff3
-    #prompt = false
+    tool = vimdiff
+    prompt = false
 [mergetool "splice"]
     cmd = "vimx -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
     trustExitCode = true
