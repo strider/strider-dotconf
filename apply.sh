@@ -15,6 +15,11 @@ cp -vf .mailcap ~/
 cp -vf .gemrc ~/
 cp -vf .fehbg ~/
 
+output "ZATHURA configuration"
+mkdir -p ~/.config/zathura
+rm -Rf ~/.config/zathura/zathurarc
+cp zathurarc ~/.config/zathura/zathurarc
+
 output "Applying TMUX configuration"
 cp -vf .tmux.conf ~/.tmux.conf
 

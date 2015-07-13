@@ -5,7 +5,7 @@ usage() {
     SYNTAX
 
     prepare-opm-update.sh [--help|-h] [--branch|-b <master>]
-                          [--from-stackforge-only|-s]
+                          [--from-openstack-only|-s]
                           [--debug|-d]
 
     )"
@@ -25,8 +25,8 @@ while [ $# != 0 ]; do
             BR=$2
             shift
             ;;
-        --from-stackforge-only|-s)
-            STACKFORGE="yes"
+        --from-openstack-only|-s)
+            OPENSTACK="yes"
             shift
             ;;
         --debug|-d)
@@ -48,7 +48,7 @@ output() {
 }
 
 BRANCH=${BR:-master}
-STACKFORGE_ONLY=${STACKFORGE:-no}
+OPENSTACK_ONLY=${OPENSTACK:-no}
 DEBUG_MODE=${DEBUG:-no}
 OPM_REPO_URL="git://github.com/redhat-openstack/openstack-puppet-modules.git"
 PM_TMP_DIR="/tmp/pm-tmp"
@@ -106,8 +106,8 @@ for MODULE in `grep '^mod.*' ${PUPPETFILE} | cut -d"'" -f2`; do
     GIT_URL=$(grep -e "^mod.*${MODULE}" -A2 ${PUPPETFILE} | grep ':git.*=>' | cut -d"'" -f2)
     GIT_COMMIT=$(grep -e "^mod.*${MODULE}" -A2 ${PUPPETFILE} | grep ':commit.*=>' | cut -d"'" -f2)
 
-    if [[ ${STACKFORGE_ONLY} == 'yes' ]] && [[ ! ${GIT_URL} =~ 'stackforge' ]]; then
-        output "${MODULE} is not coming from stackforge"
+    if [[ ${OPENSTACK_ONLY} == 'yes' ]] && [[ ! ${GIT_URL} =~ 'openstack' ]]; then
+        output "${MODULE} is not coming from openstack"
     else
         cd ${OPM_UPDATE_DIR}
 

@@ -1,4 +1,9 @@
 # Based on: https://github.com/nixme/dotfiles/blob/master/.ackrc
+--color
+--follow
+--group
+--smart-case
+
 # case-insensitive searching
 --ignore-case
 
@@ -14,6 +19,10 @@
 --ignore-dir=log
 --ignore-dir=coverage
 --ignore-dir=spec/fixtures
+--ignore-dir=build
+--ignore-dir=dist
 
 # sort results by filename
 --sort-files
+
+--type-set=puppet=.pp

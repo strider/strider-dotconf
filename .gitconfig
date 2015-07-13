@@ -48,6 +48,13 @@
     dl = "!git ll -1"
     al = "!git config -l | grep alias | cut -c 7-"
     pr = "!f() { git fetch $1 pull/$2/head:pr-$2 && git checkout pr-$2; }; f"
+    # [s]ubmodule
+    sc  = submodule add
+    scm = submodule foreach --recursive git checkout master
+    sl  = submodule --quiet foreach --recursive echo $path  on  $(git rev-parse --abbrev-ref HEAD)
+    sr  = submodulerm
+    ss  = !git submodule sync && git submodule update --init --recursive # [s]ync
+    su  = submodule foreach --recursive git pull # [u]pdate
 [sendemail]
     smtpencryption = tls
     smtpserver = smtp.corp.redhat.com
