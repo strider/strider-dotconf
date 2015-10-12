@@ -27,7 +27,7 @@ URxvt.tab-fg          : 255
 URxvt.tab-bg          : 52
 URxvt.title-fg        : 244
 URxvt.title-bg        : 16
-URxvt*font            : xft:Terminus for Powerline:style=Regular:size=08
+URxvt*font            : xft:Ubuntu Mono for Powerline:style=RegularForPowerline:size=19
 
 !TomorrowNight
 #define t_background   #1d1f21

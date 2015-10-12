@@ -22,7 +22,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 if [[ -z "$plugins" ]]; then
-    plugins=(tmux vagrant fasd docker catimg ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
+    plugins=(rbenv tmux vagrant fasd docker colored-man-pages catimg ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -150,6 +150,7 @@ alias gfa="git fetch --all"
 alias grl="git review -l"
 alias grd="git review -d"
 alias yed="java -jar ~/bin/yed-3.14/yed.jar"
+alias fedsbr="fedpkg switch-branch"
 alias xmind="~/bin/xmind/XMind_Linux_64bit/XMind"
 alias cls="clear"
 alias vla="sudo virsh list --all"
@@ -160,7 +161,8 @@ alias realpath='readlink -f'
 alias makePassword='< /dev/urandom tr -dc A-Za-z0-9_ | head -c15 '
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias httprc='python -c "import httplib,pprint; pprint.pprint(httplib.responses.items())"'
-alias gertty=' workon gertty-env && gertty -d --fetch-missing-refs'
+alias gertty_puppet='workon gertty-env && gertty -d --fetch-missing-refs -c ~/.gertty_puppet.yaml'
+alias gertty_tripleo='workon gertty-env && gertty -d --fetch-missing-refs -c ~/.gertty_tripleo.yaml'
 alias cal='cal -3'
 alias rm='rm -i'
 alias cp='cp -i'
@@ -243,7 +245,7 @@ alias zrc="source ~/.zshrc"
 # }}}
 # => Misc {{{
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
+source ~/.local/bin/virtualenvwrapper.sh
 export VAGRANT_DEFAULT_PROVIDER=libvirt
 
 export PATH=$PATH:$HOME/.local/bin
@@ -254,4 +256,7 @@ source ~/.github-auth
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+xrdb ~/.Xresources
+stty -ixon
 # }}

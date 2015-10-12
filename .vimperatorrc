@@ -1,12 +1,52 @@
 "3.8.3 (created: 2014/11/09 13:19:01)
 
- let mapleader = ","
-
 set runtimepath=/home/gchamoul/.vimperator
 set editor="/usr/bin/gvim -f"
-colorscheme default
+colorscheme janus
 set gui=addons,nobookmarks,nomenu,navigation,tabs
+set status=input,bookmark,history,tabcount,position
+
+" title bar
+set titlestring="Firefox with Vimperator"
+
+" scroll height of <C-d> / <C-u>
+set scroll=3
+
+" need <CR> anytime in hints mode
+set followhints=1
+
+" don't focus any "input" elements automatically when open pages.
 set focuscontent
+
+let mapleader = ","
+
+" show link destination in status line
+set showstatuslinks=1
+
+" mappings
+" clear all key mappings
+" to avoid troubles from loading rc file several times
+mapclear
+cmapclear
+imapclear
+
+noremap <silent> <leader>s :emenu Tools.Add-ons<CR>
+noremap <silent> <leader>p :emenu Edit.Preferences<CR>
+
+" sourcing .vimperatorrc
+noremap <Leader>r :source ~/.vimperatorrc<CR>
+
+" find as you type
+set incsearch
+" highlight the terms
+set hlsearch
+" make searches case-insensitive
+set ignorecase
+" unless they contain upper-case letters
+set smartcase
+" a toggle for search highlight
+map <silent> <leader>h :set hlsearch!<CR>
+set tabnumbers=true
 
 " scroll three times as fast: I operate at warp speed
 nnoremap j 3j
@@ -22,16 +62,10 @@ nnoremap x :tabclose<cr>
 " stay in insert mode
 nnoremap I <S-Esc>
 
-" show link destination in status line
-set showstatuslinks=1
-
 noremap <silent> <leader>l :set gui=addons,nobookmarks,nomenu,navigation,tabs<CR>
 noremap <silent> <leader>k :set gui=addons,nobookmarks,nomenu,nonavigation,tabs<CR>
 map T :tabopen!
 map <A-y> :js<Space>util.copyToClipboard(content.document.title,<Space>true)<Return>
-map <silent> <A-u> :js<Space>next_image()<Return>
-map <silent> <A-d> :js<Space>previous_image()<Return>
-map <silent> <A-p> :js<Space>print_page()<Return>
 
 nnoremap <leader>t. :tabduplicate<cr>
 nnoremap <leader>ta :tabattach<space>
@@ -43,11 +77,6 @@ nnoremap <leader>t] :tabmove +1<cr>
 nnoremap <leader>tg :tabgroups<space>
 nnoremap <leader>tG :tabgroups<cr>
 
-style! -name=tab chrome://* <<EOF
-.tabbrowser-strip {
-    background                         : #002b36 !important;
-  }
-EOF
-source! .vimperatorrc.local
+echo "GET READY!!"
 
 " vim: set ft=vimperator:

@@ -31,7 +31,7 @@ if [[ $EUID -ne 0 ]] ; then
     ROOT_ICON=""
 fi
 
-PROMPT='%{$fg_bold[blue]%}$(virtualenv_info)%{$reset_color%}%{$ROOT_ICON_COLOR%}$ROOT_ICON%{$reset_color%}%{$MACHINE_NAME_COLOR%}.::. %m .::. %{$reset_color%}%{$PROMPT_SUCCESS_COLOR%}%c%{$reset_color%} %{$GIT_PROMPT_INFO%}$(git_prompt_info)%{$GIT_DIRTY_COLOR%}$(git_prompt_status) %{$reset_color%}%{$PROMPT_PROMPT%}→ %{$reset_color%}'
+PROMPT='%{$fg_bold[blue]%}$(virtualenv_info)%{$reset_color%}%{$ROOT_ICON_COLOR%}$ROOT_ICON%{$reset_color%}%{$MACHINE_NAME_COLOR%}.::. %m .::. %{$reset_color%}%{$PROMPT_SUCCESS_COLOR%}%c%{$reset_color%} %{$GIT_PROMPT_INFO%}$(git_prompt_info)%{$GIT_DIRTY_COLOR%}$(git_prompt_status) %{$reset_color%}%{$PROMPT_PROMPT%}>> %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="<"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$GIT_PROMPT_INFO%}> "

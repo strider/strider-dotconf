@@ -26,12 +26,12 @@ set notification-bg "#90A959" #0B
 set notification-fg "#151515" #00
 set recolor-lightcolor "#151515" #00
 set recolor-darkcolor "#E0E0E0" #06
-set recolor true
+set recolor ffalse
 set recolor-keephue true
 set window-title-basename true
 set selection-clipboard clipboard
 
-map [normal] j scroll up
+map [normal] k scroll up
 map [fullscreen] j scroll up
-map [normal] k scroll down
+map [normal] j scroll down
 map [fullscreen] k scroll down
