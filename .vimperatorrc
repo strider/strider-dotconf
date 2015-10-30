@@ -2,7 +2,7 @@
 
 set runtimepath=/home/gchamoul/.vimperator
 set editor="/usr/bin/gvim -f"
-colorscheme janus
+colorscheme default
 set gui=addons,nobookmarks,nomenu,navigation,tabs
 set status=input,bookmark,history,tabcount,position
 
@@ -46,7 +46,7 @@ set ignorecase
 set smartcase
 " a toggle for search highlight
 map <silent> <leader>h :set hlsearch!<CR>
-set tabnumbers=true
+set notabnumbers
 
 " scroll three times as fast: I operate at warp speed
 nnoremap j 3j

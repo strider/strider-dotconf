@@ -1,0 +1,59 @@
+#!/bin/bash -
+
+set -x
+exec 2>&1
+
+usage() {
+    echo "
+    SYNTAX
+
+    docker_acc_tests [--help] [--nodeset|-n]
+
+    )"
+    exit 1
+}
+
+if [[ "$*" =~ "--help" ]]; then
+    usage
+fi
+
+output() {
+    echo -e ""
+    echo -e "***** \e[30;48;5;82m $@\e[0m *****"
+}
+
+while [ $# != 0 ]; do
+    case $1 in
+        --help|-h)
+            usage
+            ;;
+        --nodeset|-n)
+            NODESET="yes"
+            shift
+            ;;
+        *)
+            echo "invalid arg -- $1"
+            usage
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+PUP_MOD_NAME=${PWD##*/}
+NODESET=${NODESET:-docker}
+{
+    test Gemfile.lock && rm Gemfile.lock
+    test spec/acceptance/nodesets/${NODESET}.yml && rm spec/acceptance/nodesets/${NODESET}.yml
+    test -d .bundle && rm -Rf .bundle
+    cp ~/nodesets/${NODESET}.yml spec/acceptance/nodesets
+    export GEM_HOME=~/tmp/vendor
+    bundle install --path=~/tmp/vendor
+    output "Running acceptance tests with ${NODESET}"
+    BEAKER_set=${NODESET} bundle exec rspec spec/acceptance
+
+    bundle exec rake spec_clean
+    rm -Rf spec/acceptance/nodesets/docker.yml
+    rm -Rf log/ junit/
+
+} 2>&1 | tee $HOME/tmp/acceptance_tests_${PUP_MOD_NAME}-results.log

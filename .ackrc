@@ -13,6 +13,7 @@
 --ignore-dir=.idea
 --ignore-dir=vendor
 --ignore-dir=.bundle
+--ignore-dir=.test
 --ignore-dir=tmp
 --ignore-dir=.tox
 --ignore-dir=gems

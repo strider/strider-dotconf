@@ -9,7 +9,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="strider2"
 
 # Base16 Shell
-#BASE16_SHELL="/home/gchamoul/.config/base16-shell/base16-solarized.light.sh"
+#BASE16_SHELL="/home/gchamoul/.config/base16-shell/base16-tomorrow.dark.sh"
 #[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 # Uncomment the following line if you want to change the command execution time
@@ -21,9 +21,10 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-if [[ -z "$plugins" ]]; then
-    plugins=(rbenv tmux vagrant fasd docker colored-man-pages catimg ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
-fi
+plugins=(rbenv vi-mode tmux vagrant fasd docker colored-man-pages catimg ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
+
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -53,25 +54,8 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-# User configuration
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export LIBVIRT_DEFAULT_URI=qemu:///system
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa:~/.ssh/id_rsa_redhat"
@@ -139,19 +123,16 @@ alias q!='echo $fg[red]Je ne suis pas dans VIM !$reset_color'
 alias x!='echo $fg[red]Je ne suis pas dans VIM !$reset_color'
 
 ## Misc
-alias yum='sudo yum'
+alias dnf='sudo dnf'
 
-alias xsos="/home/gchamoul/bin/xsos"
 alias v='f -e vim'
 alias o='a -e xdg-open'
 alias tmux="tmux -2"
-alias gpa="~/bin/gpa"
+alias tailf="tail -f"
 alias gfa="git fetch --all"
 alias grl="git review -l"
 alias grd="git review -d"
-alias yed="java -jar ~/bin/yed-3.14/yed.jar"
 alias fedsbr="fedpkg switch-branch"
-alias xmind="~/bin/xmind/XMind_Linux_64bit/XMind"
 alias cls="clear"
 alias vla="sudo virsh list --all"
 alias t='~/bin/todo.txt-cli/todo.sh -d /home/gchamoul/todo.cfg'
@@ -186,11 +167,7 @@ alias lsd="ls -ralt"
 alias lss="ls -ralS"
 alias vim='/usr/bin/vimx'
 alias wiki='/usr/bin/vimx -c VimwikiIndex'
-alias vb='/usr/bin/vimx ~/.bashrc; source ~/.bashrc'
-alias srb='source ~/.bashrc'
-alias sls='screen -ls'
 alias grep='GREP_COLOR="1;33;40" LANG=C grep --color=auto'
-alias pdoc='screen -t \"Python Documentation\" w3m /usr/share/doc/python-docs-2.7.1/html/index.html'
 alias tailf='tail -f'
 alias rscp='rsync -aP --no-whole-file --inplace' # rsync cp // a(garder permissions) P(progress bar)
 alias rsmv='rscp --remove-source-files' # rsync mv avec progressbar
@@ -232,21 +209,70 @@ alias usc='xrandr --output HDMI1 --off'
 # Gerrit stuffs
 alias gerrit='ssh -p 29418 review.openstack.org gerrit'
 alias pk-core-list='gerrit ls-members packstack-core'
+alias pm-core-list='gerrit ls-members puppet-manager-core'
 alias pk-add-reviewers='gerrit set-reviewers $(git rev-parse --short HEAD) --add ichavero --add mmagr --add xbezdick --add jpena'
 alias pm-add-reviewers='gerrit set-reviewers $(git rev-parse --short HEAD) --add ichavero --add mmagr --add xbezdick --add jpena --add sbadia --add emilienm --add krinkle --add mfisch'
 
-alias oslab15='ssh oslab15'
-alias oslab133='ssh oslab133'
-alias oslab172='ssh oslab172'
-alias oslab194='ssh oslab194'
-alias oslab117='ssh oslab117'
+alias dud='du -d 1 -h'
+alias duf='du -sh *'
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
 
 alias zrc="source ~/.zshrc"
+alias vcon="~/bin/gentoken.sh --vpn-connect"
+alias rpt='bundle exec rake spec SPEC_OPTS="--color --format documentation --profile 10"'
+# ------------------------------------
+# Docker alias and function
+# ------------------------------------
+
+# Get latest container ID
+alias dl="docker ps -l -q"
+
+# Get container process
+alias dps="docker ps"
+
+# Get process included stop container
+alias dpa="docker ps -a"
+
+# Get images
+alias di="docker images"
+
+# Get container IP
+alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
+
+# Run deamonized container, e.g., $dkd base /bin/echo hello
+alias dkd="docker run -d -P"
+
+# Run interactive container, e.g., $dki base /bin/bash
+alias dki="docker run -i -t -P"
+
+# Execute interactive container, e.g., $dex base /bin/bash
+alias dex="docker exec -i -t"
+
+# Stop all containers
+dstop() { docker stop $(docker ps -a -q); }
+
+# Remove all containers
+drm() { docker rm $(docker ps -a -q); }
+
+# Stop and Remove all containers
+alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
+# Remove all images
+dri() { docker rmi $(docker images -q); }
+
+# Dockerfile build, e.g., $dbu tcnksm/test
+dbu() { docker build -t=$1 .; }
+
+# Show all alias related docker
+dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 # }}}
 # => Misc {{{
+export LIBVIRT_DEFAULT_URI=qemu:///system
 export WORKON_HOME=$HOME/.virtualenvs
 source ~/.local/bin/virtualenvwrapper.sh
 export VAGRANT_DEFAULT_PROVIDER=libvirt
+export EDITOR='vim'
 
 export PATH=$PATH:$HOME/.local/bin
 export PYTHONPATH=$HOME/.local/lib/python2.7/site-packages
@@ -256,6 +282,8 @@ source ~/.github-auth
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
 xrdb ~/.Xresources
 stty -ixon

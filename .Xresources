@@ -4,7 +4,7 @@ Xft.hinting           : 1
 Xft.hintstyle         : hintslight
 Xft.rgba              : rgba
 Xft.lcdfilter         : lcddefault
-Xcursor.theme         : Oxygen_Yellow
+Xcursor.theme         : Oxygen_Blue
 *customization        : -color
 Xterm*termName        : xterm-256color
 URxvt*termName        : rxvt-256color
@@ -13,21 +13,42 @@ URxvt*shading         : 25
 !URxvt*fading          : 30
 URxvt*saveLines       : 65535
 !URxvt.depth           : 32
-URxvt.perl-lib        : /home/gchamoul/.config/urxvt
-URxvt.perl-ext-common : default,matcher,selection-to-clipboard,selection,tabbed
 URxvt.scrollBar       : off
 URxvt.borderless      : true
+URxvt.perl-lib        : /home/gchamoul/.config/urxvt
+URxvt.perl-ext-common : default,matcher,selection-to-clipboard,selection,tabbedex,font-size
 URxvt.url-launcher    : /usr/bin/firefox
 URxvt.matcher.button  : 1
 URxvt.keysym.C-Delete : perl:matcher:last
 URxvt.keysym.M-Delete : perl:matcher:list
-URxvt.tabbar-fg       : 244
-URxvt.tabbar-bg       : 16
-URxvt.tab-fg          : 255
-URxvt.tab-bg          : 52
-URxvt.title-fg        : 244
-URxvt.title-bg        : 16
-URxvt*font            : xft:Ubuntu Mono for Powerline:style=RegularForPowerline:size=19
+URxvt*font            : xft:Ubuntu Mono for Powerline:style=Regular:size=12
+
+! Font-size (C-1: Ctrl + Alt)
+URxvt.keysym.C-1-Up: perl:font-size:increase
+URxvt.keysym.C-1-Down: perl:font-size:decrease
+URxvt.keysym.C-S-1-Up: perl:font-size:incglobal
+URxvt.keysym.C-S-1-Down: perl:font-size:decglobal
+URxvt.font-size.step: 4
+
+! Tabbedex features
+URxvt.new-button:yes
+!URxvt.title:no
+URxvt.autohide:yes
+URxvt.no-tabbedex-keys:yes
+URxvt.reopen-on-close:no
+! Tabbedex colors
+URxvt.tabbar-fg: 244
+URxvt.tabbar-bg: 16
+URxvt.tab-fg: 255
+URxvt.tab-bg: 52
+URxvt.title-fg: 244
+URxvt.title-bg: 16
+
+! Tabbedex keybindings (4-1: Super + Alt)
+URxvt.keysym.4-1-C-Left: perl:tabbedex:move_tab_left
+URxvt.keysym.4-1-C-Right: perl:tabbedex:move_tab_right
+URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 
 !TomorrowNight
 #define t_background   #1d1f21
