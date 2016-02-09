@@ -75,7 +75,7 @@ fi
 
 if [[ "${RUN_SYNTAX}" == "yes" ]]; then
     test -d .bundle && rm -Rf .bundle
-    export "PUPPET_GEM_VERSION=~> 4.0.0"
+    export "PUPPET_GEM_VERSION=~> 4.3.0"
     export GEM_HOME=~/tmp/vendor
 
     bundle install --path=~/tmp/vendor

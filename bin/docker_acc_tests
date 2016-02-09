@@ -43,8 +43,8 @@ done
 PUP_MOD_NAME=${PWD##*/}
 NODESET=${NODESET:-docker}
 {
-    test Gemfile.lock && rm Gemfile.lock
-    test spec/acceptance/nodesets/${NODESET}.yml && rm spec/acceptance/nodesets/${NODESET}.yml
+    test -f Gemfile.lock && rm Gemfile.lock
+    test -f spec/acceptance/nodesets/${NODESET}.yml && rm spec/acceptance/nodesets/${NODESET}.yml
     test -d .bundle && rm -Rf .bundle
     cp ~/nodesets/${NODESET}.yml spec/acceptance/nodesets
     export GEM_HOME=~/tmp/vendor

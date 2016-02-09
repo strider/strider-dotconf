@@ -21,7 +21,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(rbenv vi-mode tmux vagrant fasd docker colored-man-pages catimg ssh-agent gpg-agent pep8 zsh_reload yum git github git-extras colorize cp history history-substring-search systemd virtualenv virtualenvwrapper)
+plugins=(git git-extras tmux vagrant fasd docker colored-man-pages catimg ssh-agent gpg-agent pep8 zsh_reload colorize cp history history-substring-search systemd virtualenv virtualenvwrapper rbenv vi-mode )
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -284,6 +284,7 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+export GOPATH=$HOME/.gotools
 
 xrdb ~/.Xresources
 stty -ixon

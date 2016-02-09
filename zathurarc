@@ -26,7 +26,7 @@ set notification-bg "#90A959" #0B
 set notification-fg "#151515" #00
 set recolor-lightcolor "#151515" #00
 set recolor-darkcolor "#E0E0E0" #06
-set recolor ffalse
+set recolor false
 set recolor-keephue true
 set window-title-basename true
 set selection-clipboard clipboard

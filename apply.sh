@@ -13,7 +13,6 @@ cp -rf themes/ ~/.oh-my-zsh/custom/
 cp -f .zshrc ~/
 cp -f .mailcap ~/
 cp -f .gemrc ~/
-cp -f .fehbg ~/
 
 output "ZATHURA configuration"
 mkdir -p ~/.config/zathura
