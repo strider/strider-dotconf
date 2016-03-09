@@ -21,7 +21,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras tmux vagrant fasd docker colored-man-pages catimg ssh-agent gpg-agent pep8 zsh_reload colorize cp history history-substring-search systemd virtualenv virtualenvwrapper rbenv vi-mode )
+plugins=(themes git git-extras dnf tmux vagrant fasd docker colored-man-pages catimg ssh-agent gpg-agent pep8 zsh_reload colorize cp history history-substring-search systemd virtualenv virtualenvwrapper rbenv vi-mode pass gitignore github gitfast web-search)
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -279,6 +279,7 @@ export PYTHONPATH=$HOME/.local/lib/python2.7/site-packages
 
 eval "$(fasd --init auto)"
 source ~/.github-auth
+eval "$(hub alias -s)"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"

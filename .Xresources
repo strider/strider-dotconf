@@ -21,7 +21,8 @@ URxvt.url-launcher    : /usr/bin/firefox
 URxvt.matcher.button  : 1
 URxvt.keysym.C-Delete : perl:matcher:last
 URxvt.keysym.M-Delete : perl:matcher:list
-URxvt*font            : xft:Ubuntu Mono for Powerline:style=Regular:size=12
+URxvt*font            : xft:Terminus for Powerline:style=Regular:size=19
+URxvt*letterspace     : -1
 
 ! Font-size (C-1: Ctrl + Alt)
 URxvt.keysym.C-1-Up: perl:font-size:increase
@@ -96,3 +97,22 @@ URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 !*.cursorColor                                  : #aeafad
 *.cursorColor                                   : t_red
 URxvt*cursorBlink                               : false
+
+!rofi.background: #073642
+!rofi.foreground: #eee8d5
+!rofi.highlightbg: #b58900
+!rofi.highlightfg: #ffffff
+!rofi.bordercolor: #678698
+rofi.padding: 1
+rofi.lines: 10
+rofi.borderwidth: 1
+rofi.opacity: 100
+rofi.font: Terminus for Powerline 14
+rofi.location: 7
+rofi.yoffset: 0
+rofi.xoffset: 0
+rofi.width: 100
+rofi.fixed_num_lines: 1
+rofi.hmode: false
+rofi.terminal: st
+rofi.ssh-set-title: false
