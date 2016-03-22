@@ -3,7 +3,7 @@
 set runtimepath=/home/gchamoul/.vimperator
 set editor="/usr/bin/gvim -f"
 colorscheme default
-set gui=addons,nobookmarks,nomenu,navigation,tabs
+set gui=addons,nobookmarks,nomenu,nonavigation,notabs
 set status=input,bookmark,history,tabcount,position
 
 " title bar
@@ -64,6 +64,8 @@ nnoremap I <S-Esc>
 
 noremap <silent> <leader>l :set gui=addons,nobookmarks,nomenu,navigation,tabs<CR>
 noremap <silent> <leader>k :set gui=addons,nobookmarks,nomenu,nonavigation,tabs<CR>
+noremap <silent> <leader>tn :set gui=notabs<CR>
+noremap <silent> <leader>ty :set gui=tabs<CR>
 map T :tabopen!
 map <A-y> :js<Space>util.copyToClipboard(content.document.title,<Space>true)<Return>
 

@@ -5,7 +5,7 @@
 # thanks:
 # https://github.com/esn89/base16-zathura
 
-set font "Terminus for Powerline:pixelsize=08"
+set font "Terminus for Powerline Regular:pixelsize=08"
 set default-bg "#151515"
 set default-fg "#202020"
 set statusbar-bg "#202020"

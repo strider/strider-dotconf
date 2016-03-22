@@ -4,11 +4,11 @@ Xft.hinting           : 1
 Xft.hintstyle         : hintslight
 Xft.rgba              : rgba
 Xft.lcdfilter         : lcddefault
-Xcursor.theme         : Oxygen_Blue
+Xcursor.theme         : Oxygen_Yellow
 *customization        : -color
 Xterm*termName        : xterm-256color
 URxvt*termName        : rxvt-256color
-URxvt.transparent     : true
+URxvt.transparent     : false
 URxvt*shading         : 25
 !URxvt*fading          : 20
 URxvt*saveLines       : 65535
@@ -21,15 +21,8 @@ URxvt.url-launcher    : /usr/bin/firefox
 URxvt.matcher.button  : 1
 URxvt.keysym.C-Delete : perl:matcher:last
 URxvt.keysym.M-Delete : perl:matcher:list
-URxvt*font            : xft:Terminus for Powerline:style=Regular:size=19
+URxvt*font            : xft:Terminus for Powerline:style=Regular:size=08
 URxvt*letterspace     : -1
-
-! Font-size (C-1: Ctrl + Alt)
-URxvt.keysym.C-1-Up: perl:font-size:increase
-URxvt.keysym.C-1-Down: perl:font-size:decrease
-URxvt.keysym.C-S-1-Up: perl:font-size:incglobal
-URxvt.keysym.C-S-1-Down: perl:font-size:decglobal
-URxvt.font-size.step: 4
 
 ! Tabbedex features
 URxvt.new-button:yes
@@ -38,12 +31,19 @@ URxvt.autohide:yes
 URxvt.no-tabbedex-keys:yes
 URxvt.reopen-on-close:no
 ! Tabbedex colors
-URxvt.tabbar-fg: 244
-URxvt.tabbar-bg: 16
-URxvt.tab-fg: 255
-URxvt.tab-bg: 52
-URxvt.title-fg: 244
-URxvt.title-bg: 16
+URxvt*tabbar-fg: 244
+URxvt*tabbar-bg: 16
+URxvt*tab-fg: 255
+URxvt*tab-bg: 52
+URxvt*title-fg: 244
+URxvt*title-bg: 16
+
+! Font-size (C-1: Ctrl + Alt)
+URxvt.keysym.C-1-Up: perl:font-size:increase
+URxvt.keysym.C-1-Down: perl:font-size:decrease
+URxvt.keysym.C-S-1-Up: perl:font-size:incglobal
+URxvt.keysym.C-S-1-Down: perl:font-size:decglobal
+URxvt.font-size.step: 4
 
 ! Tabbedex keybindings (4-1: Super + Alt)
 URxvt.keysym.4-1-C-Left: perl:tabbedex:move_tab_left
@@ -98,16 +98,11 @@ URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 *.cursorColor                                   : t_red
 URxvt*cursorBlink                               : false
 
-!rofi.background: #073642
-!rofi.foreground: #eee8d5
-!rofi.highlightbg: #b58900
-!rofi.highlightfg: #ffffff
-!rofi.bordercolor: #678698
 rofi.padding: 1
 rofi.lines: 10
 rofi.borderwidth: 1
 rofi.opacity: 100
-rofi.font: Terminus for Powerline 14
+rofi.font: Terminus for Powerline 08
 rofi.location: 7
 rofi.yoffset: 0
 rofi.xoffset: 0
