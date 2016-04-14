@@ -3,7 +3,7 @@
 set runtimepath=/home/gchamoul/.vimperator
 set editor="/usr/bin/gvim -f"
 colorscheme default
-set gui=addons,nobookmarks,nomenu,nonavigation,notabs
+set gui=addons,nobookmarks,nomenu,navigation,notabs
 set status=input,bookmark,history,tabcount,position
 
 " title bar

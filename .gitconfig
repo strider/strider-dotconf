@@ -24,7 +24,7 @@
 [alias]
     br = branch --all
     brd = branch -D
-    ci = commit
+    ci = commit -v
     co = checkout
     dh = diff HEAD
     rh = reset --soft HEAD^
