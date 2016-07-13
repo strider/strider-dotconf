@@ -8,7 +8,7 @@ Xcursor.theme         : Oxygen_Yellow
 *customization        : -color
 Xterm*termName        : xterm-256color
 URxvt*termName        : rxvt-256color
-URxvt.transparent     : false
+URxvt.transparent     : true
 URxvt*shading         : 25
 !URxvt*fading          : 20
 URxvt*saveLines       : 65535

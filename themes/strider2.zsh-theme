@@ -53,5 +53,5 @@ ZSH_THEME_GIT_PROMPT_AHEAD=" %{$RED%}(!)"
 ZSH_THEME_GIT_PROMPT_SHA_BEFORE=" %{$WHITE%}[%{$YELLOW%}"
 ZSH_THEME_GIT_PROMPT_SHA_AFTER="%{$WHITE%}]"
 
-PROMPT='%{$terminfo[bold]$FG[226]%}➜%{$reset_color%} %{$fg_bold[blue]%}$(virtualenv_info)%{$reset_color%}%{$fg_bold[blue]%}$(rbenv_info)%{$reset_color%}%{$fg_bold[magenta]%}.::.%{$reset_color%} %{$terminfo[bold]$FG[226]%}%c%{$reset_color%} %{$GREEN_BOLD%}$(git_current_branch)$(git_prompt_short_sha)$(git_prompt_status)%{$RESET_COLOR%}
+PROMPT='%{$fg_bold[blue]%}$(virtualenv_info)%{$reset_color%}%{$fg_bold[blue]%}$(rbenv_info)%{$reset_color%}%{$fg_bold[magenta]%}.::.%{$reset_color%} %{$terminfo[bold]$FG[226]%}%c%{$reset_color%} %{$GREEN_BOLD%}$(git_current_branch)$(git_prompt_short_sha)$(git_prompt_status)%{$RESET_COLOR%}
 %{$terminfo[bold]$FG[226]%}»%{$reset_color%} '

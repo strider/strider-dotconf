@@ -7,3 +7,6 @@
 [submodule "fasd"]
 	path = fasd
 	url = git://github.com/clvv/fasd.git
+[submodule "zsh-config"]
+	path = zsh-config
+	url = https://github.com/ivyl/zsh-config
