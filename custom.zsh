@@ -8,9 +8,6 @@ bindkey -a '^R' redo
 alias q!='echo $fg[red]Je ne suis pas dans VIM !$reset_color'
 alias x!='echo $fg[red]Je ne suis pas dans VIM !$reset_color'
 
-## Misc
-alias dnf='sudo dnf'
-
 alias v='f -e vim'
 alias o='a -e xdg-open'
 alias tmux="tmux -2"
@@ -141,32 +138,15 @@ dbu() { docker build -t=$1 .; }
 # Show all alias related docker
 dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 
-alias dnfl="dnf list"                       # List packages
-alias dnfli="dnf list installed"            # List installed packages
-alias dnfgl="dnf grouplist"                 # List package groups
-alias dnfmc="dnf makecache"                 # Generate metadata cache
-alias dnfp="dnf info"                       # Show package information
-alias dnfs="dnf search"                     # Search package
-
-alias dnfu="dnf upgrade"               # Upgrade package
-alias dnfi="dnf install"               # Install package
-alias dnfgi="dnf groupinstall"         # Install package group
-alias dnfr="dnf remove"                # Remove package
-alias dnfgr="dnf groupremove"          # Remove package group
-alias dnfc="dnf clean all"             # Clean cache
-
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export WORKON_HOME=$HOME/.virtualenvs
-source ~/.local/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper.sh
 export VAGRANT_DEFAULT_PROVIDER=libvirt
-
-export PATH=$PATH:$HOME/.local/bin
-export PYTHONPATH=$HOME/.local/lib/python2.7/site-packages
 
 eval "$(fasd --init auto)"
 source ~/.github-auth
 eval "$(hub alias -s)"
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$HOME/bin/git-config/bin:$PATH"
 eval "$(rbenv init -)"
 stty -ixon
