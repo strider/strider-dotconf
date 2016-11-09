@@ -8,7 +8,7 @@ Xcursor.theme         : Oxygen_Yellow
 *customization        : -color
 Xterm*termName        : xterm-256color
 URxvt*termName        : rxvt-256color
-URxvt.transparent     : true
+!URxvt.transparent     : true
 URxvt*shading         : 25
 !URxvt*fading          : 20
 URxvt*saveLines       : 65535
@@ -22,7 +22,7 @@ URxvt.matcher.button  : 1
 URxvt.keysym.C-Delete : perl:matcher:last
 URxvt.keysym.M-Delete : perl:matcher:list
 URxvt*font            : xft:Terminus for Powerline:style=Regular:size=08
-URxvt*letterspace     : -1
+!URxvt*letterspace     : -1
 
 ! Tabbedex features
 URxvt.new-button:yes
@@ -96,6 +96,7 @@ URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 *.background                                    : t_background
 !*.cursorColor                                  : #aeafad
 *.cursorColor                                   : t_red
+
 URxvt*cursorBlink                               : false
 
 rofi.padding: 1

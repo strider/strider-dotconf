@@ -18,6 +18,7 @@ alias tkss='tmux kill-session -t'
 alias tksv='tmux kill-server'
 alias tl='tmux list-sessions'
 alias ts='tmux new-session -s'
+alias g="git"
 alias gfa="git fetch --all"
 alias grl="git review -l"
 alias grd="git review -d"
@@ -149,10 +150,17 @@ export WORKON_HOME=$HOME/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 export VAGRANT_DEFAULT_PROVIDER=libvirt
 
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent`
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l | grep "The agent has no identities" && ssh-add
+
 eval "$(fasd --init auto)"
 source ~/.github-auth
 eval "$(hub alias -s)"
 
-export PATH="$HOME/.rbenv/bin:$HOME/bin/git-config/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$HOME/bin/git-config/bin:$HOME/.local/bin:$PATH"
 eval "$(rbenv init -)"
 stty -ixon
