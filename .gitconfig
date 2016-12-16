@@ -26,6 +26,7 @@
     brd = branch -D
     ci = commit -v
     co = checkout
+    nb = checkout -b
     dh = diff HEAD
     rh = reset --soft HEAD^
     st = status -sb
