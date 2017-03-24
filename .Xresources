@@ -10,7 +10,7 @@ Xterm*termName        : xterm-256color
 URxvt*termName        : rxvt-256color
 URxvt.transparent     : true
 URxvt*shading         : 30
-!URxvt*fading          : 25
+URxvt*fading          : 25
 URxvt*saveLines       : 65535
 !URxvt.depth           : 32
 URxvt.scrollBar       : off
@@ -22,7 +22,7 @@ URxvt.matcher.button  : 1
 URxvt.keysym.C-Delete : perl:matcher:last
 URxvt.keysym.M-Delete : perl:matcher:list
 URxvt*font            : xft:Terminus for Powerline:style=Regular:size=08
-!URxvt*letterspace     : -1
+URxvt*letterspace     : -1
 
 ! Tabbedex features
 URxvt.new-button:yes
@@ -51,51 +51,60 @@ URxvt.keysym.4-1-C-Right: perl:tabbedex:move_tab_right
 URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
 URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 
-!TomorrowNight
-#define t_background   #1d1f21
-#define t_current_line #282a2e
-!#define t_selection    #373b41
-!#define t_selection    #cc0000
-#define t_selection    #eee8d5
-#define t_foreground   #c5c8c6
-#define t_comment      #969896
-#define t_red          #cc6666
-#define t_orange       #de935f
-#define t_yellow       #f0c674
-#define t_green        #b5bd68
-#define t_aqua         #8abeb7
-#define t_blue         #81a2be
-#define t_purple       #b294bb
-#define t_grey         #a4a4a4
-! Black / Grey
-*.color0                                        : #000000
-*.color8                                        : #666666
-! Red / Bright Red
-*.color1                                        : t_red
-*.color9                                        : #FF3334
-! Green + Bright Green
-*.color2                                        : t_green
-*.color10                                       : #9ec400
-! Yellow (Orange) + Bright Yellow (Yellow)
-*.color3                                        : t_orange
-*.color11                                       : t_yellow
-! Blue + Bright Blue
-*.color4                                        : t_blue
-*.color12                                       : t_blue
-! Magenta (Purple) + Bright Magenta
-*.color5                                        : t_purple
-*.color13                                       : #b777e0
-! Cyan (Aqua) + Bright Cyan
-*.color6                                        : t_aqua
-*.color14                                       : #54ced6
-! Light Grey (Selection) + White (Current Line)
-*.color7                                        : t_selection
-!*.color15                                      : t_current_line
-*.color15                                       : white
-*.foreground                                    : t_foreground
-*.background                                    : t_background
-!*.cursorColor                                  : #aeafad
-*.cursorColor                                   : t_red
+! Base16 PhD
+! Scheme: Hennig Hasemann (http://leetless.de/vim.html)
+
+#define base00 #061229
+#define base01 #2a3448
+#define base02 #4d5666
+#define base03 #717885
+#define base04 #9a99a3
+#define base05 #b8bbc2
+#define base06 #dbdde0
+#define base07 #ffffff
+#define base08 #d07346
+#define base09 #f0a000
+#define base0A #fbd461
+#define base0B #99bf52
+#define base0C #72b9bf
+#define base0D #5299bf
+#define base0E #9989cc
+#define base0F #b08060
+
+*.foreground:   base05
+#ifdef background_opacity
+*.background:   [background_opacity]base00
+#else
+*.background:   base00
+#endif
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06
 
 URxvt*cursorBlink                               : false
 
@@ -111,17 +120,16 @@ URxvt*cursorBlink                               : false
 ! Source: https://github.com/bardisty/gruvbox-rofi
 ! Modified: Sat Oct 22 2016 03:12:10 PDT -0700
 !-------------------------------------------------------------------------------
-
 ! Enable the extended coloring options
 rofi.padding: 1
 rofi.lines: 10
 rofi.borderwidth: 1
-rofi.opacity: 100
+rofi.opacity: 85
 rofi.font: Terminus for Powerline 08
 !rofi.location: 7
 rofi.yoffset: 0
 rofi.xoffset: 0
-rofi.width: 80
+rofi.width: 50
 rofi.fixed_num_lines: 1
 rofi.hmode: false
 rofi.terminal: st

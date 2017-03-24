@@ -22,6 +22,9 @@
 --ignore-dir=spec/fixtures
 --ignore-dir=build
 --ignore-dir=dist
+--ignore-dir=lib/python2.7/site-packages
+--ignore-dir=lib64/python2.7/site-packages
+--ignore-dir=usr/local/share
 
 # sort results by filename
 --sort-files

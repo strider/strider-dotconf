@@ -32,8 +32,6 @@ alias realpath='readlink -f'
 alias makePassword='< /dev/urandom tr -dc A-Za-z0-9_ | head -c15 '
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias httprc='python -c "import httplib,pprint; pprint.pprint(httplib.responses.items())"'
-alias gertty_puppet='workon gertty-env && gertty -d --fetch-missing-refs -c ~/.gertty_puppet.yaml'
-alias gertty_tripleo='workon gertty-env && gertty -d --fetch-missing-refs -c ~/.gertty_tripleo.yaml'
 alias cal='cal -3'
 alias rm='rm -i'
 alias cp='cp -i'
@@ -42,7 +40,6 @@ alias lh='ls -AdC .*'
 alias lsofnames="lsof | awk '!/^\$/ && /\// { print \$9 }' | sort -u" # noms des fichiers ouverts
 alias cd..="cd .."
 alias h='history'
-alias cd..='cd ..'
 alias path='echo -e ${PATH//:/\\n}'
 alias lsa='ls -ld .*'
 alias lst="ls -ralt"
@@ -68,8 +65,8 @@ alias sniff="sudo ngrep -d 'wlp3s0' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i wlp3s0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # translate via google-translation-cli
-alias trs2fr="/usr/bin/trs {en=fr} "
-alias trs2en="/usr/bin/trs {fr=en} "
+alias trs2fr="~/bin/trs {en=fr} "
+alias trs2en="~/bin/trs {fr=en} "
 
 alias setclip='xclip -selection c'
 alias getclip='xclip -selection clipboard -o'
@@ -102,6 +99,8 @@ alias ff='find . -type f -name'
 alias zrc="source ~/.zshrc"
 alias vcon="~/bin/gentoken.sh --vpn-connect"
 alias rpt='bundle exec rake spec SPEC_OPTS="--color --format documentation --profile 10"'
+
+alias keys="ssh-add ~/.ssh/id_rsa_redhat ~/.ssh/id_rsa"
 
 # Get latest container ID
 alias dl="docker ps -l -q"
@@ -160,6 +159,9 @@ ssh-add -l | grep "The agent has no identities" && ssh-add
 eval "$(fasd --init auto)"
 source ~/.github-auth
 eval "$(hub alias -s)"
+
+export EDITOR="vim"
+export VISUAL="vim"
 
 export PATH="$HOME/.rbenv/bin:$HOME/bin/git-config/bin:$HOME/.local/bin:$PATH"
 eval "$(rbenv init -)"
