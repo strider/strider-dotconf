@@ -1,0 +1,8 @@
+project_name: IRC
+project_root: ~/
+#pre: echo "setup something here!"
+windows:
+  - IRC:
+      panes:
+        - mosh -- fedora@10.16.18.9 tmux att -d -t IRC
+

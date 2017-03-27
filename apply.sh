@@ -7,7 +7,8 @@ sudo dnf install vim-enhanced \
             python-virtualenvwrapper \
             python2-virtualenv \
             python3-virtualenv \
-            python-pip python3-pip udiskie -y
+            python-pip python3-pip udiskie \
+            tmuxinator -y
 
 if [ -d ~/.zsh ]; then
     rm -Rf $HOME/.zsh/
@@ -20,6 +21,11 @@ if [ -f $HOME/.zshrc  ]; then
     ln -s $HOME/.zsh/zshrc $HOME/.zshrc
     echo "Reloading .zshrc"
     source ~/.zshrc
+fi
+
+if [ -d ~/.tmuxinator ]; then
+    rm -Rf $HOME/.tmuxinator
+    cp -rf .tmuxinator/ $HOME/
 fi
 
 cp -f .mailcap ~/
@@ -44,6 +50,7 @@ cp -f bin/* ~/bin/
 cp -f .vimperatorrc ~/
 cp -f redshift.conf ~/.config/
 cp -f .Xresources ~/
+xrdb ~/.Xresources
 cp -f .motd ~/
 cp -rf nodesets/ ~/
 
