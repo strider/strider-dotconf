@@ -10,7 +10,7 @@ Xterm*termName        : xterm-256color
 URxvt*termName        : rxvt-256color
 URxvt.transparent     : true
 URxvt*shading         : 30
-URxvt*fading          : 25
+!URxvt*fading          : 25
 URxvt*saveLines       : 65535
 !URxvt.depth           : 32
 URxvt.scrollBar       : off
