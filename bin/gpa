@@ -1,0 +1,7 @@
+#!/bin/bash
+
+find . -maxdepth 2 -name .git -print | while read repo; do cd $(dirname $repo); git fetch --all && git pull --all; cd .. ; done
+find . -maxdepth 2 -name .svn -print | while read repo; do cd $(dirname $repo);  svn update; cd .. ; done
+find . -maxdepth 2 -name .hg -print | while read repo; do cd $(dirname $repo);  hg pull -u; cd .. ; done
+find . -maxdepth 2 -name CVS -print | while read repo; do cd $(dirname $repo);  cvs update; cd .. ; done
+find . -maxdepth 2 -name .bzr -print | while read repo; do cd $(dirname $repo);  bzr pull; cd .. ; done

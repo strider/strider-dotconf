@@ -1,5 +1,7 @@
 #!/bin/bash -
 
+set -e
+
 OOOQ_DIR="$HOME/tmp/oooq"
 OOOQ_REPO="https://github.com/openstack/tripleo-quickstart"
 

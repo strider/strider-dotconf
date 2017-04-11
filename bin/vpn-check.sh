@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -e
+
 while [ "true" ]
 do
     CON=`nmcli net con`

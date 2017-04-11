@@ -4,13 +4,14 @@
     signingkey = A7F4B301
 [github]
     user = strider
-#[commit]
-#    gpgsign = true
+[commit]
+    gpgsign = false
 [push]
     default = upstream
 [core]
-    editor = vimx
+    editor = vim
     pager = less -FSRX
+    autocrlf = input
 [color]
     diff = auto
     status = auto
@@ -66,5 +67,4 @@
     helper = cache --timeout=3600
 [gitreview]
     username = gchamoul
-#[commit]
-	#template = /home/gchamoul/.gitmessage.txt
+

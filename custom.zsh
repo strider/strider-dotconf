@@ -19,6 +19,7 @@ alias tksv='tmux kill-server'
 alias tl='tmux list-sessions'
 alias ts='tmux new-session -s'
 alias g="git"
+alias gd="git diff"
 alias gfa="git fetch --all"
 alias grl="git review -l"
 alias grd="git review -d"
@@ -45,7 +46,14 @@ alias lsa='ls -ld .*'
 alias lst="ls -ralt"
 alias lsd="ls -ralt"
 alias lss="ls -ralS"
-alias vim='/usr/bin/vimx'
+unalias e
+unalias vim
+unalias vi
+alias e="vimx"
+alias vim="vimx"
+alias vi="vimx"
+
+alias vim="/usr/bin/vimx"
 alias wiki='/usr/bin/vimx -c VimwikiIndex'
 alias rscp='rsync -aP --no-whole-file --inplace' # rsync cp // a(garder permissions) P(progress bar)
 alias rsmv='rscp --remove-source-files' # rsync mv avec progressbar
@@ -81,22 +89,18 @@ alias iptlistout='sudo /sbin/iptables -L OUTPUT -n -v --line-numbers'
 alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
 alias firewall=iptlist
 
-alias sc='xrandr --output LVDS1 --auto --rotate normal --pos 0x0 --output HDMI1 --auto --rotate normal --right-of LVDS1'
-alias usc='xrandr --output HDMI1 --off'
-
 # Gerrit stuffs
 alias gerrit='ssh -p 29418 review.openstack.org gerrit'
 alias pk-core-list='gerrit ls-members packstack-core'
 alias pm-core-list='gerrit ls-members puppet-manager-core'
-alias pk-add-reviewers='gerrit set-reviewers $(git rev-parse --short HEAD) --add ichavero --add mmagr --add xbezdick --add jpena'
-alias pm-add-reviewers='gerrit set-reviewers $(git rev-parse --short HEAD) --add ichavero --add mmagr --add xbezdick --add jpena --add sbadia --add emilienm --add krinkle --add mfisch'
+alias oooq-add-reviewers='gerrit set-reviewers $(git rev-parse --short HEAD) --add adarazs@redhat.com --add gcerami@redhat.com --add trown@redhat.com --add rlandy@redhat.com --add sshnaidm@redhat.com --add weshayutin@gmail.com'
 
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
 alias fd='find . -type d -name'
 alias ff='find . -type f -name'
 
-alias zrc="source ~/.zshrc"
+alias qq="cd . && source ~/.zshrc"
 alias vcon="~/bin/gentoken.sh --vpn-connect"
 alias rpt='bundle exec rake spec SPEC_OPTS="--color --format documentation --profile 10"'
 
@@ -144,6 +148,14 @@ dbu() { docker build -t=$1 .; }
 # Show all alias related docker
 dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 
+alias dnf='sudo dnf'
+alias dnfs='dnf search'
+alias dnfi='dnf install'
+alias dnfr='dnf remove'
+alias dnfu='dnf upgrade -y '
+
+alias -g G="| grep "
+
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
@@ -160,9 +172,11 @@ eval "$(fasd --init auto)"
 source ~/.github-auth
 eval "$(hub alias -s)"
 
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="vimx"
+export VISUAL="vimx"
 
-export PATH="$HOME/.rbenv/bin:$HOME/bin/git-config/bin:$HOME/.local/bin:$PATH"
-eval "$(rbenv init -)"
+# Show grep results in white text on a red background
+export GREP_COLOR='1;37;41'
+
+export PATH="$HOME/bin/git-config/bin:$HOME/.local/bin:$PATH"
 stty -ixon
