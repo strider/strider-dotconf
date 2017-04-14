@@ -8,11 +8,14 @@ windows:
       panes:
         - cd oooq/ && reset
         - cd tripleo-quickstart-extras/ && reset
-  - GERTTY: workon gertty-env && gertty
+  - GERTTY: 
   - DOTFILES:
       layout: 802d,319x84,0,0{159x84,0,0,26,159x84,160,0[159x42,160,0,27,159x41,160,43,28]}
       panes:
         - z doti3 && reset
         - z mydotconf && reset
+  - DOTVIM:
+      panes:
+        - z .vim/
 
 
