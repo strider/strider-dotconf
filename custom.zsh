@@ -102,7 +102,6 @@ alias ff='find . -type f -name'
 
 alias qq="cd . && source ~/.zshrc"
 alias vcon="~/bin/gentoken.sh --vpn-connect"
-alias rpt='bundle exec rake spec SPEC_OPTS="--color --format documentation --profile 10"'
 
 alias keys="ssh-add ~/.ssh/id_rsa_redhat ~/.ssh/id_rsa"
 
@@ -148,12 +147,6 @@ dbu() { docker build -t=$1 .; }
 # Show all alias related docker
 dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 
-alias dnf='sudo dnf'
-alias dnfs='dnf search'
-alias dnfi='dnf install'
-alias dnfr='dnf remove'
-alias dnfu='dnf upgrade -y '
-
 alias -g G="| grep "
 
 export LIBVIRT_DEFAULT_URI=qemu:///system
@@ -177,6 +170,14 @@ export VISUAL="vimx"
 
 # Show grep results in white text on a red background
 export GREP_COLOR='1;37;41'
+HISTSIZE=100000000
+SAVEHIST=${HISTSIZE}
 
-export PATH="$HOME/bin/git-config/bin:$HOME/.local/bin:$PATH"
+export FZF_DEFAULT_OPTS='--no-height --no-reverse'
+export FZF_TMUX=1
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_R_OPTS="--sort --preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+export PATH="$HOME/bin/git-config/bin:$PATH"
 stty -ixon
