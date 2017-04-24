@@ -3,6 +3,17 @@ bindkey '^r' history-incremental-search-backward
 bindkey -a u undo
 bindkey -a '^R' redo
 
+# fkill - kill process
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
+
 # Alias
 ## Bad reflex correction
 alias q!='echo $fg[red]Je ne suis pas dans VIM !$reset_color'
@@ -173,7 +184,7 @@ export GREP_COLOR='1;37;41'
 HISTSIZE=100000000
 SAVEHIST=${HISTSIZE}
 
-export FZF_DEFAULT_OPTS='--no-height --no-reverse'
+export FZF_DEFAULT_OPTS='--no-reverse --no-height'
 export FZF_TMUX=1
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export FZF_CTRL_R_OPTS="--sort --preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview'"

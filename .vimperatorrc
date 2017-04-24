@@ -69,6 +69,9 @@ noremap <silent> <leader>ty :set gui=tabs<CR>
 map T :tabopen!
 map <A-y> :js<Space>util.copyToClipboard(content.document.title,<Space>true)<Return>
 
+noremap <silent> <leader>og :tabopen https://github.com/strider<CR>
+noremap <silent> <leader>ol :tabopen https://bugs.launchpad.net/tripleo<CR>
+
 nnoremap <leader>t. :tabduplicate<cr>
 nnoremap <leader>ta :tabattach<space>
 nnoremap <leader>td :tabdetach<cr>
