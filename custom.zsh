@@ -34,10 +34,11 @@ alias gd="git diff"
 alias gfa="git fetch --all"
 alias grl="git review -l"
 alias grd="git review -d"
+alias gcl="git config -l"
 alias fedsbr="fedpkg switch-branch"
 alias cls="clear"
 alias vla="sudo virsh list --all"
-alias t='~/bin/todo.txt-cli/todo.sh -d /home/gchamoul/todo.cfg'
+alias t='/usr/local/bin/todo.sh -d /home/gchamoul/todo.cfg'
 alias vv="virt-viewer -c qemu:///system"
 alias hd='od -Ax -tx1z -v'
 alias realpath='readlink -f'
@@ -60,11 +61,11 @@ alias lss="ls -ralS"
 unalias e
 unalias vim
 unalias vi
+
 alias e="vimx"
 alias vim="vimx"
 alias vi="vimx"
 
-alias vim="/usr/bin/vimx"
 alias wiki='/usr/bin/vimx -c VimwikiIndex'
 alias rscp='rsync -aP --no-whole-file --inplace' # rsync cp // a(garder permissions) P(progress bar)
 alias rsmv='rscp --remove-source-files' # rsync mv avec progressbar
@@ -118,47 +119,50 @@ alias keys="ssh-add ~/.ssh/id_rsa_redhat ~/.ssh/id_rsa"
 
 # Get latest container ID
 alias dl="docker ps -l -q"
-
 # Get container process
 alias dps="docker ps"
-
 # Get process included stop container
 alias dpa="docker ps -a"
-
 # Get images
 alias di="docker images"
-
 # Get container IP
 alias dip="docker inspect --format '{{ .NetworkSettings.IPAddress }}'"
-
 # Run deamonized container, e.g., $dkd base /bin/echo hello
 alias dkd="docker run -d -P"
-
 # Run interactive container, e.g., $dki base /bin/bash
 alias dki="docker run -i -t -P"
-
 # Execute interactive container, e.g., $dex base /bin/bash
 alias dex="docker exec -i -t"
-
 # Stop all containers
 dstop() { docker stop $(docker ps -a -q); }
-
 # Remove all containers
 drm() { docker rm $(docker ps -a -q); }
-
 # Stop and Remove all containers
 alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
-
 # Remove all images
 dri() { docker rmi $(docker images -q); }
-
 # Dockerfile build, e.g., $dbu tcnksm/test
 dbu() { docker build -t=$1 .; }
-
 # Show all alias related docker
 dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/"| sed "s/['|\']//g" | sort; }
 
-alias -g G="| grep "
+alias -g G='| grep '
+alias -g C='| wc -l'
+alias -g L='| less'
+
+alias dnfl="dnf list"
+alias dnfli="dnf list installed"
+alias dnfgl="dnf grouplist"
+alias dnfmc="dnf makecache"
+alias dnfp="dnf info"
+alias dnfs="dnf search"
+
+alias dnfu="sudo dnf upgrade"
+alias dnfi="sudo dnf install"
+alias dnfgi="sudo dnf groupinstall"
+alias dnfr="sudo dnf remove"
+alias dnfgr="sudo dnf groupremove"
+alias dnfc="sudo dnf clean all"
 
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export WORKON_HOME=$HOME/.virtualenvs
