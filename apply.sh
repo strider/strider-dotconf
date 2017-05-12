@@ -14,6 +14,7 @@ if [ -d ~/.zsh ]; then
     rm -Rf $HOME/.zsh/
     cp -rf zsh-config/ $HOME/.zsh
     cp -f custom.zsh $HOME/.zsh/
+    cp -f agnoster.zsh-theme $HOME/.zsh/
 fi
 
 if [ -f $HOME/.zshrc  ]; then

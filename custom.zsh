@@ -195,4 +195,5 @@ export FZF_CTRL_R_OPTS="--sort --preview 'echo {}' --preview-window down:3:hidde
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 export PATH="$HOME/bin/git-config/bin:$PATH"
+source $HOME/.zsh/agnoster.zsh-theme
 stty -ixon
