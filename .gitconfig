@@ -12,6 +12,7 @@
     editor = vim
     pager = less -FSRX
     autocrlf = input
+	excludesfile = ~/.gitignore
 [color]
     diff = auto
     status = auto

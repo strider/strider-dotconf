@@ -166,8 +166,10 @@ alias dnfc="sudo dnf clean all"
 
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
+source /usr/bin/virtualenvwrapper_lazy.sh
 export VAGRANT_DEFAULT_PROVIDER=libvirt
+
+source $HOME/.zsh/agnoster.zsh-theme
 
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
   eval `ssh-agent`
@@ -189,11 +191,10 @@ HISTSIZE=100000000
 SAVEHIST=${HISTSIZE}
 
 export FZF_DEFAULT_OPTS='--no-reverse --no-height'
-export FZF_TMUX=1
+export FZF_TMUX=0
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export FZF_CTRL_R_OPTS="--sort --preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 export PATH="$HOME/bin/git-config/bin:$PATH"
-source $HOME/.zsh/agnoster.zsh-theme
-stty -ixon
+/usr/bin/stty -ixon

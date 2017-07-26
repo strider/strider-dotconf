@@ -39,6 +39,7 @@ cp -f .puppet-lint.rc ~/.puppet-lint.rc
 cp -f default-gems ~/
 cp -f .ackrc ~/
 cp -f .gitconfig ~/
+cp -f .gitignore ~/
 cp -f .tigrc ~/
 
 if [ -d ~/bin/git-config ]; then
