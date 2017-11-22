@@ -2,12 +2,14 @@ project_name: DEVEL
 project_root: ~/
 #pre: echo "setup something here!"
 windows:
-  - OOOQ-DEVEL:
-      layout: 802d,319x84,0,0{159x84,0,0,26,159x84,160,0[159x42,160,0,27,159x41,160,43,28]}
-      root: ~/DEV/work/git/tripleo/OOOQ/
+  - OOO_VALIDATIONS:
+      root: ~/DEV/work/git/tripleo/UPSTREAM/
       panes:
-        - cd oooq/ && reset
-        - cd tripleo-quickstart-extras/ && reset
+        - cd tripleo-validations/ && reset
+  - OOO:
+      root: ~/DEV/work/git/tripleo/UPSTREAM/
+      panes:
+        - cd tripleo-common/ && reset
   - GERTTY:
   - DOTFILES:
       layout: 802d,319x84,0,0{159x84,0,0,26,159x84,160,0[159x42,160,0,27,159x41,160,43,28]}
@@ -17,7 +19,7 @@ windows:
   - DOTVIM:
       panes:
         - cd ~/.vim/
-  - OOOQ_TESTING:
+  - OOO_TESTING:
   - ANSIBLE_DEV:
       panes:
         - cd ~/DEV/work/git/ansible/ansible/
