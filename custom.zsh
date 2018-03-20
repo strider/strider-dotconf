@@ -22,6 +22,7 @@ alias x!='echo $fg[red]Je ne suis pas dans VIM !$reset_color'
 alias v='f -e vim'
 alias o='a -e xdg-open'
 alias tmux="tmux -2"
+alias mutt="neomutt"
 alias tailf="tail -f"
 alias ta='tmux attach -t'
 alias tad='tmux attach -d -t'
