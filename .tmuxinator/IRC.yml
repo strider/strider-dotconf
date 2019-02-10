@@ -4,5 +4,5 @@ project_root: ~/
 windows:
   - IRC:
       panes:
-        - mosh -- fedora@10.16.18.9 tmux att -d -t IRC
+        - weechat-curses -r "/connect -all"
 

@@ -1,0 +1,8 @@
+#!/bin/bash -
+
+rhpkg clone openstack-tripleo-validations
+cd openstack-tripleo-validations/
+git remote add -f --tags openstack git://git.openstack.org/openstack/tripleo-validations
+git remote add rhos ssh://gchamoul@code.engineering.redhat.com/openstack-tripleo-validations
+git remote update
+git branch -a

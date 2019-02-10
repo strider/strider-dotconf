@@ -5,13 +5,25 @@ bindkey -a '^R' redo
 
 # fkill - kill process
 fkill() {
-  local pid
-  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    local pid
+    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
-  if [ "x$pid" != "x" ]
-  then
-    echo $pid | xargs kill -${1:-9}
-  fi
+    if [ "x$pid" != "x" ]; then
+        echo $pid | xargs kill -${1:-9}
+    fi
+}
+
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+    fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+    fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
 # Alias
@@ -30,14 +42,14 @@ alias tkss='tmux kill-session -t'
 alias tksv='tmux kill-server'
 alias tl='tmux list-sessions'
 alias ts='tmux new-session -s'
+alias tenv='mosh gchamoul@krav -- tmux attach-session -t tripleo'
 alias g="git"
-alias gd="git diff"
+alias gbr="git branch --all"
 alias gfa="git fetch --all"
 alias grl="git review -l"
 alias grd="git review -d"
 alias gcl="git config -l"
 alias fedsbr="fedpkg switch-branch"
-alias cls="clear"
 alias vla="sudo virsh list --all"
 alias t='/usr/local/bin/todo.sh -d /home/gchamoul/todo.cfg'
 alias vv="virt-viewer -c qemu:///system"
@@ -50,15 +62,20 @@ alias cal='cal -3'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias lh='ls -AdC .*'
 alias lsofnames="lsof | awk '!/^\$/ && /\// { print \$9 }' | sort -u" # noms des fichiers ouverts
+alias mount='mount |column -t'
 alias cd..="cd .."
 alias h='history'
 alias path='echo -e ${PATH//:/\\n}'
+alias lh='ls -AdC .*'
 alias lsa='ls -ld .*'
 alias lst="ls -ralt"
 alias lsd="ls -ralt"
 alias lss="ls -ralS"
+alias now='date +"%T"'
+alias nowtime=now
+alias nowdate='date +"%d-%m-%Y"'
+
 unalias e
 unalias vim
 unalias vi
@@ -67,7 +84,7 @@ alias e="vimx"
 alias vim="vimx"
 alias vi="vimx"
 
-alias wiki='/usr/bin/vimx -c VimwikiIndex'
+alias wiki='vimx -c VimwikiIndex'
 alias rscp='rsync -aP --no-whole-file --inplace' # rsync cp // a(garder permissions) P(progress bar)
 alias rsmv='rscp --remove-source-files' # rsync mv avec progressbar
 
@@ -82,8 +99,8 @@ alias calc='python -ic "from math import *; from random import *"' # Une calcula
 alias my_ip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # View HTTP traffic
-alias sniff="sudo ngrep -d 'wlp3s0' -t '^(GET|POST) ' 'tcp and port 80'"
-alias httpdump="sudo tcpdump -i wlp3s0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+alias sniff="sudo ngrep -d 'wlp58s0' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i wlp58s0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # translate via google-translation-cli
 alias trs2fr="~/bin/trs {en=fr} "
@@ -110,8 +127,8 @@ alias oooq-add-reviewers='gerrit set-reviewers $(git rev-parse --short HEAD) --a
 
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
+alias ftd='find . -type d -name'
+alias ftf='find . -type f -name'
 
 alias qq="cd . && source ~/.zshrc"
 alias vcon="~/bin/gentoken.sh --vpn-connect"
@@ -158,7 +175,7 @@ alias dnfmc="dnf makecache"
 alias dnfp="dnf info"
 alias dnfs="dnf search"
 
-alias dnfu="sudo dnf upgrade"
+alias dnfu="sudo dnf upgrade -y"
 alias dnfi="sudo dnf install"
 alias dnfgi="sudo dnf groupinstall"
 alias dnfr="sudo dnf remove"
@@ -170,11 +187,11 @@ export WORKON_HOME=$HOME/.virtualenvs
 source /usr/bin/virtualenvwrapper_lazy.sh
 export VAGRANT_DEFAULT_PROVIDER=libvirt
 
-source $HOME/.zsh/agnoster.zsh-theme
+#source $HOME/.zsh/agnoster.zsh-theme
 
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-  eval `ssh-agent`
-  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+    eval `ssh-agent`
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 ssh-add -l | grep "The agent has no identities" && ssh-add
@@ -182,6 +199,8 @@ ssh-add -l | grep "The agent has no identities" && ssh-add
 eval "$(fasd --init auto)"
 source ~/.github-auth
 eval "$(hub alias -s)"
+
+source ~/bin/forgit/forgit.plugin.zsh
 
 export EDITOR="vimx"
 export VISUAL="vimx"
@@ -191,11 +210,12 @@ export GREP_COLOR='1;37;41'
 HISTSIZE=100000000
 SAVEHIST=${HISTSIZE}
 
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_DEFAULT_OPTS='--no-reverse --no-height'
-export FZF_TMUX=0
+export FZF_TMUX=1
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export FZF_CTRL_R_OPTS="--sort --preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
-export PATH="$HOME/bin/git-config/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin/git-config/bin:$PATH"
 /usr/bin/stty -ixon

@@ -1,11 +1,11 @@
-project_name: RedHat
+project_name: redhat
 project_root: ~/
 #pre: echo "setup something here!"
 windows:
   - Mail:
-      layout: 0892,319x86,0,0[319x79,0,0,21,319x6,0,80,22]
       panes:
         - neomutt
+  - Checkmail:
         - journalctl -f --user-unit checkmail.service
 
 

@@ -5,31 +5,57 @@
 # thanks:
 # https://github.com/esn89/base16-zathura
 
-set font "Terminus for Powerline Regular:pixelsize=08"
-set default-bg "#151515"
-set default-fg "#202020"
-set statusbar-bg "#202020"
-set statusbar-fg "#B0B0B0"
-set inputbar-bg "#151515"
-set inputbar-fg "#B0B0B0"
-set notification-error-bg "#AC4142" #08
-set notification-error-fg "#151515" #00
-set notification-warning-bg "#AC4142" #08
-set notification-warning-fg "#151515" #00
-set highlight-color "#F4BF75" #0A
-set highlight-active-color "#6A9FB5" #0D
-set completion-highlight-fg "#303030" #02
-set completion-highlight-bg "#75B5AA" #0C
-set completion-bg "#303030" #02
-set completion-fg "#75B5AA" #0C
-set notification-bg "#90A959" #0B
-set notification-fg "#151515" #00
-set recolor-lightcolor "#151515" #00
-set recolor-darkcolor "#E0E0E0" #06
-set recolor false
-set recolor-keephue true
+# zoom
+#
+map                <A-s> adjust_window width
+map   [fullscreen] <A-s> adjust_window width
+#  print
+map <C-p> feedkeys ":print<Return>"
+#  info
+map i feedkeys ":info<Return>"
+#  Show statusbar
+map <C-b> toggle_statusbar
+
+#  Appearance
+#
+set first-page-column 1:1
 set window-title-basename true
+set guioptions hv
+set statusbar-bg "#303030"
+set statusbar-fg "#d0d0d0"
+set statusbar-v-padding 40
+set statusbar-h-padding 120
+set font "Terminus for Powerline 08"
+set default-fg "#d0d0d0"
+# 2e3436
+set default-bg "#292e30"
+
+#set default-bg "#151515"
+#set default-fg "#202020"
+#set statusbar-bg "#202020"
+#set statusbar-fg "#B0B0B0"
+#set inputbar-bg "#151515"
+#set inputbar-fg "#B0B0B0"
+#set notification-error-bg "#AC4142" #08
+#set notification-error-fg "#151515" #00
+#set notification-warning-bg "#AC4142" #08
+#set notification-warning-fg "#151515" #00
+#set highlight-color "#F4BF75" #0A
+#set highlight-active-color "#6A9FB5" #0D
+#set completion-highlight-fg "#303030" #02
+#set completion-highlight-bg "#75B5AA" #0C
+#set completion-bg "#303030" #02
+#set completion-fg "#75B5AA" #0C
+#set notification-bg "#90A959" #0B
+#set notification-fg "#151515" #00
+#set recolor-lightcolor "#151515" #00
+#set recolor-darkcolor "#E0E0E0" #06
+#set recolor false
+#set recolor-keephue true
+#set window-title-basename true
 set selection-clipboard clipboard
+#  defines the gap in pixels between each rendered page.
+set page-padding 7
 
 map [normal] k scroll up
 map [fullscreen] j scroll up

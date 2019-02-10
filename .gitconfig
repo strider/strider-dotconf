@@ -40,7 +40,8 @@
     lb = log --graph --simplify-by-decoration
     lba = "!git lb --all"
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-    lg = log --graph --pretty=format:'%Cred%h..%Creset - %s %Cgreen(%cr)%Creset - %an' --abbrev-commit --date=relative
+    ;lg = log --graph --pretty=format:'%Cred%h..%Creset - %s %Cgreen(%cr)%Creset - %an' --abbrev-commit --date=relative
+    lg = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     lgn = log --pretty=format:'%Cred%h%Creset .::. %s .::. %Cblue(%cr)%Creset .::. %Cgreen%an%Creset' --abbrev-commit --show-notes=*
     h = !git --no-pager log --graph -n 15
     a = !git --no-pager la -n 15
@@ -68,4 +69,6 @@
     helper = cache --timeout=3600
 [gitreview]
     username = gchamoul
-
+[diff]
+    renamelimit = 2000
+    renames = true

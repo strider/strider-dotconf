@@ -1,0 +1,2 @@
+#!/bin/bash -
+/usr/bin/redshift -l 48.864716:2.349014 -t 5700:3600 -g 0.8 -m randr -v 2>&1 | tee -a ~/tmp/redshift.log

@@ -1,14 +1,18 @@
 #!/bin/bash
 
 sudo dnf install vim-enhanced \
-            fasd hub ack \
+            scrot fasd hub ack \
             tmux wget curl net-tools \
             git-all git-review \
             python-virtualenvwrapper \
             python2-virtualenv \
             python3-virtualenv \
             python-pip python3-pip udiskie \
-            tmuxinator -y
+            tmuxinator zsh xdotool \
+            stardict stardict-dic-en.noarch sdcv \
+            calibre pwgen pdfmod acpi fslint \
+            fontawesome-fonts rofi rofi-themes \
+            light clipit mosh -y
 
 if [ -d ~/.zsh ]; then
     rm -Rf $HOME/.zsh/
@@ -50,7 +54,6 @@ else
 fi
 cp -f bin/* ~/bin/
 cp -f .vimperatorrc ~/
-cp -f redshift.conf ~/.config/
 cp -f .Xresources ~/
 xrdb ~/.Xresources
 cp -f .motd ~/
