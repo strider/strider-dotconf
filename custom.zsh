@@ -1,3 +1,4 @@
+#!/bin/zsh
 # Bindings
 bindkey '^r' history-incremental-search-backward
 bindkey -a u undo
@@ -48,6 +49,7 @@ alias gbr="git branch --all"
 alias gfa="git fetch --all"
 alias grl="git review -l"
 alias grd="git review -d"
+alias grx="git review -x"
 alias gcl="git config -l"
 alias fedsbr="fedpkg switch-branch"
 alias vla="sudo virsh list --all"
@@ -80,7 +82,7 @@ unalias e
 unalias vim
 unalias vi
 
-alias e="vimx"
+#alias e="vimx"
 alias vim="vimx"
 alias vi="vimx"
 
@@ -202,8 +204,16 @@ eval "$(hub alias -s)"
 
 source ~/bin/forgit/forgit.plugin.zsh
 
-export EDITOR="vimx"
-export VISUAL="vimx"
+export EDITOR="emacs"
+export VISUAL="emacs"
+
+# alias emacs="$EMACS_PLUGIN_LAUNCHER --no-wait "
+alias e=emacs
+alias te="emacs -nw"
+# open terminal emacsclient
+alias tec="emacsclient -nw"
+# create a new X frame
+alias eframe='emacsclient --alternate-editor "" --create-frame'
 
 # Show grep results in white text on a red background
 export GREP_COLOR='1;37;41'
@@ -217,5 +227,8 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 export FZF_CTRL_R_OPTS="--sort --preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
-export PATH="$HOME/.local/bin:$HOME/bin/git-config/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$HOME/.local/bin:$HOME/bin/git-config/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 /usr/bin/stty -ixon

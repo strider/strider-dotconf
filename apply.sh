@@ -34,13 +34,10 @@ if [ -d ~/.tmuxinator ]; then
 fi
 
 cp -f .mailcap ~/
-cp -f .gemrc ~/
 mkdir -p ~/.config/zathura
 rm -Rf ~/.config/zathura/zathurarc
 cp zathurarc ~/.config/zathura/zathurarc
 cp -f .tmux.conf ~/.tmux.conf
-cp -f .puppet-lint.rc ~/.puppet-lint.rc
-cp -f default-gems ~/
 cp -f .ackrc ~/
 cp -f .gitconfig ~/
 cp -f .gitignore ~/
@@ -53,9 +50,6 @@ else
     cp -rf git-config/ ~/bin/
 fi
 cp -f bin/* ~/bin/
-cp -f .vimperatorrc ~/
 cp -f .Xresources ~/
 xrdb ~/.Xresources
 cp -f .motd ~/
-cp -rf nodesets/ ~/
-

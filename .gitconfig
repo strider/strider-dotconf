@@ -9,7 +9,7 @@
 [push]
     default = upstream
 [core]
-    editor = vim
+    editor = emacs
     pager = less -FSRX
     autocrlf = input
 	excludesfile = ~/.gitignore
@@ -20,13 +20,12 @@
 [merge]
     tool = vimdiff
     prompt = false
-[mergetool "splice"]
-    cmd = "vimx -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
-    trustExitCode = true
 [alias]
+	amend = commit -v -s --amend
+    ci = commit -v -s
+	commit = commit -v -s
     br = branch --all
     brd = branch -D
-    ci = commit -v
     co = checkout
     nb = checkout -b
     dh = diff HEAD
@@ -59,12 +58,6 @@
     sr  = submodulerm
     ss  = !git submodule sync && git submodule update --init --recursive # [s]ync
     su  = submodule foreach --recursive git pull # [u]pdate
-[sendemail]
-    smtpencryption = tls
-    smtpserver = smtp.corp.redhat.com
-    smtpuser = gchamoul@redhat.com
-    smtpserverport = 993
-    confirm = auto
 [credential]
     helper = cache --timeout=3600
 [gitreview]

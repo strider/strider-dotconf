@@ -9,9 +9,11 @@ if $CHECK_RH_NET; then
     RH_NETWORK=1
 fi
 
-if [ "$VPN" = "activated" ] || [ "$RH_NETWORK" -eq 1 ];
-then
+if [ "$VPN" = "activated" ] || [ "$RH_NETWORK" -eq 1 ]; then
     /usr/bin/mbsync -Va
+    # pkill -2 -u $UID mu
+    # sleep 2
+    # mu index --maildir ~/Mail/redhat-gmail
     exit 0
 fi
 echo "VPN is not UP."

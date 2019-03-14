@@ -4,11 +4,12 @@ Xft.hinting           : 1
 Xft.hintstyle         : hintslight
 Xft.rgba              : rgba
 Xft.lcdfilter         : lcddefault
+
 Xcursor.theme         : Oxygen_Yellow
 *customization        : -color
 Xterm*termName        : xterm-256color
 URxvt*termName        : rxvt-256color
-URxvt.transparent     : true
+URxvt.transparent     : false
 URxvt*shading         : 25
 !URxvt*fading          : 25
 URxvt*saveLines       : 65535
@@ -23,7 +24,6 @@ URxvt.keysym.C-Delete : perl:matcher:last
 URxvt.keysym.M-Delete : perl:matcher:list
 URxvt*font            : xft:Terminus for Powerline:style=Regular:size=08
 URxvt*letterspace     : -1
-URxvt*background      : #1b1918
 
 ! Tabbedex features
 URxvt.new-button:yes
@@ -76,11 +76,11 @@ URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 #define base0F #b08060
 
 *.foreground:   base05
-!#ifdef background_opacity
-!*.background:   [background_opacity]base00
-!#else
-!*.background:   #1b1918
-!#endif
+#ifdef background_opacity
+*.background:   [background_opacity]base00
+#else
+*.background:   #1b1918
+#endif
 *.cursorColor:  base05
 
 *.color0:       base00
@@ -125,21 +125,23 @@ URxvt*cursorBlink                               : false
 ! Modified: Sat Oct 22 2016 03:12:10 PDT -0700
 !-------------------------------------------------------------------------------
 ! Enable the extended coloring options
-rofi.padding: 1
+rofi.padding: 10
 rofi.lines: 5
 rofi.borderwidth: 1
+rofi.scroll_method: 1
+rofi.no_show_match: 0
 rofi.opacity: 10
-rofi.font: Terminus for Powerline 08
-!rofi.location: 7
+rofi.font: agave 11
+rofi.location: 2
 rofi.yoffset: 0
 rofi.xoffset: 0
-rofi.width: 40
+rofi.width: 800
 rofi.fixed_num_lines: 1
 rofi.hmode: false
 !rofi.terminal: st
 rofi.hide-scrollbar: true
 rofi.modi: window,run,drun,ssh,combi
-rofi.theme: /usr/share/rofi/themes/Arc-Dark.rasi
+rofi.theme: /usr/share/rofi/themes/Pop-Dark.rasi
 rofi.sidebar-mode: true
 rofi.terminal: urxvt256c-ml
 rofi.show-icons: true
