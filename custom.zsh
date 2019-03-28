@@ -229,4 +229,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$HOME/.local/bin:$HOME/bin/git-config/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+eval "$(pipenv --completion)"
 /usr/bin/stty -ixon
