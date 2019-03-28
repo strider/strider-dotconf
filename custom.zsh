@@ -191,12 +191,10 @@ export VAGRANT_DEFAULT_PROVIDER=libvirt
 
 #source $HOME/.zsh/agnoster.zsh-theme
 
-if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-    eval `ssh-agent`
-    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+# Manage SSH with Keychain.
+if [ -x "$(command -v keychain)" ]; then
+    eval "$(keychain --eval --nogui --quiet --agents ssh ~/.ssh/id_rsa ~/.ssh/id_rsa_redhat)"
 fi
-export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-ssh-add -l | grep "The agent has no identities" && ssh-add
 
 eval "$(fasd --init auto)"
 source ~/.github-auth
