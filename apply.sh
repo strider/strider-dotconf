@@ -41,7 +41,6 @@ cp -f .tmux.conf ~/.tmux.conf
 cp -f .ackrc ~/
 cp -f .gitconfig ~/
 cp -f .gitignore ~/
-cp -f .tigrc ~/
 
 if [ -d ~/bin/git-config ]; then
     rm -Rf ~/bin/git-config
