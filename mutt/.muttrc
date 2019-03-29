@@ -1,0 +1,277 @@
+#
+# System configuration file for Mutt
+#
+
+ignore *
+unignore  from: to cc reply-to mail-followup-to subject user-agent x-mailer date x-spam-level:
+hdr_order date from: to cc reply-to mail-followup-to  user-agent x-mailer x-spam-level: subject
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# This is a complete list of sidebar-related configuration.
+set sidebar_visible = no
+set sidebar_width = 40
+set sidebar_short_path = yes
+set sidebar_delim_chars = '/.'
+set sidebar_folder_indent = yes
+set sidebar_indent_string = '  '
+set sidebar_new_mail_only = no
+set sidebar_next_new_wrap = no
+set sidebar_divider_char = ' '
+set mail_check_stats = yes
+set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%S'
+set sidebar_sort_method = 'unsorted'
+# --------------------------------------------------------------------------
+# FUNCTIONS - shown with an example mapping
+# --------------------------------------------------------------------------
+bind index,pager \Cp sidebar-prev
+bind index,pager \Cn sidebar-next
+bind index,pager \Co sidebar-open
+bind index,pager <F3> sidebar-page-up
+bind index,pager <F4> sidebar-page-down
+bind index,pager <F5> sidebar-prev-new
+bind index,pager <F6> sidebar-next-new
+bind index,pager B sidebar-toggle-visible
+
+color sidebar_highlight black color8
+color sidebar_divider color8 default
+color sidebar_flagged red default
+color sidebar_new green default
+color progress white red
+
+# imitate the old search-body function
+macro index \eb "<search>~b " "search in message bodies"
+#macro index,pager <f5> 'c =INBOX^M'
+#macro index,pager <f6> 'c =ML.OST-RH-OPENSTACK-UI^M'
+
+# simulate the old url menu
+macro index,pager,attach,compose \cb "\
+<enter-command> set my_pipe_decode=\$pipe_decode pipe_decode<Enter>\
+<pipe-message> urlview<Enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<Enter>" \
+"call urlview to extract URLs out of a message"
+
+# Show documentation when pressing F1
+macro generic,pager <F1> "<shell-escape> less /usr/share/doc/neomutt/manual.txt<Enter>" "show NeoMutt documentation"
+# and also F2, as some terminals use F1
+macro generic,pager <F2> "<shell-escape> less /usr/share/doc/neomutt/manual.txt<Enter>" "show NeoMutt documentation"
+
+# show the incoming mailboxes list (just like "neomutt -y") and back when pressing "y"
+macro index y "<change-folder>?<toggle-mailboxes>" "show incoming mailboxes list"
+macro pager y "<exit><change-folder>?" "show incoming mailboxes list"
+bind browser y exit
+
+bind attach <return> view-mailcap
+
+bind index g noop
+bind pager g noop
+macro index,pager gl "<change-folder>"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index,pager ge "<change-folder>=$has_cal<enter>" "Go to =Sent"
+macro index,pager gm "<change-folder>=ML.memo-list<enter>" "Go to rdo-list"
+macro index,pager gu "<change-folder>=ML.OST-RH-OPENSTACK-UI<enter>" "Go to DFG:UI Team list"
+macro index,pager gd "<change-folder>=ML.OST-RH-OPENSTACK-DEVEL<enter>" "Go to rh-openstack-devel ML"
+macro index,pager gs "<change-folder>=ML.OST-RH-OPENSTACK-STATUS<enter>" "Go to rh-openstack-status"
+macro index,pager gt "<change-folder>=ML.OST-UPSTREAM-TRIPLEO-DEV<enter>" "Go to upstream tripleo-dev ML"
+macro pager "\e1"    "<enter-command>set pager_index_lines=1<enter>"      # Change PIL size
+macro pager "\e2"    "<enter-command>set pager_index_lines=2<enter>"      # Change PIL size
+macro pager "\e3"    "<enter-command>set pager_index_lines=3<enter>"      # Change PIL size
+macro pager "\e4"    "<enter-command>set pager_index_lines=4<enter>"      # Change PIL size
+macro pager "\e5"    "<enter-command>set pager_index_lines=5<enter>"      # Change PIL size
+macro pager "\e6"    "<enter-command>set pager_index_lines=6<enter>"      # Change PIL size
+macro pager "\e7"    "<enter-command>set pager_index_lines=7<enter>"      # Change PIL size
+macro pager "\e8"    "<enter-command>set pager_index_lines=8<enter>"      # Change PIL size
+macro pager "\e9"    "<enter-command>set pager_index_lines=9<enter>"      # Change PIL size
+macro pager "\e0"    "<enter-command>set pager_index_lines=0<enter>"      # Change PIL size
+
+macro index "\Cs\Co" "<limit>~h \"X-SpamProbe: GOOD\"<enter><last-entry>" # View good emails.
+macro index "\Cs\Cs" "<limit>~h \"X-SpamProbe: SPAM\"<enter><last-entry>" # View bad emails.
+
+# Limit view to current thread
+bind index <esc>L limit-current-thread
+
+# Ctrl-R to mark all as read
+macro index \Cr \
+    "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" \
+    "mark all messages as read"
+
+macro attach W <save-entry><kill-line>/home/gchamoul/Downloads
+macro index Q   ":set quit=yes\nq" "Quit mutt without asking"
+macro index \er ":source ~/.muttrc\n" "Reload muttrc"
+
+source ~/.mutt/vim-keys.rc
+
+set skip_quoted_offset = 30
+
+mime_lookup application/octet-stream
+attachments   +A */.*
+attachments   -A text/x-vcard application/pgp.*
+attachments   -A application/x-pkcs7-.*
+attachments   +I text/plain
+
+attachments   -A message/external-body
+attachments   -I message/external-body
+
+set attribution="On %d, %n wrote:"
+set certificate_file="~/.mutt/certificates"
+
+set crypt_autopgp=yes
+
+set date_format="%d/%b/%Y %H:%M"
+
+#set editor="/usr/bin/vimx + -c 'set ft=mail tw=79 spell spelllang=fr,en' -c ':0/^$'"
+set editor="emacsclient -nw"
+
+set folder="~/Mail/redhat-gmail/"
+set from="Gaël Chamoulaud <gchamoul@redhat.com>"
+my_hdr Reply-To: Gaël Chamoulaud <gchamoul@redhat.com>
+my_hdr Bcc: Gaël Chamoulaud <gchamoul@redhat.com>
+set header_cache="~/.mutt/cache/headers"
+
+set imap_authenticators="gssapi:cram-md5:login"
+set imap_check_subscribed=yes
+set imap_keepalive=900
+
+mailboxes =INBOX
+mailboxes =FRANCE
+mailboxes =ML.France-eng
+mailboxes =ML.France-list
+mailboxes =ML.French-associates
+mailboxes =ML.Paris-list
+mailboxes =ML.cdg-list
+mailboxes =NON_TECHNICAL
+mailboxes =ML.announce-list
+mailboxes =ML.memo-list
+mailboxes =ML.Friday-list
+mailboxes =ML.Remotees-list
+mailboxes =ML.Neurodiversity
+mailboxes =TECHNICAL
+mailboxes =ML.RH-Tech-list
+mailboxes =ML.KNI-DEVEL
+mailboxes =OPENSTACK
+mailboxes =ML.OST-RDO-LIST
+mailboxes =ML.OST-RH-OPENSTACK-DEVEL
+mailboxes =ML.OST-RH-OPENSTACK-PGM
+mailboxes =ML.OST-RH-OPENSTACK-STATUS
+mailboxes =ML.OST-RH-OPENSTACK-UI
+mailboxes =ML.OST-RHOS-TECH
+mailboxes =ML.OST-UPSTREAM-TRIPLEO-DEV
+mailboxes =Perso
+mailboxes ='$has_cal'
+mailboxes =Drafts
+mailboxes =Old
+mailboxes =Sent
+
+
+### BEGIN NOTMUCH-MUTT SETTINGS
+    macro index <F8> \
+        "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/mutt-notmuch.pl --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
+        "search mail (using notmuch)"
+    macro index <F9> \
+        "<enter-command>unset wait_key<enter><pipe-message>~/.mutt/mutt-notmuch.pl thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
+         "search and reconstruct owning thread (using notmuch)"
+
+set indent_string="> "
+set index_format="%4C %Z  [%D]  %-15.15n   %s"
+
+set mail_check=300
+set mailcap_path="~/.mailcap"
+set mark_old=no
+set mbox_type=Maildir
+set message_cachedir="~/.mutt/cache/bodies"
+
+unset metoo
+
+set move=no
+set net_inc=5
+set pager_index_lines=0
+
+set pgp_sign_as="0xA7F4B301"
+set postponed="~/Mail/redhat-gmail/Drafts"
+
+set query_command="lbdbq '%s'"
+bind editor <Tab> complete-query
+set realname="Gaël Chamoulaud"
+set record="~/Mail/redhat-gmail/Sent"
+set reply_regexp="^((re|aw|sv|ang):[ \t]*)+"
+set sig_dashes=no
+set signature="~/.mutt/signature_redhat"
+set sleep_time=0
+
+set smtp_pass="97niRS?pg"
+set smtp_url="smtp://smtp.corp.redhat.com/"
+set sort=threads
+set sort_aux=reverse-last-date-received
+set spoolfile="~/Mail/redhat-gmail/INBOX"
+set ssl_ca_certificates_file="/etc/pki/ca-trust/source/anchors/cacert.crt"
+set ssl_force_tls=yes
+set ssl_starttls=yes
+set ssl_use_tlsv1=yes
+set status_chars=" *%A"
+set status_format      = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?($"
+set tilde=yes
+set timeout=10
+set user_agent=yes
+
+my_hdr X-GPG-Key-Server: http://pgp.mit.edu
+my_hdr X-GPG-Key-FingerPrint: C75F 15C2 A7FD EBC3 7B2D  CE41 0077 6A4B A7F4 B301
+
+# decode application/pgp
+set pgp_decode_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+
+# verify a pgp/mime
+set pgp_verify_command="gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f"
+
+# decrypt a pgp/mime attachment
+set pgp_decrypt_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+
+# create a pgp/mime signed attachment
+# set pgp_sign_command="gpg-2comp --comment '' --no-verbose --batch --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_sign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
+
+# create a application/pgp signed (old-style) message
+# set pgp_clearsign_command="gpg-2comp --comment '' --no-verbose --batch --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_clearsign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
+
+# create a pgp/mime encrypted attachment
+# set pgp_encrypt_only_command="pgpewrap gpg-2comp -v --batch --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+
+# create a pgp/mime encrypted and signed attachment
+# set pgp_encrypt_sign_command="pgpewrap gpg-2comp %?p?--passphrase-fd 0? -v --batch --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+set pgp_encrypt_sign_command="pgpewrap gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+
+# import a key into the public key ring
+set pgp_import_command="gpg --no-verbose --import %f"
+
+# export a key from the public key ring
+set pgp_export_command="gpg --no-verbose --export --armor %r"
+
+# verify a key
+set pgp_verify_key_command="gpg --verbose --batch --fingerprint --check-sigs %r"
+
+# read in the public key ring
+set pgp_list_pubring_command="gpg --no-verbose --batch --quiet --with-colons --list-keys %r"
+
+# read in the secret key ring
+set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r"
+
+set pgp_autosign=yes
+#this auto signs your outgoing mail
+set pgp_timeout=1800
+#remembers your password for 1800 seconds
+
+# This version uses --status-fd messages
+set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
+
+set pgp_auto_decode=yes
+
+source ~/.mutt/gruvbox_colors
+
+#source /etc/Muttrc.local
+alias gchamoul Gaël Chamoulaud <gchamoul@redhat.com>
+alias gmail Gaël Chamoulaud <gael.chamoulaud@gmail.com>
+alias rhos-dev rh-openstack-dev <rh-openstack-dev@redhat.com>
+alias jan Jan Buchta <jbuchta@redhat.com>
+alias ui <rhospui-internal@redhat.com>

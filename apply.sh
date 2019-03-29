@@ -33,6 +33,12 @@ if [ -d ~/.tmuxinator ]; then
     cp -rf .tmuxinator/ $HOME/
 fi
 
+if [ -d ~/.mutt ]; then
+    cp -rf mutt/.muttrc $HOME/
+    cp -rf mutt/gruvbox_colors $HOME/.mutt/
+    cp -rf mutt/vim-keys.rc $HOME/.mutt/
+fi
+
 cp -f .mailcap ~/
 mkdir -p ~/.config/zathura
 rm -Rf ~/.config/zathura/zathurarc
