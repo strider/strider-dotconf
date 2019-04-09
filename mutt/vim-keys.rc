@@ -25,6 +25,8 @@ bind index                      \Cy previous-line
 bind pager,index                d   noop
 bind pager,index                dd  delete-message
 bind pager,index                @   compose-to-sender
+bind pager,index                L noop
+bind pager,index                L   group-reply
 
 # Mail & Reply
 bind index                      \Cm list-reply # Doesn't work currently

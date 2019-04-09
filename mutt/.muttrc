@@ -46,7 +46,7 @@ macro index \eb "<search>~b " "search in message bodies"
 #macro index,pager <f6> 'c =ML.OST-RH-OPENSTACK-UI^M'
 
 # simulate the old url menu
-macro index,pager,attach,compose \cb "\
+macro index,pager,attach,compose \em "\
 <enter-command> set my_pipe_decode=\$pipe_decode pipe_decode<Enter>\
 <pipe-message> urlview<Enter>\
 <enter-command> set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<Enter>" \
@@ -64,8 +64,7 @@ bind browser y exit
 
 bind attach <return> view-mailcap
 
-bind index g noop
-bind pager g noop
+source ~/.mutt/vim-keys.rc
 macro index,pager gl "<change-folder>"
 macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index,pager ge "<change-folder>=$has_cal<enter>" "Go to =Sent"
@@ -100,8 +99,6 @@ macro attach W <save-entry><kill-line>/home/gchamoul/Downloads
 macro index Q   ":set quit=yes\nq" "Quit mutt without asking"
 macro index \er ":source ~/.muttrc\n" "Reload muttrc"
 
-source ~/.mutt/vim-keys.rc
-
 set skip_quoted_offset = 30
 
 mime_lookup application/octet-stream
@@ -127,6 +124,7 @@ set folder="~/Mail/redhat-gmail/"
 set from="Gaël Chamoulaud <gchamoul@redhat.com>"
 my_hdr Reply-To: Gaël Chamoulaud <gchamoul@redhat.com>
 my_hdr Bcc: Gaël Chamoulaud <gchamoul@redhat.com>
+set edit_headers=yes
 set header_cache="~/.mutt/cache/headers"
 
 set imap_authenticators="gssapi:cram-md5:login"
