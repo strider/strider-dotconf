@@ -40,6 +40,21 @@ color sidebar_flagged red default
 color sidebar_new green default
 color progress white red
 
+#set nm_default_uri = "notmuch:///home/gchamoul/Mail"
+#set virtual_spoolfile=yes                          # enable virtual folders
+#virtual-mailboxes \
+    #"INBOX"     "notmuch://?query=tag:inbox"\
+    #"Unread"    "notmuch://?query=tag:unread"\
+    #"Sent"      "notmuch://?query=tag:sent"        # sets up queries for virtual folders
+## notmuch bindings
+#bind index,pager X change-vfolder
+#macro index \\\\ "<vfolder-from-query>"              # looks up a hand made query
+#macro index A "<modify-labels>+archive -unread -inbox\\n"        # tag as Archived
+#macro index I "<modify-labels>-inbox -unread\\n"                 # removed from inbox
+#macro index S "<modify-labels-then-hide>-inbox -unread +junk\\n" # tag as Junk mail
+#macro index + "<modify-labels>+*\\n<sync-mailbox>"               # tag as starred
+#macro index - "<modify-labels>-*\\n<sync-mailbox>"               # tag as unstarred
+
 # imitate the old search-body function
 macro index \eb "<search>~b " "search in message bodies"
 #macro index,pager <f5> 'c =INBOX^M'
@@ -164,11 +179,32 @@ mailboxes =Sent
 
 ### BEGIN NOTMUCH-MUTT SETTINGS
     macro index <F8> \
-        "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/mutt-notmuch.pl --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
-        "search mail (using notmuch)"
+    "<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+    <shell-escape>notmuch-mutt -r --prompt search<enter>\
+    <change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+    <enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+            "notmuch: search mail"
+
     macro index <F9> \
-        "<enter-command>unset wait_key<enter><pipe-message>~/.mutt/mutt-notmuch.pl thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
-         "search and reconstruct owning thread (using notmuch)"
+    "<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+    <pipe-message>notmuch-mutt -r thread<enter>\
+    <change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+    <enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+            "notmuch: reconstruct thread"
+
+    macro index <F6> \
+    "<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+    <pipe-message>notmuch-mutt tag -- -inbox<enter>\
+    <enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+            "notmuch: remove message from inbox"
+
+
+    #macro index <F8> \
+        #"<enter-command>unset wait_key<enter><shell-escape>~/.mutt/mutt-notmuch.pl --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
+        #"search mail (using notmuch)"
+    #macro index <F9> \
+        #"<enter-command>unset wait_key<enter><pipe-message>~/.mutt/mutt-notmuch.pl thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
+         #"search and reconstruct owning thread (using notmuch)"
 
 set indent_string="> "
 set index_format="%4C %Z  [%D]  %-15.15n   %s"
@@ -265,7 +301,8 @@ set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
 
 set pgp_auto_decode=yes
 
-source ~/.mutt/gruvbox_colors
+source ~/.mutt/colors-gruvbox-shuber.muttrc
+source ~/.mutt/colors-gruvbox-shuber-extended.muttrc
 
 #source /etc/Muttrc.local
 alias gchamoul Gaël Chamoulaud <gchamoul@redhat.com>
