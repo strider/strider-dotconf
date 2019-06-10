@@ -28,11 +28,7 @@ _fzf_compgen_dir() {
 }
 
 # Alias
-## Bad reflex correction
-alias q!='echo $fg[red]Je ne suis pas dans VIM !$reset_color'
-alias x!='echo $fg[red]Je ne suis pas dans VIM !$reset_color'
-
-alias v='f -e vim'
+alias v='f -e tec'
 alias o='a -e xdg-open'
 alias tmux="tmux -2"
 alias mutt="neomutt"
@@ -43,7 +39,7 @@ alias tkss='tmux kill-session -t'
 alias tksv='tmux kill-server'
 alias tl='tmux list-sessions'
 alias ts='tmux new-session -s'
-alias tenv='mosh gchamoul@krav -- tmux attach-session -t tripleo'
+alias tenv='mosh gchamoul@krav -- tmux new -A -s tripleo'
 alias g="git"
 alias gbr="git branch --all"
 alias gfa="git fetch --all"
@@ -186,10 +182,10 @@ alias dnfc="sudo dnf clean all"
 
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/bin/virtualenvwrapper_lazy.sh
+source /usr/bin/virtualenvwrapper.sh
 export VAGRANT_DEFAULT_PROVIDER=libvirt
 
-#source $HOME/.zsh/agnoster.zsh-theme
+export GPG_TTY=$TTY
 
 # Manage SSH with Keychain.
 if [ -x "$(command -v keychain)" ]; then
@@ -225,9 +221,5 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 export FZF_CTRL_R_OPTS="--sort --preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$HOME/.local/bin:$HOME/bin/git-config/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(pipenv --completion)"
+export PATH="$HOME/.local/bin:$HOME/bin/git-config/bin:$PATH"
 /usr/bin/stty -ixon
