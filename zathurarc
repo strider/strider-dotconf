@@ -25,7 +25,7 @@ set statusbar-bg "#303030"
 set statusbar-fg "#d0d0d0"
 set statusbar-v-padding 40
 set statusbar-h-padding 120
-set font "Terminus for Powerline 08"
+set font "Agave 11"
 set default-fg "#d0d0d0"
 # 2e3436
 set default-bg "#292e30"
