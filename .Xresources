@@ -141,7 +141,7 @@ rofi.hmode: false
 !rofi.terminal: st
 rofi.hide-scrollbar: true
 rofi.modi: window,run,drun,ssh,combi
-rofi.theme: /usr/share/rofi/themes/Pop-Dark.rasi
+rofi.theme: ~/.i3/rofi.rasi
 rofi.sidebar-mode: true
 rofi.terminal: urxvt256c-ml
 rofi.show-icons: true
