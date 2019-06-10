@@ -1,10 +1,10 @@
 #!/bin/bash
 
 sudo dnf install vim-enhanced \
-            scrot fasd hub ack \
+            scrot hub ack \
             tmux wget curl net-tools \
             git-all git-review \
-            python-virtualenvwrapper \
+            python3-virtualenvwrapper \
             python2-virtualenv \
             python3-virtualenv \
             python-pip python3-pip udiskie \
