@@ -2,8 +2,6 @@
     name = Gael Chamoulaud
     email = gchamoul@redhat.com
     signingkey = A7F4B301
-[github]
-    user = strider
 [commit]
     gpgsign = false
 [push]
@@ -65,3 +63,5 @@
 [diff]
     renamelimit = 2000
     renames = true
+[include]
+	path = ~/.gitconfig.private
