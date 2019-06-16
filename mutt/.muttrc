@@ -233,7 +233,7 @@ set sig_dashes=no
 set signature="~/.mutt/signature_redhat"
 set sleep_time=0
 
-set smtp_pass="97niRS?pg"
+#set smtp_pass="*************"
 set smtp_url="smtp://smtp.corp.redhat.com/"
 set sort=threads
 set sort_aux=reverse-last-date-received
