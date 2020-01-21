@@ -1,13 +1,12 @@
 [user]
-    name = Gael Chamoulaud
+    name = Gael Chamoulaud (Strider)
     email = gchamoul@redhat.com
-    signingkey = A7F4B301
 [commit]
-    gpgsign = false
+    gpgsign = True
 [push]
     default = upstream
 [core]
-    editor = emacs
+    editor = emacsclient -nw
     pager = less -FSRX
     autocrlf = input
 	excludesfile = ~/.gitignore

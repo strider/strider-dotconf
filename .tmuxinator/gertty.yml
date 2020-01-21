@@ -1,0 +1,7 @@
+project_name: Gertty
+project_root: ~/
+#pre: echo "setup something here!"
+windows:
+  - IRC:
+      panes:
+        - gertty -c ~/.gertty-openstack.yaml
