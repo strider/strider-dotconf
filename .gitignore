@@ -1,2 +1,5 @@
 Session.vim
 Pipfile*
+GPATH
+GRTAGS
+GTAGS

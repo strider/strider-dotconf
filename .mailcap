@@ -5,9 +5,22 @@ application/vnd.oasis.opendocument.text;                mutt_bgrun oowriter %s;
 application/vnd.oasis.opendocument.presentation;                mutt_bgrun ooimpress %s;
 application/msword;             mutt_bgrun oowriter %s;
 application/pdf;                mutt_bgrun zathura %s;
-application/pdf;                pdftotext %s -; copiousoutput
-image/gif;                      eog %s
-image/jpeg;                     eog %s
-image/jpg;                      eog %s
-image/png;                      eog %s
-text/calendar; view-ical ; copiousoutput
+application/pdf;                pdftotext -layout %s -; copiousoutput;
+
+# Feh is a simple and effective image viewer
+# Note that tuir returns a list of urls for imgur albums, so we don't put quotes
+# around the `%s`
+image/x-imgur-album; feh -g 640x480  -. %s; test=test -n "$DISPLAY"
+image/gif; mpv '%s' --autofit 640x480 --loop=inf; test=test -n "$DISPLAY"
+image/*; feh -g 640x480 -. '%s'; test=test -n "$DISPLAY"
+
+# Youtube videos are assigned a custom mime-type, which can be streamed with
+# vlc or youtube-dl.
+video/x-youtube; vlc '%s' --width 640 --height 480; test=test -n "$DISPLAY"
+video/x-youtube; mpv --ytdl-format=bestvideo+bestaudio/best '%s' --autofit 640x480; test=test -n "$DISPLAY"
+
+# Mpv is a simple and effective video streamer
+video/*; mpv '%s' --autofit 640x480 --loop=inf; test=test -n "$DISPLAY"
+
+text/calendar; mutt-ics; copiousoutput
+application/ics; mutt-ics; copiousoutput

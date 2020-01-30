@@ -5,15 +5,15 @@
 # bg2    = 239
 # bg3    = 241
 # bg4    = 243
-# 
+#
 # gray   = 245
-# 
+#
 # fg0    = 229
 # fg1    = 223
 # fg2    = 250
 # fg3    = 248
 # fg4    = 246
-# 
+#
 # red    = 167
 # green  = 142
 # yellow = 214
@@ -31,7 +31,7 @@ color error       color167 color234
 color hdrdefault  color246 color234
 color indicator   color223 color237
 color markers     color243 color234
-color normal      color223 color234
+color normal      white    color234
 color quoted      color250 color234
 color quoted1     color108 color234
 color quoted2     color250 color234
@@ -82,4 +82,3 @@ color body color214 color234 "^gpg: invalid node with packet of type"
 
 color body color196 default 'FAILURE'
 color body color190 default 'SUCCESS'
-

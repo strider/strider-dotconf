@@ -7,10 +7,10 @@ unignore  from: to cc reply-to mail-followup-to subject user-agent x-mailer date
 hdr_order date from: to cc reply-to mail-followup-to  user-agent x-mailer x-spam-level: subject
 
 auto_view text/html
-alternative_order text/plain text/enriched text/html
+alternative_order text/enriched text/plan text text/html
 
 # This is a complete list of sidebar-related configuration.
-set sidebar_visible = no
+set sidebar_visible = yes
 set sidebar_width = 40
 set sidebar_short_path = yes
 set sidebar_delim_chars = '/.'
@@ -34,38 +34,33 @@ bind index,pager <F5> sidebar-prev-new
 bind index,pager <F6> sidebar-next-new
 bind index,pager B sidebar-toggle-visible
 
-color sidebar_highlight black color8
-color sidebar_divider color8 default
-color sidebar_flagged red default
-color sidebar_new green default
-color progress white red
-
-#set nm_default_uri = "notmuch:///home/gchamoul/Mail"
-#set virtual_spoolfile=yes                          # enable virtual folders
-#virtual-mailboxes \
-    #"INBOX"     "notmuch://?query=tag:inbox"\
-    #"Unread"    "notmuch://?query=tag:unread"\
-    #"Sent"      "notmuch://?query=tag:sent"        # sets up queries for virtual folders
-## notmuch bindings
-#bind index,pager X change-vfolder
-#macro index \\\\ "<vfolder-from-query>"              # looks up a hand made query
-#macro index A "<modify-labels>+archive -unread -inbox\\n"        # tag as Archived
-#macro index I "<modify-labels>-inbox -unread\\n"                 # removed from inbox
-#macro index S "<modify-labels-then-hide>-inbox -unread +junk\\n" # tag as Junk mail
-#macro index + "<modify-labels>+*\\n<sync-mailbox>"               # tag as starred
-#macro index - "<modify-labels>-*\\n<sync-mailbox>"               # tag as unstarred
+# set nm_default_uri = "notmuch:///home/gchamoul/Mail"
+# set virtual_spoolfile=yes                          # enable virtual folders
+# virtual-mailboxes \
+#     "INBOX"     "notmuch://?query=tag:inbox"\
+#     "Unread"    "notmuch://?query=tag:unread"\
+#     "Openstack" "notmuch://?query=tag:openstack"
+# # notmuch bindings
+# bind index,pager X change-vfolder
+# macro index \\\\ "<vfolder-from-query>"              # looks up a hand made query
+# macro index A "<modify-labels>+archive -unread -inbox\\n"        # tag as Archived
+# macro index I "<modify-labels>-inbox -unread\\n"                 # removed from inbox
+# macro index S "<modify-labels-then-hide>-inbox -unread +junk\\n" # tag as Junk mail
+# macro index + "<modify-labels>+*\\n<sync-mailbox>"               # tag as starred
+# macro index - "<modify-labels>-*\\n<sync-mailbox>"               # tag as unstarred
 
 # imitate the old search-body function
 macro index \eb "<search>~b " "search in message bodies"
 #macro index,pager <f5> 'c =INBOX^M'
-#macro index,pager <f6> 'c =ML.OST-RH-OPENSTACK-UI^M'
+#macro index,pager <f6> 'c =ML.OST-RH-DFG-DF^M'
 
-# simulate the old url menu
-macro index,pager,attach,compose \em "\
-<enter-command> set my_pipe_decode=\$pipe_decode pipe_decode<Enter>\
-<pipe-message> urlview<Enter>\
-<enter-command> set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<Enter>" \
-"call urlview to extract URLs out of a message"
+macro index,pager,attach,compose \eb "\
+:set my_tmp_pipe_decode=\$pipe_decode\n\
+:set pipe_decode\n\
+|urlview\n\
+:set pipe_decode=\$my_tmp_pipe_decode\n\
+:unset my_tmp_pipe_decode\n" \
+'call urlview to extract URLs out of a message'
 
 # Show documentation when pressing F1
 macro generic,pager <F1> "<shell-escape> less /usr/share/doc/neomutt/manual.txt<Enter>" "show NeoMutt documentation"
@@ -84,7 +79,7 @@ macro index,pager gl "<change-folder>"
 macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index,pager ge "<change-folder>=$has_cal<enter>" "Go to =Sent"
 macro index,pager gm "<change-folder>=ML.memo-list<enter>" "Go to rdo-list"
-macro index,pager gu "<change-folder>=ML.OST-RH-OPENSTACK-UI<enter>" "Go to DFG:UI Team list"
+macro index,pager gu "<change-folder>=ML.OST-RH-DFG-DF<enter>" "Go to DFG:UI Team list"
 macro index,pager gd "<change-folder>=ML.OST-RH-OPENSTACK-DEVEL<enter>" "Go to rh-openstack-devel ML"
 macro index,pager gs "<change-folder>=ML.OST-RH-OPENSTACK-STATUS<enter>" "Go to rh-openstack-status"
 macro index,pager gt "<change-folder>=ML.OST-UPSTREAM-TRIPLEO-DEV<enter>" "Go to upstream tripleo-dev ML"
@@ -130,8 +125,6 @@ set certificate_file="~/.mutt/certificates"
 
 set crypt_autopgp=yes
 
-set date_format="%d/%b/%Y %H:%M"
-
 #set editor="/usr/bin/vimx + -c 'set ft=mail tw=79 spell spelllang=fr,en' -c ':0/^$'"
 set editor="emacsclient -nw"
 
@@ -146,30 +139,31 @@ set imap_authenticators="gssapi:cram-md5:login"
 set imap_check_subscribed=yes
 set imap_keepalive=900
 
+subscribe ^rhos-df@redhat\\.com$
+subscribe ^rh-openstack-dev@redhat\\.com$
+
+
 mailboxes =INBOX
-mailboxes =FRANCE
-mailboxes =ML.France-eng
-mailboxes =ML.France-list
-mailboxes =ML.French-associates
-mailboxes =ML.Paris-list
-mailboxes =ML.cdg-list
-mailboxes =NON_TECHNICAL
-mailboxes =ML.announce-list
-mailboxes =ML.memo-list
-mailboxes =ML.Friday-list
-mailboxes =ML.Remotees-list
-mailboxes =ML.Neurodiversity
-mailboxes =TECHNICAL
-mailboxes =ML.RH-Tech-list
-mailboxes =ML.KNI-DEVEL
-mailboxes =OPENSTACK
+mailboxes =ML.Code-Reviews
 mailboxes =ML.OST-RDO-LIST
+mailboxes =ML.OST-RH-DFG-DF
 mailboxes =ML.OST-RH-OPENSTACK-DEVEL
 mailboxes =ML.OST-RH-OPENSTACK-PGM
 mailboxes =ML.OST-RH-OPENSTACK-STATUS
 mailboxes =ML.OST-RH-OPENSTACK-UI
 mailboxes =ML.OST-RHOS-TECH
 mailboxes =ML.OST-UPSTREAM-TRIPLEO-DEV
+mailboxes =ML.RH-Tech-list
+mailboxes =ML.France-eng
+mailboxes =ML.France-list
+mailboxes =ML.French-associates
+mailboxes =ML.cdg-list
+mailboxes =ML.announce-list
+mailboxes =ML.memo-list
+mailboxes =ML.Friday-list
+mailboxes =ML.Remotees-list
+mailboxes =ML.Neurodiversity
+mailboxes =ML.KNI-DEVEL
 mailboxes =Perso
 mailboxes ='$has_cal'
 mailboxes =Drafts
@@ -207,7 +201,9 @@ mailboxes =Sent
          #"search and reconstruct owning thread (using notmuch)"
 
 set indent_string="> "
-set index_format="%4C %Z  [%D]  %-15.15n   %s"
+set date_format="%d/%b/%Y %H:%M"
+set index_format="%4C %Zs %?X?A& ? .:-%D-:. %-15.15n %s (%-4.4c)"
+#set index_format="%2C %zs %?X?A& ? %D %-15.15n %s (%-4.4c)"
 
 set mail_check=300
 set mailcap_path="~/.mailcap"
@@ -219,7 +215,7 @@ unset metoo
 
 set move=no
 set net_inc=5
-set pager_index_lines=0
+set pager_index_lines=10
 
 set pgp_sign_as="0xA7F4B301"
 set postponed="~/Mail/redhat-gmail/Drafts"
@@ -233,7 +229,8 @@ set sig_dashes=no
 set signature="~/.mutt/signature_redhat"
 set sleep_time=0
 
-#set smtp_pass="*************"
+set my_pass="`pass redhat.com/kerberos/gchamoul@redhat.com`"
+set smtp_pass=$my_pass
 set smtp_url="smtp://smtp.corp.redhat.com/"
 set sort=threads
 set sort_aux=reverse-last-date-received
@@ -301,12 +298,83 @@ set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
 
 set pgp_auto_decode=yes
 
-source ~/.mutt/colors-gruvbox-shuber.muttrc
-source ~/.mutt/colors-gruvbox-shuber-extended.muttrc
+#source ~/.mutt/colors-gruvbox-shuber.muttrc
+#source ~/.mutt/colors-gruvbox-shuber-extended.muttrc
 
 #source /etc/Muttrc.local
 alias gchamoul Gaël Chamoulaud <gchamoul@redhat.com>
 alias gmail Gaël Chamoulaud <gael.chamoulaud@gmail.com>
 alias rhos-dev rh-openstack-dev <rh-openstack-dev@redhat.com>
 alias jan Jan Buchta <jbuchta@redhat.com>
-alias ui <rhospui-internal@redhat.com>
+alias df <rhos-df@redhat.com>
+alias tengu Cédric Jeanneret <cjeanner@redhat.com>
+alias phil Phil Weeks <pweeks@redhat.com>
+
+# Default index colors:
+color index yellow default '.*'
+color index_author red default '.*'
+color index_number blue default
+color index_subject cyan default '.*'
+
+# New mail is boldened:
+color index brightyellow black "~N"
+color index_author brightred black "~N"
+color index_subject brightcyan black "~N"
+
+# Other colors and aesthetic settings:
+mono bold bold
+mono underline underline
+mono indicator reverse
+mono error bold
+color normal default default
+color indicator brightblack white
+
+color sidebar_highlight black color8
+color sidebar_divider color8 default
+color sidebar_flagged red default
+color sidebar_new green default
+color progress white red
+color normal brightyellow default
+color error red default
+color tilde black default
+color message cyan default
+color markers red white
+color attachment white default
+color search brightmagenta default
+color status brightyellow black
+color hdrdefault brightgreen default
+color quoted green default
+color quoted1 blue default
+color quoted2 cyan default
+color quoted3 yellow default
+color quoted4 red default
+color quoted5 brightred default
+color signature brightgreen default
+color bold black default
+color underline black default
+color normal default default
+
+# Regex highlighting:
+color header blue default ".*"
+color header brightmagenta default "^(From)"
+color header brightcyan default "^(Subject)"
+color header brightwhite default "^(CC|BCC)"
+color body brightred default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # Email addresses
+color body brightblue default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URL
+color body green default "\`[^\`]*\`" # Green text between ` and `
+color body brightblue default "^# \.*" # Headings as bold blue
+color body brightcyan default "^## \.*" # Subheadings as bold cyan
+color body brightgreen default "^### \.*" # Subsubheadings as bold green
+color body yellow default "^(\t| )*(-|\\*) \.*" # List items as yellow
+color body brightcyan default "[;:][-o][)/(|]" # emoticons
+color body brightcyan default "[;:][)(|]" # emoticons
+color body brightcyan default "[ ][*][^*]*[*][ ]?" # more emoticon?
+color body brightcyan default "[ ]?[*][^*]*[*][ ]" # more emoticon?
+color body red default "(BAD signature)"
+color body cyan default "(Good signature)"
+color body brightblack default "^gpg: Good signature .*"
+color body brightyellow default "^gpg: "
+color body brightyellow red "^gpg: BAD signature from.*"
+mono body bold "^gpg: Good signature"
+mono body bold "^gpg: BAD signature from.*"
+color body red default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"

@@ -30,6 +30,7 @@ _fzf_compgen_dir() {
 # Alias
 alias v='f -e tec'
 alias o='a -e xdg-open'
+alias c='pygmentize -g'
 alias tmux="tmux -2"
 alias mutt="neomutt"
 alias tailf="tail -f"
@@ -118,10 +119,9 @@ alias iptlistfw='sudo /sbin/iptables -L FORWARD -n -v --line-numbers'
 alias firewall=iptlist
 
 # Gerrit stuffs
-alias gerrit='ssh -p 29418 review.openstack.org gerrit'
-alias pk-core-list='gerrit ls-members packstack-core'
-alias pm-core-list='gerrit ls-members puppet-manager-core'
-alias oooq-add-reviewers='gerrit set-reviewers $(git rev-parse --short HEAD) --add adarazs@redhat.com --add gcerami@redhat.com --add trown@redhat.com --add rlandy@redhat.com --add sshnaidm@redhat.com --add weshayutin@gmail.com'
+alias gerrit='ssh -p 29418 review.opendev.org gerrit'
+alias pk-core-list='gerrit ls-members tripleo-core'
+#alias oooq-add-reviewers='gerrit set-reviewers $(git rev-parse --short HEAD) --add adarazs@redhat.com --add gcerami@redhat.com --add trown@redhat.com --add rlandy@redhat.com --add sshnaidm@redhat.com --add weshayutin@gmail.com'
 
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
@@ -185,12 +185,9 @@ export WORKON_HOME=$HOME/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 export VAGRANT_DEFAULT_PROVIDER=libvirt
 
-export GPG_TTY=$TTY
-
-# Manage SSH with Keychain.
-if [ -x "$(command -v keychain)" ]; then
-    eval "$(keychain --eval --nogui --quiet --agents ssh ~/.ssh/id_rsa ~/.ssh/id_rsa_redhat)"
-fi
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
 eval "$(fasd --init auto)"
 source ~/.github-auth
@@ -198,8 +195,9 @@ eval "$(hub alias -s)"
 
 source ~/bin/forgit/forgit.plugin.zsh
 
-export EDITOR="emacs"
-export VISUAL="emacs"
+export EDITOR="emacsclient -nw"
+export VISUAL="emacsclient -nw"
+export GTAGSLABEL=ctags
 
 # alias emacs="$EMACS_PLUGIN_LAUNCHER --no-wait "
 alias e=emacs
@@ -207,7 +205,7 @@ alias te="emacs -nw"
 # open terminal emacsclient
 alias tec="emacsclient -nw"
 # create a new X frame
-alias eframe='emacsclient --alternate-editor "" --create-frame'
+alias eframe='emacsclient -c -n --alternate-editor=""'
 
 # Show grep results in white text on a red background
 export GREP_COLOR='1;37;41'
@@ -221,5 +219,16 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 export FZF_CTRL_R_OPTS="--sort --preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
-export PATH="$HOME/.local/bin:$HOME/bin/git-config/bin:$PATH"
+export GOPATH="$HOME/go"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$HOME/.local/bin:$HOME/bin/git-config/bin:$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 /usr/bin/stty -ixon
+
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

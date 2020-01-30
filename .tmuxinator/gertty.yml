@@ -1,7 +1,11 @@
 project_name: Gertty
 project_root: ~/
 #pre: echo "setup something here!"
+pre_window: workon gertty-env
 windows:
-  - IRC:
+  - Upstream:
       panes:
         - gertty -c ~/.gertty-openstack.yaml
+  - Downstream:
+      panes:
+        - gertty -c ~/.gertty-internal.yaml
