@@ -1,5 +1,5 @@
 #
-# System configuration file for Mutt
+# Syst~/.mutt/or Mutt
 #
 
 ignore *
@@ -123,8 +123,6 @@ attachments   -I message/external-body
 set attribution="On %d, %n wrote:"
 set certificate_file="~/.mutt/certificates"
 
-set crypt_autopgp=yes
-
 #set editor="/usr/bin/vimx + -c 'set ft=mail tw=79 spell spelllang=fr,en' -c ':0/^$'"
 set editor="emacsclient -nw"
 
@@ -204,6 +202,7 @@ set indent_string="> "
 set date_format="%d/%b/%Y %H:%M"
 set index_format="%4C %Zs %?X?A& ? .:-%D-:. %-15.15n %s (%-4.4c)"
 #set index_format="%2C %zs %?X?A& ? %D %-15.15n %s (%-4.4c)"
+set folder_format="%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %i"
 
 set mail_check=300
 set mailcap_path="~/.mailcap"
@@ -217,7 +216,6 @@ set move=no
 set net_inc=5
 set pager_index_lines=10
 
-set pgp_sign_as="0xA7F4B301"
 set postponed="~/Mail/redhat-gmail/Drafts"
 
 set query_command="lbdbq '%s'"
@@ -248,55 +246,17 @@ set user_agent=yes
 my_hdr X-GPG-Key-Server: http://pgp.mit.edu
 my_hdr X-GPG-Key-FingerPrint: C75F 15C2 A7FD EBC3 7B2D  CE41 0077 6A4B A7F4 B301
 
-# decode application/pgp
-set pgp_decode_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
+source ~/.mutt/gpg.rc
 
-# verify a pgp/mime
-set pgp_verify_command="gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f"
-
-# decrypt a pgp/mime attachment
-set pgp_decrypt_command="gpg --status-fd=2 %?p?--passphrase-fd 0? --no-verbose --quiet --batch --output - %f"
-
-# create a pgp/mime signed attachment
-# set pgp_sign_command="gpg-2comp --comment '' --no-verbose --batch --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
-set pgp_sign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
-
-# create a application/pgp signed (old-style) message
-# set pgp_clearsign_command="gpg-2comp --comment '' --no-verbose --batch --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
-set pgp_clearsign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
-
-# create a pgp/mime encrypted attachment
-# set pgp_encrypt_only_command="pgpewrap gpg-2comp -v --batch --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
-set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
-
-# create a pgp/mime encrypted and signed attachment
-# set pgp_encrypt_sign_command="pgpewrap gpg-2comp %?p?--passphrase-fd 0? -v --batch --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
-set pgp_encrypt_sign_command="pgpewrap gpg %?p?--passphrase-fd 0? --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
-
-# import a key into the public key ring
-set pgp_import_command="gpg --no-verbose --import %f"
-
-# export a key from the public key ring
-set pgp_export_command="gpg --no-verbose --export --armor %r"
-
-# verify a key
-set pgp_verify_key_command="gpg --verbose --batch --fingerprint --check-sigs %r"
-
-# read in the public key ring
-set pgp_list_pubring_command="gpg --no-verbose --batch --quiet --with-colons --list-keys %r"
-
-# read in the secret key ring
-set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r"
-
-set pgp_autosign=yes
+set pgp_default_key="00776A4BA7F4B301"
+set pgp_sign_as="00776A4BA7F4B301"
 #this auto signs your outgoing mail
-set pgp_timeout=1800
+set pgp_autosign=yes
 #remembers your password for 1800 seconds
-
-# This version uses --status-fd messages
-set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
-
-set pgp_auto_decode=yes
+set pgp_timeout=1800
+set pgp_check_gpg_decrypt_status_fd
+set pgp_use_gpg_agent = yes
+set pgp_self_encrypt = yes
 
 #source ~/.mutt/colors-gruvbox-shuber.muttrc
 #source ~/.mutt/colors-gruvbox-shuber-extended.muttrc

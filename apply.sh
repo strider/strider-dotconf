@@ -37,6 +37,7 @@ if [ -d ~/.mutt ]; then
     cp -rf mutt/.muttrc $HOME/
     cp -rf mutt/gruvbox_colors $HOME/.mutt/
     cp -rf mutt/vim-keys.rc $HOME/.mutt/
+    cp -rf mutt/gpg.rc $HOME/.mutt/
 fi
 
 cp -f .mailcap ~/

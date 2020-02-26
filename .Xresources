@@ -131,7 +131,7 @@ rofi.borderwidth: 1
 rofi.scroll_method: 1
 rofi.no_show_match: 0
 rofi.opacity: 10
-rofi.font: agave 11
+rofi.font: agave Nerd Font Mono r 11
 rofi.location: 2
 rofi.yoffset: 0
 rofi.xoffset: 0
