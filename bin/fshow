@@ -9,7 +9,7 @@ git-fshow() {
 	local g=(
 		git log
 		--graph
-		--format='%C(auto)%h%d %s %C(white)%C(bold)%cr'
+		--format='%C(auto)%h%d %s %C(white)%C(bold)%cr %C(red)[%cn]'
 		--color=always
 		"$@"
 	)

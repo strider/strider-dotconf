@@ -81,6 +81,7 @@ macro index,pager ge "<change-folder>=$has_cal<enter>" "Go to =Sent"
 macro index,pager gm "<change-folder>=ML.memo-list<enter>" "Go to rdo-list"
 macro index,pager gu "<change-folder>=ML.OST-RH-DFG-DF<enter>" "Go to DFG:UI Team list"
 macro index,pager gd "<change-folder>=ML.OST-RH-OPENSTACK-DEVEL<enter>" "Go to rh-openstack-devel ML"
+macro index,pager gb "<change-folder>=ML.Bugzilla<enter>" "Go to Bugzilla emails"
 macro index,pager gs "<change-folder>=ML.OST-RH-OPENSTACK-STATUS<enter>" "Go to rh-openstack-status"
 macro index,pager gt "<change-folder>=ML.OST-UPSTREAM-TRIPLEO-DEV<enter>" "Go to upstream tripleo-dev ML"
 macro pager "\e1"    "<enter-command>set pager_index_lines=1<enter>"      # Change PIL size
@@ -143,6 +144,7 @@ subscribe ^rh-openstack-dev@redhat\\.com$
 
 mailboxes =INBOX
 mailboxes =ML.Code-Reviews
+mailboxes =ML.Bugzilla
 mailboxes =ML.OST-RDO-LIST
 mailboxes =ML.OST-RH-DFG-DF
 mailboxes =ML.OST-RH-OPENSTACK-DEVEL
@@ -150,6 +152,7 @@ mailboxes =ML.OST-RH-OPENSTACK-PGM
 mailboxes =ML.OST-RH-OPENSTACK-STATUS
 mailboxes =ML.OST-RH-OPENSTACK-UI
 mailboxes =ML.OST-RHOS-TECH
+mailboxes =ML.OST-RHOS-PRIO
 mailboxes =ML.OST-UPSTREAM-TRIPLEO-DEV
 mailboxes =ML.RH-Tech-list
 mailboxes =ML.France-eng
@@ -161,7 +164,6 @@ mailboxes =ML.memo-list
 mailboxes =ML.Friday-list
 mailboxes =ML.Remotees-list
 mailboxes =ML.Neurodiversity
-mailboxes =ML.KNI-DEVEL
 mailboxes =Perso
 mailboxes ='$has_cal'
 mailboxes =Drafts

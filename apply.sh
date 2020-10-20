@@ -5,7 +5,6 @@ sudo dnf install vim-enhanced \
             tmux wget curl net-tools \
             git-all git-review \
             python3-virtualenvwrapper \
-            python2-virtualenv \
             python3-virtualenv \
             python-pip python3-pip udiskie \
             tmuxinator zsh xdotool \
@@ -19,10 +18,18 @@ if [ -d ~/.zsh ]; then
     cp -rf zsh-config/ $HOME/.zsh
     cp -f custom.zsh $HOME/.zsh/
     cp -f agnoster.zsh-theme $HOME/.zsh/
+else
+    cp -rf zsh-config/ $HOME/.zsh
+    cp -f custom.zsh $HOME/.zsh/
+    cp -f agnoster.zsh-theme $HOME/.zsh/
 fi
 
 if [ -f $HOME/.zshrc  ]; then
     rm -Rf $HOME/.zshrc
+    ln -s $HOME/.zsh/zshrc $HOME/.zshrc
+    echo "Reloading .zshrc"
+    source ~/.zshrc
+else
     ln -s $HOME/.zsh/zshrc $HOME/.zshrc
     echo "Reloading .zshrc"
     source ~/.zshrc
