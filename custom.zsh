@@ -195,17 +195,17 @@ eval "$(hub alias -s)"
 
 source ~/bin/forgit/forgit.plugin.zsh
 
-export EDITOR="emacsclient -nw"
-export VISUAL="emacsclient -nw"
+export EDITOR="emacsclient -c --no-wait"
+export VISUAL="emacsclient -c --no-wait"
 export GTAGSLABEL=ctags
 
 # alias emacs="$EMACS_PLUGIN_LAUNCHER --no-wait "
-alias e=emacs
+alias e="emacsclient -c --no-wait '$@'"
 alias te="emacs -nw"
 # open terminal emacsclient
 alias tec="emacsclient -nw"
 # create a new X frame
-alias eframe='emacsclient -c -n --alternate-editor=""'
+alias eframe='emacsclient -c --no-wait "$@"'
 
 # Show grep results in white text on a red background
 export GREP_COLOR='1;37;41'
