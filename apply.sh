@@ -7,7 +7,7 @@ sudo dnf install vim-enhanced \
             python3-virtualenvwrapper \
             python3-virtualenv \
             python-pip python3-pip udiskie \
-            tmuxinator zsh xdotool \
+            zsh xdotool \
             stardict stardict-dic-en.noarch sdcv \
             calibre pwgen pdfmod acpi fslint \
             fontawesome-fonts rofi rofi-themes \
@@ -35,9 +35,11 @@ else
     source ~/.zshrc
 fi
 
-if [ -d ~/.tmuxinator ]; then
-    rm -Rf $HOME/.tmuxinator
-    cp -rf .tmuxinator/ $HOME/
+if [ -d ~/.config/tmuxinator ]; then
+    cp -rf .tmuxinator/*.yml $HOME/.config/tmuxinator/
+else
+    mkdir $HOME/.config/tmuxinator/
+    cp -rf .tmuxinator/*.yml $HOME/.config/tmuxinator/
 fi
 
 if [ -d ~/.mutt ]; then

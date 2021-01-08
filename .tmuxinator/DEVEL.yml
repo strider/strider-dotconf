@@ -1,12 +1,16 @@
 project_name: DEVEL
 project_root: ~/
+startup_window: EDITOR
 #pre: echo "setup something here!"
 windows:
-  - OOO_VALIDATIONS:
-      root: ~/DEV/work/git/tripleo/UPSTREAM/
+  - EDITOR:
+      layout: even-horizontal
       panes:
-        - cd tripleo-validations/ && reset
-  - OOO:
-      root: ~/DEV/work/git/tripleo/UPSTREAM/
+        - cd ~/DEV/work/git/ && reset
+        - cd ~/DEV/work/git/ && reset
+  - PACKAGING:
+      layout: even-horizontal
+      root: ~/DEV/work/git/packaging/RHOS/
       panes:
+        - reset
         - reset
