@@ -30,6 +30,7 @@
     dh = diff HEAD
     rh = reset --soft HEAD^
     st = status -sb
+	cp = cherry-pick -x
     fup = log --since '1 day ago' --oneline --author='Gael Chamoulaud <gchamoul@redhat.com>'
     springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
     l = log
@@ -66,3 +67,5 @@
     renames = true
 [include]
 	path = ~/.gitconfig.private
+[pull]
+	rebase = false
