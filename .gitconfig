@@ -6,17 +6,19 @@
 [push]
     default = upstream
 [core]
-    editor = emacsclient -nw
+    editor = emacsclient -c --no-wait
     pager = less -FSRX
     autocrlf = input
 	excludesfile = ~/.gitignore
 [color]
     diff = auto
     status = auto
-    branch = auto
-[merge]
-    tool = vimdiff
-    prompt = false
+[mergetool.emacs]
+    cmd = ediff.sh "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+[mergetool.emacsclient]
+    cmd = MYEMACSCLIENT=emacsclient ediff.sh "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+[mergetool.ediff]
+	cmd = emacsclient -cn -a \"\" --eval \"(progn (setq ediff-quit-hook 'kill-emacs) (if (file-readable-p \\\"$BASE\\\") (ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\") (ediff-merge-files \\\"$LOCAL\\\" \\\"$REMOTE\\\" nil \\\"$MERGED\\\")))\"  branch = auto
 [alias]
 	amend = commit -v -s --amend
     ci = commit -v -s
