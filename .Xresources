@@ -22,7 +22,7 @@ URxvt.url-launcher    : /usr/bin/firefox
 URxvt.matcher.button  : 1
 URxvt.keysym.C-Delete : perl:matcher:last
 URxvt.keysym.M-Delete : perl:matcher:list
-URxvt*font            : xft:Terminus for Powerline:style=Regular:size=08
+URxvt*font            : xft:Agave:style=Regular:size=14.0
 URxvt*letterspace     : -1
 
 ! Tabbedex features
@@ -55,94 +55,48 @@ URxvt.keysym.4-1-C-Right: perl:tabbedex:move_tab_right
 URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
 URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 
-! Base16 PhD
-! Scheme: Hennig Hasemann (http://leetless.de/vim.html)
-
-#define base00 #061229
-#define base01 #2a3448
-#define base02 #4d5666
-#define base03 #717885
-#define base04 #9a99a3
-#define base05 #b8bbc2
-#define base06 #dbdde0
-#define base07 #ffffff
-#define base08 #d07346
-#define base09 #f0a000
-#define base0A #fbd461
-#define base0B #99bf52
-#define base0C #72b9bf
-#define base0D #5299bf
-#define base0E #9989cc
-#define base0F #b08060
-
-*.foreground:   base05
-#ifdef background_opacity
-*.background:   [background_opacity]base00
-#else
-*.background:   #1b1918
-#endif
-*.cursorColor:  base05
-
-*.color0:       base00
-*.color1:       base08
-*.color2:       base0B
-*.color3:       base0A
-*.color4:       base0D
-*.color5:       base0E
-*.color6:       base0C
-*.color7:       base05
-
-*.color8:       base03
-*.color9:       base08
-*.color10:      base0B
-*.color11:      base0A
-*.color12:      base0D
-*.color13:      base0E
-*.color14:      base0C
-*.color15:      base07
-
-! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-! use 'shell' template to set these if necessary
-*.color16:      base09
-*.color17:      base0F
-*.color18:      base01
-*.color19:      base02
-*.color20:      base04
-*.color21:      base06
-
+!
+! Generated with :
+! XRDB2Xreources.py
+!
+*.foreground:  #ffffff
+*.background:  #282828
+*.cursorColor: #a8a49d
+!
+! Black
+*.color0:      #010101
+*.color8:      #726e6a
+!
+! Red
+*.color1:      #f8b63f
+*.color9:      #f8b63f
+!
+! Green
+*.color2:      #7fb5e1
+*.color10:     #7fb5e1
+!
+! Yellow
+*.color3:      #d6da25
+*.color11:     #d6da25
+!
+! Blue
+*.color4:      #489e48
+*.color12:     #489e48
+!
+! Magenta
+*.color5:      #b296c6
+*.color13:     #b296c6
+!
+! Cyan
+*.color6:      #f5bfd7
+*.color14:     #f5bfd7
+!
+! White
+*.color7:      #a8a49d
+*.color15:     #fefbea
+!
+! Bold, Italic, Underline
+*.colorBD:     #a8a49d
+!*.colorIT:
+!*.colorUL:
 URxvt*cursorBlink                               : false
-
-!-------------------------------------------------------------------------------
-! Rofi color theme
-!
-! Based on the Gruvbox color scheme for Vim by morhetz
-! https://github.com/morhetz/gruvbox
-!
-! File: gruvbox-dark-hard.theme
-! Desc: Gruvbox dark (hard contrast) color theme for Rofi
-! Author: bardisty <b@bah.im>
-! Source: https://github.com/bardisty/gruvbox-rofi
-! Modified: Sat Oct 22 2016 03:12:10 PDT -0700
-!-------------------------------------------------------------------------------
-! Enable the extended coloring options
-rofi.padding: 10
-rofi.lines: 5
-rofi.borderwidth: 1
-rofi.scroll_method: 1
-rofi.no_show_match: 0
-rofi.opacity: 10
-rofi.font: agave Nerd Font Mono r 11
-rofi.location: 2
-rofi.yoffset: 0
-rofi.xoffset: 0
-rofi.width: 800
-rofi.fixed_num_lines: 1
-rofi.hmode: false
-!rofi.terminal: st
-rofi.hide-scrollbar: true
-rofi.modi: window,run,drun,ssh,combi
-rofi.theme: ~/.i3/rofi.rasi
-rofi.sidebar-mode: true
-rofi.terminal: urxvt256c-ml
-rofi.show-icons: true
-rofi.drun-icon-theme: Minimal
