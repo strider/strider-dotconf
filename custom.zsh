@@ -31,6 +31,7 @@ _fzf_compgen_dir() {
 alias v='f -e tec'
 alias o='a -e xdg-open'
 alias c='pygmentize -g'
+alias mux="tmuxinator"
 alias tmux="tmux -2"
 alias mutt="neomutt"
 alias tailf="tail -f"
@@ -182,7 +183,7 @@ alias dnfc="sudo dnf clean all"
 
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
+source ~/.local/bin/virtualenvwrapper.sh
 export VAGRANT_DEFAULT_PROVIDER=libvirt
 
 export GPG_TTY="$(tty)"
@@ -219,10 +220,10 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat 
 export FZF_CTRL_R_OPTS="--sort --preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
-export GOPATH="$HOME/go"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$HOME/.local/bin:$HOME/bin/git-config/bin:$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin/git-config/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
