@@ -145,6 +145,7 @@ subscribe ^rh-openstack-dev@redhat\\.com$
 mailboxes =INBOX
 mailboxes =ML.Code-Reviews
 mailboxes =ML.Bugzilla
+mailboxes =ML.GITHUB_WATCHING
 mailboxes =ML.OST-RDO-LIST
 mailboxes =ML.OST-RH-DFG-DF
 mailboxes =ML.OST-RH-OPENSTACK-DEVEL
