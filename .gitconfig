@@ -6,7 +6,7 @@
 [push]
     default = upstream
 [core]
-    editor = emacsclient -c --no-wait
+    editor = "emacsclient -c -n -a ''"
     pager = less -FSRX
     autocrlf = input
 	excludesfile = ~/.gitignore

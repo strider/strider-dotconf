@@ -100,3 +100,4 @@ URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
 !*.colorIT:
 !*.colorUL:
 URxvt*cursorBlink                               : false
+

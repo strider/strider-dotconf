@@ -124,8 +124,8 @@ attachments   -I message/external-body
 set attribution="On %d, %n wrote:"
 set certificate_file="~/.mutt/certificates"
 
-#set editor="/usr/bin/vimx + -c 'set ft=mail tw=79 spell spelllang=fr,en' -c ':0/^$'"
-set editor="emacsclient -nw"
+# set editor="/usr/bin/vimx + -c 'set ft=mail tw=79 spell spelllang=fr,en' -c ':0/^$'"
+set editor="emacs -nw"
 
 set folder="~/Mail/redhat-gmail/"
 set from="Gaël Chamoulaud <gchamoul@redhat.com>"

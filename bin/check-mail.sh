@@ -44,7 +44,7 @@ function notmuch_run {
 
 if [ "$VPN" = "activated" ] || [ "$RH_NETWORK" -eq 1 ]; then
     /usr/bin/mbsync -Va
-    notmuch_run
+    #notmuch_run
     exit 0
 fi
 echo "VPN is not UP."

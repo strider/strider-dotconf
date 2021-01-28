@@ -276,6 +276,7 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/bin/git-config/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
 
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
@@ -284,4 +285,5 @@ fi
 
 /usr/bin/stty -ixon
 
+source $HOME/.poetry/env
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
